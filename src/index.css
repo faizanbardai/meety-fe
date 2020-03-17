@@ -1,13 +1,276 @@
-body {
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Pacifico&display=swap");
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: "Lato", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.main-section {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.logo {
+  font-family: "Pacifico";
+  font-size: 48px;
+  text-shadow: 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.head {
+  display: flex;
+  flex-direction: row;
+}
+
+.head > #menu {
+  margin-left: 25px;
+  flex-grow: 1;
+  align-self: center;
+}
+
+.head > .logo {
+  margin-left: -50px;
+  flex-grow: 1;
+  color: #fff;
+}
+
+#main {
+  padding: 15px;
+}
+
+h1 {
+  color: #282828;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+h2 {
+  color: #282828;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+h3 {
+  color: #282828;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.underline::after {
+  margin-left: 10px;
+  /* content: url(../img/arrow-down.png); */
+}
+
+#main > .main-section > h1 {
+  color: #fff;
+  margin-top: 55px;
+  margin-left: 25px;
+  padding-bottom: 25px;
+}
+
+.card-title {
+  padding: 10px;
+  align-self: flex-end;
+}
+
+.card-big > .card-title > h2 {
+  font-size: 24px;
+  color: #fff;
+}
+
+.card-big > .card-title > h3 {
+  font-size: 18px;
+  color: #fff;
+}
+
+.main-section {
+  background: rgb(88, 16, 165);
+  background: -webkit-linear-gradient(
+    left,
+    rgba(88, 16, 165, 1) 0%,
+    rgba(26, 139, 206, 1) 50%,
+    rgba(61, 70, 183, 1) 100%
+  );
+  background: -o-linear-gradient(
+    left,
+    rgba(88, 16, 165, 1) 0%,
+    rgba(26, 139, 206, 1) 50%,
+    rgba(61, 70, 183, 1) 100%
+  );
+  background: linear-gradient(
+    to right,
+    rgba(88, 16, 165, 1) 0%,
+    rgba(26, 139, 206, 1) 50%,
+    rgba(61, 70, 183, 1) 100%
+  );
+  width: 100%;
+  height: 480px;
+  overflow-y: visible;
+}
+
+.second-section {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.second-section > h1 {
+  font-size: 38px;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-bottom: 25px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card-big {
+  display: flex;
+  flex: 0 0 30%;
+  height: 300px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  background-color: #999;
+  box-shadow: inset 0 -25px 45px #000000;
+}
+
+.shadow {
+  box-shadow: inset 0 -25px 45px #000000, 1px 13px 15px rgba(0, 0, 0, 0.6);
+}
+
+.pre-footer {
+  height: 150px;
+}
+
+#footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.7);
+  bottom: 0;
+  margin-left: -15px;
+}
+
+.button {
+  outline: none;
+  border: none;
+  width: 170px;
+  height: 70px;
+  color: #fff;
+  font-weight: 800;
+  font-size: 28px;
+  background-color: #5810a5;
+  border-radius: 45px;
+}
+
+#hottest-menu {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+}
+
+#hottest-menu > ul {
+  list-style: none;
+  margin-top: 195px;
+  margin-left: 140px;
+}
+
+#hottest-menu > ul > li > h1 > a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#burguer-menu {
+  position: fixed;
+  margin: 15px;
+  border-top-left-radius: 15px;
+  background-color: #282828;
+  width: 150px;
+  height: 100vh;
+  z-index: 999;
+}
+
+#overlaymenu {
+  position: fixed;
+  left: calc(150px + 15px);
+  top: 15px;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  opacity: 0;
+}
+
+#burguer-menu > ul {
+  list-style: none;
+  margin-top: 150px;
+  margin-left: 15px;
+}
+
+#burguer-menu > ul > li > h2 > a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.d-none {
+  display: none;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 1200px) {
+  .card-big {
+    flex: 0 0 30%;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .card-big {
+    flex: 0 0 30%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .card-big {
+    flex: 0 0 40%;
+  }
+  .shadow:nth-child(3) {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .card-big {
+    flex: 0 0 60%;
+  }
+  .shadow {
+    flex: 0 0 40%;
+  }
+  .shadow:nth-child(3) {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .card-big {
+    flex: 0 0 60%;
+  }
+  .shadow {
+    flex: 0 0 40%;
+  }
+  .shadow:nth-child(3) {
+    display: none;
+  }
 }

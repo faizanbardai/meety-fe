@@ -44,6 +44,21 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <div class="second-section">
+        <h1>Only for you</h1>
+        <div class="cards">
+          {hottest.map(hotItem => (
+            <CardWithOverlayText key={hotItem._id} hotItem={hotItem} />
+          ))}
+          {hottest.map(hotItem => (
+            <CardWithOverlayText key={hotItem._id} hotItem={hotItem} />
+          ))}
+          {hottest.map(hotItem => (
+            <CardWithOverlayText key={hotItem._id} hotItem={hotItem} />
+          ))}
+        </div>
+        <div class="pre-footer"></div>
+      </div>
       <GoLive />
     </div>
   );

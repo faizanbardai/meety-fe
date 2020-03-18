@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CardWithOverlayText from "../components/CardWithOverlayText";
 import Header from "../components/Header";
 import GoLive from "../components/GoLive";
+import arrowDown from "../img/arrow-down.png";
 
 export default function Home() {
   const [hottest] = useState([
@@ -36,7 +37,8 @@ export default function Home() {
           Hottest{" "}
           <span id="hottest" class="underline">
             of the week
-          </span>
+          </span>{" "}
+          <img alt="down arrow" src={arrowDown}></img>
         </h1>
         <div class="cards">
           {hottest.map(hotItem => (

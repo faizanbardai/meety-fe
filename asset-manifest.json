@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/meety-fe/static/css/main.947a2747.chunk.css",
+    "main.js": "/meety-fe/static/js/main.a53912d9.chunk.js",
+    "main.js.map": "/meety-fe/static/js/main.a53912d9.chunk.js.map",
+    "runtime-main.js": "/meety-fe/static/js/runtime-main.39c1f6f9.js",
+    "runtime-main.js.map": "/meety-fe/static/js/runtime-main.39c1f6f9.js.map",
+    "static/js/2.6272b2c0.chunk.js": "/meety-fe/static/js/2.6272b2c0.chunk.js",
+    "static/js/2.6272b2c0.chunk.js.map": "/meety-fe/static/js/2.6272b2c0.chunk.js.map",
+    "index.html": "/meety-fe/index.html",
+    "precache-manifest.5ba95305061fac8ba4c5c2871d3470fa.js": "/meety-fe/precache-manifest.5ba95305061fac8ba4c5c2871d3470fa.js",
+    "service-worker.js": "/meety-fe/service-worker.js",
+    "static/css/main.947a2747.chunk.css.map": "/meety-fe/static/css/main.947a2747.chunk.css.map",
+    "static/js/2.6272b2c0.chunk.js.LICENSE.txt": "/meety-fe/static/js/2.6272b2c0.chunk.js.LICENSE.txt",
+    "static/media/event.png": "/meety-fe/static/media/event.3f85496d.png",
+    "static/media/home.png": "/meety-fe/static/media/home.8926dda5.png",
+    "static/media/hottest.png": "/meety-fe/static/media/hottest.77fe2c9d.png",
+    "static/media/join-event.png": "/meety-fe/static/media/join-event.0fdd1043.png",
+    "static/media/new-event.png": "/meety-fe/static/media/new-event.ab1941f5.png",
+    "static/media/profile.png": "/meety-fe/static/media/profile.ea14f3fe.png",
+    "static/media/share-event.png": "/meety-fe/static/media/share-event.bc6e7b45.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.39c1f6f9.js",
+    "static/js/2.6272b2c0.chunk.js",
+    "static/css/main.947a2747.chunk.css",
+    "static/js/main.a53912d9.chunk.js"
+  ]
+}

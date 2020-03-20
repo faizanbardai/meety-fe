@@ -142,6 +142,66 @@ h3 {
   box-shadow: inset 0 -25px 45px #000000;
 }
 
+.section-info {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.about-section {
+  display: flex;
+}
+
+.profile-events-section {
+  margin-left: 70px;
+}
+
+.about-me {
+  margin-top: 150px;
+  margin-left: 70px;
+  margin-bottom: 70px;
+}
+
+.next-events {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.next-events > h1 {
+  color: #000;
+}
+
+.next-events > .card-big {
+  margin-right: 20px;
+}
+
+.avatar {
+  margin-top: 0px;
+  margin-left: 25px;
+  width: 450px;
+  height: 450px;
+  border-radius: 100%;
+  margin-bottom: 5px;
+  background-size: cover;
+  box-shadow: inset 0 -25px 45px #000000;
+}
+
+.profile-name {
+  width: 450px;
+  text-align: center;
+  color: #000 !important;
+}
+
+.followers-number {
+  width: 450px;
+  text-align: center;
+  color: #0974c3 !important;
+  font-weight: 400;
+  margin-top: 0 !important;
+}
+
 #create-event {
   margin-top: 20px;
   padding-left: 20px;
@@ -337,50 +397,4 @@ textarea {
 
 .d-none {
   display: none;
-}
-
-/* Media Queries */
-@media only screen and (max-width: 1200px) {
-  .card-big {
-    flex: 0 0 30%;
-  }
-}
-
-@media only screen and (max-width: 992px) {
-  .card-big {
-    flex: 0 0 30%;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .card-big {
-    flex: 0 0 40%;
-  }
-  .shadow:nth-child(3) {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .card-big {
-    flex: 0 0 60%;
-  }
-  .shadow {
-    flex: 0 0 40%;
-  }
-  .shadow:nth-child(3) {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .card-big {
-    flex: 0 0 60%;
-  }
-  .shadow {
-    flex: 0 0 40%;
-  }
-  .shadow:nth-child(3) {
-    display: none;
-  }
 }

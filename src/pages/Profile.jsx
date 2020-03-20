@@ -1,116 +1,68 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
+import BurgerMenu from "../components/BurgerMenu";
+import { withRouter } from "react-router-dom";
+import { api_getUserByID } from "../apis/users";
 //import addhost from "../img/addhost.png";
 //import arrowDown from "../img/arrow-down.png";
 
-export default class Profile extends Component {
+class Profile extends Component {
+  state = {};
   render() {
-    return (
+    return this.state.user ? (
       <div>
-        <Header />
-        <div id="hottest-menu" class="d-none">
-          <ul>
-            <li>
-              <h1>
-                <a href="google.com">Next week</a>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <a href="google.com">Of the month</a>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <a href="google.com">All upcoming</a>
-              </h1>
-            </li>
-          </ul>
-        </div>
-        <div id="burguer-menu" class="d-none">
-          <ul>
-            <li>
-              <h2>
-                <a href="">Profile/log-in</a>
-              </h2>
-            </li>
-            <li>
-              <h2>
-                <a href="">My Meetys</a>
-              </h2>
-            </li>
-            <li>
-              <h2>
-                <a href="">Log-out</a>
-              </h2>
-            </li>
-          </ul>
-        </div>
-        <div id="overlaymenu" class="d-none"></div>
+        <BurgerMenu />
+        <div id="overlaymenu" className="d-none"></div>
         <div id="main">
-          <div class="main-section">
-            <div class="head">
-              <div id="menu">
-                <img
-                  id="burguer"
-                  src="assets/img/burger.png"
-                  alt=""
-                  width="35"
-                  height="35px"
-                />
-              </div>
-              <div class="logo">Meety</div>
-            </div>
-            <div class="section-info">
-              <div class="card-profile">
+          <div className="main-section">
+            <Header />
+            <div className="section-info">
+              <div className="card-profile">
                 <div
-                  class="avatar"
-                  style="background-image: url(assets/img/me.png)"
+                  className="avatar"
+                  style={{ backgroundImage: `url(${this.state.user.picture})` }}
                 ></div>
-                <h1 class="profile-name">Antonio Serrano Martin</h1>
-                <h1 class="followers-number">144 followers</h1>
+                <h1 className="profile-name">{this.state.user.name}</h1>
+                <h1 className="followers-number">
+                  {this.state.user.followers.length} followers
+                </h1>
               </div>
-              <div class="follow">
-                <button class="button">Follow</button>
+              <div className="follow">
+                <button className="button">Follow</button>
               </div>
             </div>
           </div>
-          <div class="about-section" style="justify-content: center">
-            <div class="about-me">
+          <div className="about-section" style={{ justifyContent: "center" }}>
+            <div className="about-me">
               <h1>About me:</h1>
               <p>
-                <span>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Temporibus atque dicta inventore, ducimus rem cumque quas
-                  aliquam eveniet odio placeat totam, officiis saepe delectus
-                  sit voluptatibus non. Consequatur, eveniet, voluptatum.
-                </span>
-                <span>
-                  Quasi cum, quaerat amet, eaque vero accusantium, laboriosam
-                  iure sunt labore dolor totam ipsum nobis. Itaque quis tenetur
-                  excepturi! Voluptates repellendus, atque incidunt perferendis
-                  consectetur ab, exercitationem minima expedita recusandae!
-                </span>
+                <span>{this.state.user.aboutMe}</span>
               </p>
             </div>
           </div>
-          <div class="profile-events-section">
+          <div className="profile-events-section">
             <h1>His next events:</h1>
-            <div class="next-events">
+            <div className="next-events">
               <div
-                class="card-big"
-                style="background-image: url('assets/img/promo.png');background-size: cover;"
+                className="card-big"
+                style={{
+                  backgroundImage: `url('assets/img/promo.png')`,
+                  backgroundSize: "cover"
+                }}
               >
-                <div class="card-title">
+                <div className="card-title">
                   <h2>The fight against viruses</h2>
                   <h3>Tomorrow/205 Participants</h3>
                 </div>
               </div>
               <div
-                class="card-big"
-                style="background-image: url('assets/img/promo.png');background-size: cover;"
+                className="card-big"
+                style={{
+                  backgroundImage: `url('assets/img/promo.png')`,
+                  backgroundSize: "cover"
+                }}
               >
-                <div class="card-title">
+                <div className="card-title">
                   <h2>The fight against viruses</h2>
                   <h3>Tomorrow/205 Participants</h3>
                 </div>
@@ -119,6 +71,25 @@ export default class Profile extends Component {
           </div>
         </div>
       </div>
+    ) : (
+      <div>Loading...</div>
     );
   }
+  componentDidMount = async () => {
+    const userIDParam = this.props.match.params._id;
+    const userID =
+      userIDParam === "me" ? "5e74cf7b4cd7f80af0e4476b" : userIDParam;
+    try {
+      const response = await api_getUserByID(
+        localStorage.getItem("accessToken"),
+        userID
+      );
+      const user = await response.json();
+      this.setState({ user });
+    } catch (error) {
+      alert(error);
+    }
+  };
 }
+
+export default withRouter(Profile);

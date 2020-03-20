@@ -39,7 +39,6 @@ export default class Home extends Component {
       <>
         <Hottest />
         <BurgerMenu />
-        <div id="overlaymenu" className="d-none"></div>
         <div id="main">
           <div className="main-section">
             <Header />
@@ -75,41 +74,5 @@ export default class Home extends Component {
       </>
     );
   }
-  componentDidMount = () => {
-    const $ = e => document.querySelector(e);
-
-    function toggleMenu() {
-      if ($("#burguer-menu").classList.contains("d-none")) {
-        $("#burguer-menu").classList.remove("d-none");
-        $("#overlaymenu").classList.remove("d-none");
-      } else if (!$("#overlaymenu").classList.remove("d-none")) {
-        $("#burguer-menu").classList.add("d-none");
-        $("#overlaymenu").classList.add("d-none");
-      }
-    }
-
-    function toggleHottest() {
-      if ($("#hottest-menu").classList.contains("d-none")) {
-        $("#hottest-menu").classList.remove("d-none");
-      } else {
-        $("#hottest-menu").classList.add("d-none");
-      }
-    }
-
-    $("#burguer").addEventListener("click", function() {
-      toggleMenu();
-    });
-
-    $("#overlaymenu").addEventListener("click", function() {
-      toggleMenu();
-    });
-
-    $("#hottest").addEventListener("click", function() {
-      toggleHottest();
-    });
-
-    $("#hottest-menu").addEventListener("click", function() {
-      toggleHottest();
-    });
-  };
+  componentDidMount = () => {};
 }

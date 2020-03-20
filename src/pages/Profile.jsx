@@ -12,7 +12,6 @@ class Profile extends Component {
     return this.state.user ? (
       <div>
         <BurgerMenu />
-        <div id="overlaymenu" className="d-none"></div>
         <div id="main">
           <div className="main-section">
             <Header />

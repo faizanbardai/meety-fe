@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
 import Introduction from "./pages/Introduction";
 import Event from "./pages/Event";
+import Profile from "./pages/Profile";
 
 export default function MainComponent() {
   return (
@@ -19,6 +20,9 @@ export default function MainComponent() {
           </Route>
           <Route path="/event" exact>
             <Event />
+          </Route>
+          <Route path="/profile" exact>
+            <Profile />
           </Route>
           <Route component={PageNotFound} />
         </Switch>

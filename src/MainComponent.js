@@ -16,7 +16,7 @@ export default class MainComponent extends Component {
   render() {
     return (
       <div>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route path="/" exact>
               <Introduction />

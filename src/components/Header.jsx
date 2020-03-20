@@ -3,7 +3,7 @@ import burgerMenu from "../../src/img/burger.png";
 
 export default function Header() {
   return (
-    <div class="head">
+    <div className="head">
       <div id="menu">
         <img
           id="burguer"
@@ -13,7 +13,7 @@ export default function Header() {
           height="35px"
         />
       </div>
-      <div class="logo">Meety</div>
+      <div className="logo">Meety</div>
     </div>
   );
 }

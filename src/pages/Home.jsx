@@ -31,24 +31,24 @@ export default function Home() {
   ]);
   return (
     <div id="main">
-      <div class="main-section">
+      <div className="main-section">
         <Header />
         <h1>
           Hottest{" "}
-          <span id="hottest" class="underline">
+          <span id="hottest" className="underline">
             of the week
           </span>{" "}
           <img alt="down arrow" src={arrowDown}></img>
         </h1>
-        <div class="cards">
+        <div className="cards">
           {hottest.map(hotItem => (
             <CardWithOverlayText key={hotItem._id} hotItem={hotItem} />
           ))}
         </div>
       </div>
-      <div class="second-section">
+      <div className="second-section">
         <h1>Only for you</h1>
-        <div class="cards">
+        <div className="cards">
           {hottest.map(hotItem => (
             <CardWithOverlayText key={hotItem._id} hotItem={hotItem} />
           ))}
@@ -59,7 +59,7 @@ export default function Home() {
             <CardWithOverlayText key={hotItem._id} hotItem={hotItem} />
           ))}
         </div>
-        <div class="pre-footer"></div>
+        <div className="pre-footer"></div>
       </div>
       <GoLive />
     </div>

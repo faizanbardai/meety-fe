@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import BurgerMenu from "../components/BurgerMenu";
 import { withRouter } from "react-router-dom";
 import { api_getUserByID } from "../apis/users";
+import CardWithOverlayText from "../components/CardWithOverlayText";
 //import addhost from "../img/addhost.png";
 //import arrowDown from "../img/arrow-down.png";
 
@@ -40,32 +41,11 @@ class Profile extends Component {
             </div>
           </div>
           <div className="profile-events-section">
-            <h1>His next events:</h1>
+            <h1>Your next events:</h1>
             <div className="next-events">
-              <div
-                className="card-big"
-                style={{
-                  backgroundImage: `url('assets/img/promo.png')`,
-                  backgroundSize: "cover"
-                }}
-              >
-                <div className="card-title">
-                  <h2>The fight against viruses</h2>
-                  <h3>Tomorrow/205 Participants</h3>
-                </div>
-              </div>
-              <div
-                className="card-big"
-                style={{
-                  backgroundImage: `url('assets/img/promo.png')`,
-                  backgroundSize: "cover"
-                }}
-              >
-                <div className="card-title">
-                  <h2>The fight against viruses</h2>
-                  <h3>Tomorrow/205 Participants</h3>
-                </div>
-              </div>
+              {this.state.user.events.map(event => (
+                <CardWithOverlayText key={event._id} hotItem={event} />
+              ))}
             </div>
           </div>
         </div>

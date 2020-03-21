@@ -1,19 +1,20 @@
 import React from "react";
 
 export default function CardWithOverlayText({ hotItem }) {
-  const { image, title, dateAndTime, participants } = hotItem;
+  const { picture, name, schedule, participants } = hotItem;
   return (
     <div
       className="card-big shadow"
       style={{
-        backgroundImage: `url(${image})`,
+        backgroundImage: `url(${picture})`,
         backgroundSize: "cover"
       }}
     >
       <div className="card-title">
-        <h2>{title}</h2>
+        <h2>{name}</h2>
         <h3>
-          {dateAndTime}&nbsp;&nbsp; / &nbsp;&nbsp;{participants} Participants
+          {schedule}&nbsp;&nbsp; / &nbsp;&nbsp;{participants.length}{" "}
+          Participants
         </h3>
       </div>
     </div>

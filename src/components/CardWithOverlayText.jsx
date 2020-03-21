@@ -1,4 +1,5 @@
 import React from "react";
+import Moment from "react-moment";
 
 export default function CardWithOverlayText({ hotItem }) {
   const { picture, name, schedule, participants } = hotItem;
@@ -13,8 +14,8 @@ export default function CardWithOverlayText({ hotItem }) {
       <div className="card-title">
         <h2>{name}</h2>
         <h3>
-          {schedule}&nbsp;&nbsp; / &nbsp;&nbsp;{participants.length}{" "}
-          Participants
+          <Moment fromNow>{schedule}</Moment>&nbsp;&nbsp; / &nbsp;&nbsp;
+          {participants.length} Participants
         </h3>
       </div>
     </div>

@@ -11,25 +11,25 @@ export default class Home extends Component {
     hottest: [
       {
         _id: 1,
-        title: "The fight against viruses",
-        dateAndTime: "Tomorrow",
-        participants: 205,
-        image:
+        name: "The fight against viruses",
+        schedule: "23 Mar 2020",
+        participants: [1, 2, 3],
+        picture:
           "https://dp9bxf2pat5uz.cloudfront.net/wp-content/uploads/shutterstock_1626897328.jpg"
       },
       {
         _id: 2,
-        title: "Future is here!",
-        dateAndTime: "Wed 18",
-        participants: 133,
-        image: "https://cd3n.com/ts/690x388/40/21971"
+        name: "Future is here!",
+        schedule: "24 Mar 2020",
+        participants: [1, 2, 3, 4],
+        picture: "https://cd3n.com/ts/690x388/40/21971"
       },
       {
         _id: 3,
-        title: "Future is here!",
-        dateAndTime: "Wed 18",
-        participants: 133,
-        image: "https://cd3n.com/ts/690x388/40/21971"
+        name: "Future is here!",
+        schedule: "9 Nov 2020",
+        participants: [],
+        picture: "https://cd3n.com/ts/690x388/40/21971"
       }
     ]
   };

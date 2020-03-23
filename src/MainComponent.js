@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import "./index.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
 import Introduction from "./pages/Introduction";
@@ -10,11 +15,13 @@ import { api_refreshToken } from "../src/apis/users";
 
 export default class MainComponent extends Component {
   state = {
-    isAuthenticated: true
+    loading: true
   };
 
   render() {
-    return (
+    return this.state.loading ? (
+      <>Loading</>
+    ) : (
       <div>
         <Router basename={process.env.PUBLIC_URL}>
           <Switch>
@@ -29,9 +36,12 @@ export default class MainComponent extends Component {
             </Route>
             <Route path="/profile/:_id">
               {this.state.isAuthenticated ? (
-                <Profile authorised={this.state.authorised} />
+                <Profile
+                  isAuthenticated={this.state.isAuthenticated}
+                  loggedInUser={this.state.user}
+                />
               ) : (
-                <Home />
+                <Redirect to="/home" />
               )}
             </Route>
             <Route component={PageNotFound} />
@@ -42,26 +52,34 @@ export default class MainComponent extends Component {
   }
   componentDidMount = async () => {
     const accessToken = localStorage.getItem("accessToken");
-    try {
-      let response = await api_refreshToken(accessToken);
-      switch (response.status) {
-        case 200:
-          // OK
-          response = await response.json();
-          this.setState({ user: response.user });
-          localStorage.setItem("accessToken", response.access_token);
-          break;
-        case 401:
-          // unauthorized
-          localStorage.removeItem("accessToken");
-          alert("You are unauthorized or your token has expired");
-          break;
-        default:
-          alert("Some error");
-          break;
+    if (accessToken) {
+      try {
+        let response = await api_refreshToken(accessToken);
+        switch (response.status) {
+          case 200:
+            // OK
+            response = await response.json();
+            localStorage.setItem("accessToken", response.access_token);
+            this.setState({
+              loading: false,
+              isAuthenticated: true,
+              user: response.user
+            });
+            break;
+          case 401:
+            // unauthorized
+            localStorage.removeItem("accessToken");
+            alert("You are unauthorized or your token has expired");
+            this.setState({ loading: false, isAuthenticated: false });
+            break;
+          default:
+            alert("Some error");
+            this.setState({ loading: false, isAuthenticated: false });
+            break;
+        }
+      } catch (error) {
+        alert(error);
       }
-    } catch (error) {
-      alert(error);
-    }
+    } else this.setState({ loading: false, isAuthenticated: false });
   };
 }

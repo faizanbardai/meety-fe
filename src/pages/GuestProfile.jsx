@@ -3,12 +3,13 @@ import { connect } from "react-redux";
 
 import Header from "../components/Header";
 import BurgerMenu from "../components/BurgerMenu";
+import { withRouter } from "react-router-dom";
 import { api_getUserByID } from "../apis/users";
 import CardWithOverlayText from "../components/CardWithOverlayText";
 
 const mapStateToProps = state => ({ ...state });
 
-class Profile extends Component {
+class GuestProfile extends Component {
   state = {};
   render() {
     return this.state.user ? (
@@ -28,18 +29,24 @@ class Profile extends Component {
                   {this.state.user.followers.length} followers
                 </h1>
               </div>
+              {/* Showing the Follow button only for guest profiles */}
+              {this.state.user._id !== this.props.user._id ? (
+                <div className="follow">
+                  <button className="button">Follow</button>
+                </div>
+              ) : null}
             </div>
           </div>
           <div className="about-section" style={{ justifyContent: "center" }}>
             <div className="about-me">
-              <h1>About me:</h1>
+              <h1>About {this.state.user.name}:</h1>
               <p>
                 <span>{this.state.user.aboutMe}</span>
               </p>
             </div>
           </div>
           <div className="profile-events-section">
-            <h1>Your next events:</h1>
+            <h1>Next events:</h1>
             <div className="next-events">
               {this.state.user.events.map(event => (
                 <CardWithOverlayText key={event._id} hotItem={event} />
@@ -53,10 +60,17 @@ class Profile extends Component {
     );
   }
   componentDidMount = async () => {
+    const userIDParam = this.props.match.params._id;
+
+    // If profile/:_id is same as that of logged in user then redirecting to /profile
+    if (userIDParam === this.props.user._id) {
+      this.props.history.push("/profile");
+    }
+
     try {
       const response = await api_getUserByID(
         localStorage.getItem("accessToken"),
-        this.props.user._id
+        userIDParam
       );
       const user = await response.json();
       this.setState({ user });
@@ -66,4 +80,4 @@ class Profile extends Component {
   };
 }
 
-export default connect(mapStateToProps, null)(Profile);
+export default connect(mapStateToProps, null)(withRouter(GuestProfile));

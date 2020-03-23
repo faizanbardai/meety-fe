@@ -1,19 +1,30 @@
 import React, { Component } from "react";
 import "./index.css";
+
+import { connect } from "react-redux";
+import { saveUser } from "./action";
+import { api_refreshToken } from "../src/apis/users";
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect
 } from "react-router-dom";
+
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
 import Introduction from "./pages/Introduction";
 import Event from "./pages/Event";
 import Profile from "./pages/Profile";
-import { api_refreshToken } from "../src/apis/users";
+import GuestProfile from "./pages/GuestProfile";
 
-export default class MainComponent extends Component {
+const mapStateToProps = state => ({ ...state });
+const mapDispatchToProps = dispatch => ({
+  saveUser: user => dispatch(saveUser(user))
+});
+
+class MainComponent extends Component {
   state = {
     loading: true
   };
@@ -34,15 +45,11 @@ export default class MainComponent extends Component {
             <Route path="/event">
               <Event />
             </Route>
+            <Route path="/profile" exact>
+              {this.props.user ? <Profile /> : <Redirect to="/home" />}
+            </Route>
             <Route path="/profile/:_id">
-              {this.state.isAuthenticated ? (
-                <Profile
-                  isAuthenticated={this.state.isAuthenticated}
-                  loggedInUser={this.state.user}
-                />
-              ) : (
-                <Redirect to="/home" />
-              )}
+              {this.props.user ? <GuestProfile /> : <Redirect to="/home" />}
             </Route>
             <Route component={PageNotFound} />
           </Switch>
@@ -60,26 +67,27 @@ export default class MainComponent extends Component {
             // OK
             response = await response.json();
             localStorage.setItem("accessToken", response.access_token);
+            this.props.saveUser(response.user);
             this.setState({
-              loading: false,
-              isAuthenticated: true,
-              user: response.user
+              loading: false
             });
             break;
           case 401:
             // unauthorized
             localStorage.removeItem("accessToken");
             alert("You are unauthorized or your token has expired");
-            this.setState({ loading: false, isAuthenticated: false });
+            this.setState({ loading: false });
             break;
           default:
             alert("Some error");
-            this.setState({ loading: false, isAuthenticated: false });
+            this.setState({ loading: false });
             break;
         }
       } catch (error) {
         alert(error);
       }
-    } else this.setState({ loading: false, isAuthenticated: false });
+    } else this.setState({ loading: false });
   };
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainComponent);

@@ -19,6 +19,7 @@ import Event from "./pages/Event";
 import Profile from "./pages/Profile";
 import GuestProfile from "./pages/GuestProfile";
 import CreateAccount from "./pages/CreateAccount";
+import Login from "./pages/Login";
 
 const mapStateToProps = state => ({ ...state });
 const mapDispatchToProps = dispatch => ({
@@ -54,6 +55,9 @@ class MainComponent extends Component {
             </Route>
             <Route path="/create-account" exact>
               <CreateAccount />
+            </Route>
+            <Route path="/login" exact>
+              <Login />
             </Route>
             <Route component={PageNotFound} />
           </Switch>

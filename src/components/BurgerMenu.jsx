@@ -48,7 +48,7 @@ class BurgerMenu extends Component {
               </li>
               <li>
                 <h2>
-                  <a href="/log-in">Log In</a>
+                  <Link to="/login">Login</Link>
                 </h2>
               </li>
             </ul>

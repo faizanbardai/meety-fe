@@ -10,6 +10,16 @@ export const api_createAccount = async body => {
   });
 };
 
+export const api_login = async body => {
+  return await fetch(baseURL + "user/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  });
+};
+
 export const api_refreshToken = async token => {
   return await fetch(baseURL + "user/refresh", {
     method: "GET",

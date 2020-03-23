@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { saveUser } from "../action";
 
 const mapStateToProps = state => ({ ...state });
+const mapDispatchToProps = dispatch => ({
+  saveUser: user => dispatch(saveUser(user))
+});
 
 class BurgerMenu extends Component {
   render() {
@@ -13,17 +17,25 @@ class BurgerMenu extends Component {
             <ul>
               <li>
                 <h2>
-                  <a href="/profile">Profile/log-in</a>
+                  <Link to="/profile">Profile</Link>
                 </h2>
               </li>
               <li>
                 <h2>
-                  <a href="/events">My Meetys</a>
+                  <Link to="/events">My Meetys</Link>
                 </h2>
               </li>
               <li>
                 <h2>
-                  <a href="/logout">Log-out</a>
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem("accessToken");
+                      this.props.saveUser(null);
+                      this.props.history.push("/home");
+                    }}
+                  >
+                    Logout
+                  </button>
                 </h2>
               </li>
             </ul>
@@ -68,4 +80,7 @@ class BurgerMenu extends Component {
   };
 }
 
-export default connect(mapStateToProps)(BurgerMenu);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(BurgerMenu));

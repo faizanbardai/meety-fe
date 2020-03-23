@@ -1,5 +1,6 @@
 import React from "react";
 import burgerMenu from "../../src/img/burger.png";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -13,7 +14,9 @@ export default function Header() {
           height="35px"
         />
       </div>
-      <div className="logo">Meety</div>
+      <Link to="/home" className="logo">
+        <div>Meety</div>
+      </Link>
     </div>
   );
 }

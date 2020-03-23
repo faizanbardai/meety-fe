@@ -27,21 +27,30 @@ class Profile extends Component {
                   {this.state.user.followers.length} followers
                 </h1>
               </div>
-              <div className="follow">
-                <button className="button">Follow</button>
-              </div>
+              {/* Showing the Follow button only for guest profiles */}
+              {this.state.user._id !== this.props.loggedInUser._id ? (
+                <div className="follow">
+                  <button className="button">Follow</button>
+                </div>
+              ) : null}
             </div>
           </div>
           <div className="about-section" style={{ justifyContent: "center" }}>
             <div className="about-me">
-              <h1>About me:</h1>
+              {/* About Me ===> Logged in user */}
+              {/* About Guest's name ===> Guest user */}
+              {this.state.user._id !== this.props.loggedInUser._id ? (
+                <h1>About {this.state.user.name}:</h1>
+              ) : (
+                <h1>About me:</h1>
+              )}
               <p>
                 <span>{this.state.user.aboutMe}</span>
               </p>
             </div>
           </div>
           <div className="profile-events-section">
-            <h1>Your next events:</h1>
+            <h1>Next events:</h1>
             <div className="next-events">
               {this.state.user.events.map(event => (
                 <CardWithOverlayText key={event._id} hotItem={event} />
@@ -56,17 +65,21 @@ class Profile extends Component {
   }
   componentDidMount = async () => {
     const userIDParam = this.props.match.params._id;
-    const userID =
-      userIDParam === "me" ? "5e74cf7b4cd7f80af0e4476b" : userIDParam;
-    try {
-      const response = await api_getUserByID(
-        localStorage.getItem("accessToken"),
-        userID
-      );
-      const user = await response.json();
-      this.setState({ user });
-    } catch (error) {
-      alert(error);
+    // "/me": Setting user as logged in user
+    if (userIDParam === "me") {
+      this.setState({ user: this.props.loggedInUser });
+    } else {
+      try {
+        const response = await api_getUserByID(
+          localStorage.getItem("accessToken"),
+          userIDParam
+        );
+        const user = await response.json();
+        // "/:_id": Setting user as guest user
+        this.setState({ user });
+      } catch (error) {
+        alert(error);
+      }
     }
   };
 }

@@ -1,5 +1,15 @@
 const baseURL = process.env.REACT_APP_BASE_SERVER_URL;
 
+export const api_createAccount = async body => {
+  return await fetch(baseURL + "user/createAccount", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  });
+};
+
 export const api_refreshToken = async token => {
   return await fetch(baseURL + "user/refresh", {
     method: "GET",

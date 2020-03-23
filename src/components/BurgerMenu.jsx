@@ -1,27 +1,46 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-export default class BurgerMenu extends Component {
+const mapStateToProps = state => ({ ...state });
+
+class BurgerMenu extends Component {
   render() {
     return (
       <>
         <div id="burguer-menu" className="d-none">
-          <ul>
-            <li>
-              <h2>
-                <a href="/profile">Profile/log-in</a>
-              </h2>
-            </li>
-            <li>
-              <h2>
-                <a href="/events">My Meetys</a>
-              </h2>
-            </li>
-            <li>
-              <h2>
-                <a href="/logout">Log-out</a>
-              </h2>
-            </li>
-          </ul>
+          {this.props.user ? (
+            <ul>
+              <li>
+                <h2>
+                  <a href="/profile">Profile/log-in</a>
+                </h2>
+              </li>
+              <li>
+                <h2>
+                  <a href="/events">My Meetys</a>
+                </h2>
+              </li>
+              <li>
+                <h2>
+                  <a href="/logout">Log-out</a>
+                </h2>
+              </li>
+            </ul>
+          ) : (
+            <ul>
+              <li>
+                <h2>
+                  <Link to="/create-account">Create Account</Link>
+                </h2>
+              </li>
+              <li>
+                <h2>
+                  <a href="/log-in">Log In</a>
+                </h2>
+              </li>
+            </ul>
+          )}
         </div>
         <div id="overlaymenu" className="d-none"></div>
       </>
@@ -48,3 +67,5 @@ export default class BurgerMenu extends Component {
     }
   };
 }
+
+export default connect(mapStateToProps)(BurgerMenu);

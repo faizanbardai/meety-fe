@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/meety-fe/static/css/main.947a2747.chunk.css",
-    "main.js": "/meety-fe/static/js/main.d184b027.chunk.js",
-    "main.js.map": "/meety-fe/static/js/main.d184b027.chunk.js.map",
+    "main.js": "/meety-fe/static/js/main.d526af1c.chunk.js",
+    "main.js.map": "/meety-fe/static/js/main.d526af1c.chunk.js.map",
     "runtime-main.js": "/meety-fe/static/js/runtime-main.39c1f6f9.js",
     "runtime-main.js.map": "/meety-fe/static/js/runtime-main.39c1f6f9.js.map",
     "static/js/2.d6dac303.chunk.js": "/meety-fe/static/js/2.d6dac303.chunk.js",
     "static/js/2.d6dac303.chunk.js.map": "/meety-fe/static/js/2.d6dac303.chunk.js.map",
     "index.html": "/meety-fe/index.html",
-    "precache-manifest.095c309ad65cc70f84aa5e4d2e8e6105.js": "/meety-fe/precache-manifest.095c309ad65cc70f84aa5e4d2e8e6105.js",
+    "precache-manifest.f5d02e2496076e13a31a4d74c8b27a0d.js": "/meety-fe/precache-manifest.f5d02e2496076e13a31a4d74c8b27a0d.js",
     "service-worker.js": "/meety-fe/service-worker.js",
     "static/css/main.947a2747.chunk.css.map": "/meety-fe/static/css/main.947a2747.chunk.css.map",
     "static/js/2.d6dac303.chunk.js.LICENSE.txt": "/meety-fe/static/js/2.d6dac303.chunk.js.LICENSE.txt",
@@ -24,6 +24,6 @@
     "static/js/runtime-main.39c1f6f9.js",
     "static/js/2.d6dac303.chunk.js",
     "static/css/main.947a2747.chunk.css",
-    "static/js/main.d184b027.chunk.js"
+    "static/js/main.d526af1c.chunk.js"
   ]
 }

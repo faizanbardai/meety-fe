@@ -20,6 +20,7 @@ import Profile from "./pages/Profile";
 import GuestProfile from "./pages/GuestProfile";
 import CreateAccount from "./pages/CreateAccount";
 import Login from "./pages/Login";
+import CBRetrun from "./components/CBRetrun";
 
 const mapStateToProps = state => ({ ...state });
 const mapDispatchToProps = dispatch => ({
@@ -58,6 +59,9 @@ class MainComponent extends Component {
             </Route>
             <Route path="/login" exact>
               <Login />
+            </Route>
+            <Route path="/auth/facebook/callback/:accessToken" exact>
+              <CBRetrun />
             </Route>
             <Route component={PageNotFound} />
           </Switch>

@@ -39,6 +39,10 @@ const Login = props => {
         />
         <input type="submit" />
       </form>
+
+      <a href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}>
+        Login with Facebook
+      </a>
     </div>
   );
 };

@@ -45,6 +45,9 @@ const CreateAccount = props => {
         />
         <input type="submit" />
       </form>
+      <a href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}>
+        Sign up with Facebook
+      </a>
     </div>
   );
 };

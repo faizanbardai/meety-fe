@@ -5,7 +5,8 @@ import userReducer from "./reducers/user";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
-  user: null
+  user: null,
+  accessToken: null
 };
 
 export default createStore(

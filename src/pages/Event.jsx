@@ -84,6 +84,7 @@ export default class Event extends Component {
               <input
                 id="event-name"
                 type="text"
+                required
                 name="name"
                 value={this.state.name}
                 onChange={this.handleInputChange}
@@ -94,6 +95,7 @@ export default class Event extends Component {
               <input
                 id="date"
                 type="date"
+                required
                 name="date"
                 placeholder="DD/MM/YYYY"
                 value={this.state.date}
@@ -102,6 +104,7 @@ export default class Event extends Component {
               <input
                 id="time"
                 type="time"
+                required
                 name="time"
                 placeholder="XX:XX"
                 value={this.state.time}
@@ -112,6 +115,7 @@ export default class Event extends Component {
             <div>
               <input
                 type="text"
+                required
                 name="duration"
                 placeholder="Example: 30"
                 value={this.state.duration}
@@ -133,6 +137,7 @@ export default class Event extends Component {
               <textarea
                 name="description"
                 id=""
+                required
                 cols="50"
                 rows="10"
                 placeholder="Let your attendees know what to expect; including the agenda, what they need to bring and how to find the group."

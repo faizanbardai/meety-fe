@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "../components/Header";
 import { api_createEvent, api_updateEventImage } from "../apis/events";
 import BurgerMenu from "../components/BurgerMenu";
+import { withRouter } from "react-router-dom";
 // import uploadImg from "../img/upload.png";
 
 const initialState = {
@@ -12,7 +13,7 @@ const initialState = {
   description: ""
 };
 
-export default class AddEvent extends Component {
+class AddEvent extends Component {
   state = initialState;
   handleSubmit = async event => {
     event.preventDefault();
@@ -26,7 +27,6 @@ export default class AddEvent extends Component {
         duration,
         description
       });
-
       switch (newEvent.status) {
         case 200:
           // OK
@@ -43,8 +43,6 @@ export default class AddEvent extends Component {
               // OK
               newEventWithPicture = await newEventWithPicture.json();
               console.log(newEventWithPicture);
-              alert("Event successfully created.");
-              this.setState(initialState);
               this.props.history.push("/event/" + newEvent._id);
               break;
             default:
@@ -178,3 +176,5 @@ export default class AddEvent extends Component {
     );
   }
 }
+
+export default withRouter(AddEvent);

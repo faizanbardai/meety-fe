@@ -42,7 +42,7 @@ class Profile extends Component {
             <h1>Your next events:</h1>
             <div className="next-events">
               {this.state.user.events.map(event => (
-                <CardWithOverlayText key={event._id} hotItem={event} />
+                <CardWithOverlayText key={event._id} event={event} />
               ))}
             </div>
           </div>

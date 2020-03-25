@@ -1,8 +1,8 @@
 import React from "react";
 import Moment from "react-moment";
 
-export default function CardWithOverlayText({ hotItem }) {
-  const { picture, name, schedule, participants } = hotItem;
+export default function CardWithOverlayText({ event }) {
+  const { picture, name, schedule, participants } = event;
   return (
     <div
       className="card-big shadow"

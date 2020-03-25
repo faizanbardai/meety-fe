@@ -19,3 +19,11 @@ export const api_updateEventImage = async (token, _id, body) => {
     body: body
   });
 };
+
+export const api_getEventByID = async _id => {
+  return await fetch(baseURL + "event/id/" + _id, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+};

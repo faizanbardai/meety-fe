@@ -15,12 +15,13 @@ import {
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
 import Introduction from "./pages/Introduction";
-import Event from "./pages/Event";
 import Profile from "./pages/Profile";
 import GuestProfile from "./pages/GuestProfile";
 import CreateAccount from "./pages/CreateAccount";
 import Login from "./pages/Login";
 import CBRetrun from "./components/CBRetrun";
+import AddEvent from "./pages/AddEvent";
+import Event from "./pages/Event";
 
 const mapStateToProps = state => ({ ...state });
 const mapDispatchToProps = dispatch => ({
@@ -45,7 +46,10 @@ class MainComponent extends Component {
             <Route path="/home">
               <Home />
             </Route>
-            <Route path="/event">
+            <Route path="/add-event" exact>
+              <AddEvent />
+            </Route>
+            <Route path="/event/:_id" exact>
               <Event />
             </Route>
             <Route path="/profile" exact>

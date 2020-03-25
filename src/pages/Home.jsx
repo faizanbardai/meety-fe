@@ -49,22 +49,22 @@ export default class Home extends Component {
               </span>
             </h1>
             <div className="cards">
-              {hottest.map(hotItem => (
-                <CardWithOverlayText key={hotItem._id} hotItem={hotItem} />
+              {hottest.map(event => (
+                <CardWithOverlayText key={event._id} event={event} />
               ))}
             </div>
           </div>
           <div className="second-section">
             <h1>Only for you</h1>
             <div className="cards">
-              {hottest.map(hotItem => (
-                <CardWithOverlayText key={hotItem._id} hotItem={hotItem} />
+              {hottest.map(event => (
+                <CardWithOverlayText key={event._id} event={event} />
               ))}
-              {hottest.map(hotItem => (
-                <CardWithOverlayText key={hotItem._id} hotItem={hotItem} />
+              {hottest.map(event => (
+                <CardWithOverlayText key={event._id} event={event} />
               ))}
-              {hottest.map(hotItem => (
-                <CardWithOverlayText key={hotItem._id} hotItem={hotItem} />
+              {hottest.map(event => (
+                <CardWithOverlayText key={event._id} event={event} />
               ))}
             </div>
             <div className="pre-footer"></div>

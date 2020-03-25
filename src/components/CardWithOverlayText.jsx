@@ -1,10 +1,12 @@
 import React from "react";
 import Moment from "react-moment";
+import { withRouter } from "react-router-dom";
 
-export default function CardWithOverlayText({ event }) {
-  const { picture, name, schedule, participants } = event;
+function CardWithOverlayText(props) {
+  const { _id, picture, name, schedule, participants } = props.event;
   return (
     <div
+      onClick={() => props.history.push("/event/" + _id)}
       className="card-big shadow"
       style={{
         backgroundImage: `url(${picture})`,
@@ -21,3 +23,5 @@ export default function CardWithOverlayText({ event }) {
     </div>
   );
 }
+
+export default withRouter(CardWithOverlayText);

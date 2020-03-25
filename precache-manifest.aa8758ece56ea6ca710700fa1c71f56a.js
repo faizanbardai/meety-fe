@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5e2be32138f793443784531b13a15b8f",
+    "revision": "89117c2fc9a8b8253c445310ab3c3da3",
     "url": "/meety-fe/index.html"
   },
   {
-    "revision": "66bf04ead893ffb61fee",
-    "url": "/meety-fe/static/css/main.947a2747.chunk.css"
+    "revision": "9d0d34f3f0b2a0399c25",
+    "url": "/meety-fe/static/css/main.2bafdbbf.chunk.css"
   },
   {
-    "revision": "ec2a819d647f35f8cb08",
-    "url": "/meety-fe/static/js/2.d6dac303.chunk.js"
+    "revision": "f65830ee84a4e809cfda",
+    "url": "/meety-fe/static/js/2.9d0093d0.chunk.js"
   },
   {
     "revision": "d4773cfc8952e56a2df4dd3d885d1f23",
-    "url": "/meety-fe/static/js/2.d6dac303.chunk.js.LICENSE.txt"
+    "url": "/meety-fe/static/js/2.9d0093d0.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "66bf04ead893ffb61fee",
-    "url": "/meety-fe/static/js/main.d526af1c.chunk.js"
+    "revision": "9d0d34f3f0b2a0399c25",
+    "url": "/meety-fe/static/js/main.cf47ef40.chunk.js"
   },
   {
     "revision": "819935bd47303bea8c76",

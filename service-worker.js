@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/meety-fe/precache-manifest.f5d02e2496076e13a31a4d74c8b27a0d.js"
+  "/meety-fe/precache-manifest.aa8758ece56ea6ca710700fa1c71f56a.js"
 );
 
 self.addEventListener('message', (event) => {

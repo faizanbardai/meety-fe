@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { api_getHottestOfTheWeek } from "../apis/events";
 
 export default class Hottest extends Component {
   render() {
@@ -24,7 +25,7 @@ export default class Hottest extends Component {
       </div>
     );
   }
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const $ = e => document.querySelector(e);
     $("#hottest").addEventListener("click", function() {
       toggleHottest();
@@ -39,5 +40,8 @@ export default class Hottest extends Component {
         $("#hottest-menu").classList.add("d-none");
       }
     }
+    const response = await api_getHottestOfTheWeek();
+    const hottestEvents = await response.json();
+    this.props.setHottestEvents(hottestEvents);
   };
 }

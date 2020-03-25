@@ -27,3 +27,10 @@ export const api_getEventByID = async _id => {
     }
   });
 };
+export const api_getHottestOfTheWeek = async () => {
+  return await fetch(baseURL + "event/hottest-of-the-week/", {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+};

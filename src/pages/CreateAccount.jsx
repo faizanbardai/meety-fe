@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { api_createAccount } from "../apis/users";
 import { withRouter } from "react-router-dom";
-import { saveUser } from "../action";
+import { saveUser, saveAccessToken } from "../action";
 import Header from "../components/Header";
 
 const mapDispatchToProps = dispatch => ({
-  saveUser: user => dispatch(saveUser(user))
+  saveUser: user => dispatch(saveUser(user)),
+  saveAccessToken: accessToken => dispatch(saveAccessToken(accessToken))
 });
 
 const CreateAccount = props => {
@@ -15,6 +16,7 @@ const CreateAccount = props => {
     const response = await api_createAccount({ name, username, password });
     const userData = await response.json();
     localStorage.setItem("accessToken", userData.access_token);
+    props.saveAccessToken(userData.access_token);
     props.saveUser(userData.user);
     props.history.push("/profile");
   };

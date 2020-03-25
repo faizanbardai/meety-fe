@@ -360,7 +360,7 @@ textarea {
   margin-left: 140px;
 }
 
-#hottest-menu > ul > li > h1 > a {
+#hottest-menu > ul > li > h1 {
   color: #fff;
   text-decoration: none;
 }

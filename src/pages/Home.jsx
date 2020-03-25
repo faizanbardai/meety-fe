@@ -8,9 +8,10 @@ import BurgerMenu from "../components/BurgerMenu";
 
 export default class Home extends Component {
   state = {};
-  setHottestEvents = events => {
-    this.setState({ hottest: events });
+  setHottestEvents = hottest => {
+    this.setState(hottest);
   };
+
   render() {
     return (
       <>
@@ -22,12 +23,13 @@ export default class Home extends Component {
             <h1>
               Hottest{" "}
               <span id="hottest" className="underline">
-                of the week <img alt="down arrow" src={arrowDown}></img>
+                {this.state.hottestPeriod}{" "}
+                <img alt="down arrow" src={arrowDown}></img>
               </span>
             </h1>
             <div className="cards">
-              {this.state.hottest &&
-                this.state.hottest.map(event => (
+              {this.state.hottestEvents &&
+                this.state.hottestEvents.map(event => (
                   <CardWithOverlayText key={event._id} event={event} />
                 ))}
             </div>
@@ -35,8 +37,8 @@ export default class Home extends Component {
           <div className="second-section">
             <h1>Only for you</h1>
             <div className="cards">
-              {this.state.hottest &&
-                this.state.hottest.map(event => (
+              {this.state.hottestEvents &&
+                this.state.hottestEvents.map(event => (
                   <CardWithOverlayText key={event._id} event={event} />
                 ))}
             </div>

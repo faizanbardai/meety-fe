@@ -12,9 +12,9 @@ class Event extends Component {
       <>
         <BurgerMenu />
         <div id="main">
-          <div class="main-section">
+          <div className="main-section">
             <Header />
-            <div class="cards">
+            <div className="cards">
               <CardWithOverlayText event={this.state.event} />
             </div>
           </div>

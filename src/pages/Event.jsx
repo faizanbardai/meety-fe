@@ -162,6 +162,7 @@ export default class Event extends Component {
                   id="input-file"
                   type="file"
                   name="picture"
+                  required="/image"
                   onChange={e => this.setState({ picture: e.target.files[0] })}
                 ></input>
               </div>

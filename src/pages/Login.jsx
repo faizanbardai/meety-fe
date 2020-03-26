@@ -29,12 +29,12 @@ const Login = props => {
     <>
       <BurgerMenu />
       <div id="main">
-        <div class="main-section heading-size">
+        <div className="main-section heading-size">
           <Header />
         </div>
         <h1>Register</h1>
       </div>
-      <div class="second-section">
+      <div className="second-section">
         <form id="create-event" onSubmit={handleSubmit}>
           <label for="username">User Name</label>
           <div>
@@ -77,12 +77,12 @@ const Login = props => {
           <br />
           <br />
           <br />
-          <div class="foot">
-            <div class="cancel">
-              <button class="button-empty">Go back</button>
+          <div className="foot">
+            <div className="cancel">
+              <button className="button-empty">Go back</button>
             </div>
-            <div class="preview-publish">
-              <button class="button" type="submit">
+            <div className="preview-publish">
+              <button className="button" type="submit">
                 Login
               </button>
             </div>

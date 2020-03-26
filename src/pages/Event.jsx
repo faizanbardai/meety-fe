@@ -25,18 +25,20 @@ class Event extends Component {
               <CardWithOverlayText event={this.state.event} />
             </div>
           </div>
-          <div class="event-section">
-            <div class="hosted-follow">
-              <div class="hostedby">
+          <div className="event-section">
+            <div className="hosted-follow">
+              <div className="hostedby">
                 <img
                   src={this.state.event.host[0].picture}
                   alt=""
-                  class="hosted-avatar"
+                  className="hosted-avatar"
                 />
-                <span class="hostedname">{this.state.event.host[0].name}</span>
+                <span className="hostedname">
+                  {this.state.event.host[0].name}
+                </span>
               </div>
 
-              <div class="follow">
+              <div className="follow">
                 {/* If you are the host of the event then you will see the edit button
                     otherwise you can use the follow button to follow the host of the event.
                 */}
@@ -49,23 +51,23 @@ class Event extends Component {
                       }
                     }}
                   >
-                    <button class="button">Edit</button>
+                    <button className="button">Edit</button>
                   </Link>
                 ) : (
-                  <button class="button" onClick={this.handleFollowButton}>
+                  <button className="button" onClick={this.handleFollowButton}>
                     Follow
                   </button>
                 )}
               </div>
             </div>
-            <div class="about-event">
+            <div className="about-event">
               <h1>Details</h1>
               <br />
               <p>{this.state.event.description}</p>
               <br />
               <h1>Participants</h1>
             </div>
-            <div class="hosts">
+            <div className="hosts">
               {this.state.event.participants.map(participant => (
                 <MiniProfileCard key={participant._id} item={participant} />
               ))}

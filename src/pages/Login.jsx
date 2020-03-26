@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { api_login } from "../apis/users";
 import { withRouter } from "react-router-dom";
 import { saveUser, saveAccessToken } from "../action";
-import Header from "../components/Header";
+//import Header from "../components/Header";
 
 const mapDispatchToProps = dispatch => ({
   saveUser: user => dispatch(saveUser(user)),
@@ -25,27 +25,104 @@ const Login = props => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
-    <div>
-      <Header />
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="abc@def.com"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-        ></input>
-        <input
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-        <input type="submit" />
-      </form>
-
-      <a href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}>
-        Login with Facebook
-      </a>
-    </div>
+    <>
+      <div id="burguer-menu" class="d-none">
+        <ul>
+          <li>
+            <h2>
+              <a href="">Profile/log-in</a>
+            </h2>
+          </li>
+          <li>
+            <h2>
+              <a href="">My Meetys</a>
+            </h2>
+          </li>
+          <li>
+            <h2>
+              <a href="">Log-out</a>
+            </h2>
+          </li>
+        </ul>
+      </div>
+      <div id="main">
+        <div class="main-section heading-size">
+          <div class="head">
+            <div id="menu">
+              <img
+                id="burguer"
+                src="assets/img/burger.png"
+                alt=""
+                width="35"
+                height="35px"
+              />
+            </div>
+          </div>
+          <div class="logo">Meety</div>
+        </div>
+        <h1>Register</h1>
+      </div>
+      <div class="second-section">
+        <form id="create-event" action="" method="POST" onSubmit={handleSubmit}>
+          <label for="username">User Name</label>
+          <div>
+            <input
+              type="email"
+              placeholder="abc@def.com"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+            ></input>
+          </div>
+          <label for="password">Password</label>
+          <div>
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </div>
+          <label for="pic">Avatar</label>
+          <div id="upload">
+            <input id="input-file" type="file" name="profile-pic" />
+          </div>
+          <label for="about-you">About you</label>
+          <div>
+            <textarea
+              name="about-you"
+              id=""
+              cols="50"
+              rows="10"
+              placeholder="Let your attendees know what to expect.including the agenda, what they need to bring and how to find the group."
+            ></textarea>
+          </div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <div class="foot">
+            <div class="cancel">
+              <button class="button-empty">Go back</button>
+            </div>
+            <div class="preview-publish">
+              <button class="button" type="submit">
+                Register
+              </button>
+            </div>
+          </div>
+        </form>
+        <div>
+          <a href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}>
+            Login with Facebook
+          </a>
+        </div>
+      </div>
+    </>
   );
 };
 

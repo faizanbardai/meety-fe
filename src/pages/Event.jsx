@@ -223,28 +223,28 @@ import MiniProfileCard from "../components/MiniProfileCard";
               <CardWithOverlayText event={this.state.event} />
             </div>
           </div>
-          <div class="event-section">
-            <div class="hosted-follow">
-              <div class="hostedby">
+          <div className="event-section">
+            <div className="hosted-follow">
+              <div className="hostedby">
                 <img
                   src={this.state.event.host[0].picture}
                   alt=""
-                  class="hosted-avatar"
+                  className="hosted-avatar"
                 />
-                <span class="hostedname">{this.state.event.host[0].name}</span>
+                <span className="hostedname">{this.state.event.host[0].name}</span>
               </div>
-              <div class="follow">
-                <button class="button">Follow</button>
+              <div className="follow">
+                <button className="button">Follow</button>
               </div>
             </div>
-            <div class="about-event">
+            <div className="about-event">
               <h1>Details</h1>
               <br />
               <p>{this.state.event.description}</p>
               <br />
               <h1>Participants</h1>
             </div>
-            <div class="hosts">
+            <div className="hosts">
               {this.state.event.participants.map(participant => (
                 <MiniProfileCard key={participant._id} item={participant} />
               ))}

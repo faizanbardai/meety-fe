@@ -5,13 +5,13 @@ function MiniProfileCard(props) {
   const { picture, name, _id } = props.item;
   return (
     <div
-      class="host-minicard"
+      className="host-minicard"
       onClick={() => {
         props.history.push("/profile/" + _id);
       }}
     >
-      <div class="img" style={{ backgroundImage: `url(${picture})` }}></div>
-      <div class="name">{name}</div>
+      <div className="img" style={{ backgroundImage: `url(${picture})` }}></div>
+      <div className="name">{name}</div>
     </div>
   );
 }

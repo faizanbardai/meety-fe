@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { api_login } from "../apis/users";
 import { withRouter } from "react-router-dom";
-import { saveUser } from "../action";
+import { saveUser, saveAccessToken } from "../action";
 import Header from "../components/Header";
 
 const mapDispatchToProps = dispatch => ({
-  saveUser: user => dispatch(saveUser(user))
+  saveUser: user => dispatch(saveUser(user)),
+  saveAccessToken: accessToken => dispatch(saveAccessToken(accessToken))
 });
 
 const Login = props => {
@@ -17,6 +18,7 @@ const Login = props => {
     localStorage.setItem("accessToken", userData.access_token);
     console.log("Hi");
     props.saveUser(userData.user);
+    props.saveAccessToken(userData.access_token);
     props.history.push("/profile");
   };
 

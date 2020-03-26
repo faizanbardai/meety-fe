@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./index.css";
 
 import { connect } from "react-redux";
-import { saveUser } from "./action";
+import { saveUser, saveAccessToken } from "./action";
 import { api_refreshToken } from "../src/apis/users";
 
 import {
@@ -25,7 +25,8 @@ import Event from "./pages/Event";
 
 const mapStateToProps = state => ({ ...state });
 const mapDispatchToProps = dispatch => ({
-  saveUser: user => dispatch(saveUser(user))
+  saveUser: user => dispatch(saveUser(user)),
+  saveAccessToken: accessToken => dispatch(saveAccessToken(accessToken))
 });
 
 class MainComponent extends Component {
@@ -84,6 +85,7 @@ class MainComponent extends Component {
             response = await response.json();
             localStorage.setItem("accessToken", response.access_token);
             this.props.saveUser(response.user);
+            this.props.saveAccessToken(response.access_token);
             this.setState({
               loading: false
             });

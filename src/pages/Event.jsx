@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import BurgerMenu from "../components/BurgerMenu";
 import Header from "../components/Header";
 import CardWithOverlayText from "../components/CardWithOverlayText";
-import { api_getEventByID } from "../apis/events";
 import { withRouter, Link } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
 
@@ -80,9 +79,7 @@ class Event extends Component {
     );
   }
   componentDidMount = async () => {
-    const response = await api_getEventByID(this.props.match.params._id);
-    const event = await response.json();
-    this.setState({ event });
+    this.setState({ event: this.props.location.state.event });
   };
 }
 export default connect(mapStateToProps, null)(withRouter(Event));

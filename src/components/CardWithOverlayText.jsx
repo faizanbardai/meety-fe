@@ -1,12 +1,18 @@
 import React from "react";
 import Moment from "react-moment";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 function CardWithOverlayText(props) {
-  const { _id, picture, name, schedule, participantsLength } = props.event;
+  const { picture, name, schedule, participantsLength } = props.event;
   return (
-    <div
-      onClick={() => props.history.push("/event/" + _id)}
+    <Link
+      to={{
+        pathname: "/event",
+        state: {
+          event: props.event
+        }
+      }}
+      // onClick={() => props.history.push("/event/" + _id)}
       className="card-big shadow"
       style={{
         backgroundImage: `url(${picture})`,
@@ -20,7 +26,7 @@ function CardWithOverlayText(props) {
           {participantsLength} Participants
         </h3>
       </div>
-    </div>
+    </Link>
   );
 }
 

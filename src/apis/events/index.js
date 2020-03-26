@@ -27,3 +27,31 @@ export const api_getEventByID = async _id => {
     }
   });
 };
+export const api_getHottestOfTheWeek = async () => {
+  return await fetch(baseURL + "event/hottest-of-the-week/", {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+};
+export const api_getHottestOfNextWeek = async () => {
+  return await fetch(baseURL + "event/hottest-of-next-week/", {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+};
+export const api_getHottestOfTheMonth = async () => {
+  return await fetch(baseURL + "event/hottest-of-the-month/", {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+};
+export const api_getHottestAllUpcoming = async () => {
+  return await fetch(baseURL + "event/all-upcoming/", {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+};

@@ -22,7 +22,7 @@ class BurgerMenu extends Component {
               </li>
               <li>
                 <h2>
-                  <Link to="/events">My Meetys</Link>
+                  <Link to="/add-event">Add a new event</Link>
                 </h2>
               </li>
               <li>

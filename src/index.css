@@ -119,11 +119,48 @@ h3 {
   background-color: #fff;
 }
 
+.hosted-follow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 100px;
+}
+.hostedby {
+  display: flex;
+  margin-left: 25px;
+}
+.hosted-avatar {
+  border-radius: 100%;
+  width: 70px;
+}
+
 .second-section > h1 {
   font-size: 38px;
   margin-top: 50px;
   margin-left: 50px;
   margin-bottom: 25px;
+}
+
+.hostedname {
+  align-self: center;
+  font-size: 24px;
+  margin-left: 5px;
+  font-weight: 800;
+}
+.event-section .hosts {
+  margin-left: 25px;
+}
+.about-event {
+  padding: 25px;
+}
+.green {
+  align-self: center;
+  color: #32c26c;
+  padding: 10px;
+}
+.event-foot {
+  margin-left: 25px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .cards {
@@ -360,7 +397,7 @@ textarea {
   margin-left: 140px;
 }
 
-#hottest-menu > ul > li > h1 > a {
+#hottest-menu > ul > li > h1 {
   color: #fff;
   text-decoration: none;
 }

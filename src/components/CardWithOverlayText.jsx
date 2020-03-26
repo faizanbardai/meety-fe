@@ -3,7 +3,7 @@ import Moment from "react-moment";
 import { withRouter } from "react-router-dom";
 
 function CardWithOverlayText(props) {
-  const { _id, picture, name, schedule, participants } = props.event;
+  const { _id, picture, name, schedule, participantsLength } = props.event;
   return (
     <div
       onClick={() => props.history.push("/event/" + _id)}
@@ -17,7 +17,7 @@ function CardWithOverlayText(props) {
         <h2>{name}</h2>
         <h3>
           <Moment fromNow>{schedule}</Moment>&nbsp;&nbsp; / &nbsp;&nbsp;
-          {participants.length} Participants
+          {participantsLength} Participants
         </h3>
       </div>
     </div>

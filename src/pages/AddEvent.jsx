@@ -2,21 +2,25 @@ import React, { Component } from "react";
 import Header from "../components/Header";
 import { api_createEvent, api_updateEventImage } from "../apis/events";
 import BurgerMenu from "../components/BurgerMenu";
+import { withRouter } from "react-router-dom";
+import MiniProfileCard from "../components/MiniProfileCard";
+import { connect } from "react-redux";
 // import uploadImg from "../img/upload.png";
+import addHost from "../img/addhost.png";
 
-const initialState = {
-  name: "",
-  date: "",
-  time: "",
-  duration: "",
-  description: ""
-};
+const mapStateToProps = state => ({ ...state });
 
-export default class AddEvent extends Component {
-  state = initialState;
+class AddEvent extends Component {
+  state = {
+    name: "",
+    date: "",
+    time: "",
+    duration: "",
+    description: ""
+  };
   handleSubmit = async event => {
     event.preventDefault();
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = this.props.accessToken;
     const { name, date, time, duration, description } = this.state;
     const schedule = date + " " + time;
     try {
@@ -26,29 +30,31 @@ export default class AddEvent extends Component {
         duration,
         description
       });
-
       switch (newEvent.status) {
         case 200:
           // OK
-          newEvent = await newEvent.json();
-          const data = new FormData();
-          data.append("picture", this.state.picture);
-          let newEventWithPicture = await api_updateEventImage(
-            accessToken,
-            newEvent._id,
-            data
-          );
-          switch (newEventWithPicture.status) {
-            case 200:
-              // OK
-              newEventWithPicture = await newEventWithPicture.json();
-              console.log(newEventWithPicture);
-              alert("Event successfully created.");
-              this.setState(initialState);
-              this.props.history.push("/event/" + newEvent._id);
-              break;
-            default:
-              alert("Some error when saving event picture");
+          if (this.state.picture) {
+            newEvent = await newEvent.json();
+            const data = new FormData();
+            data.append("picture", this.state.picture);
+            let newEventWithPicture = await api_updateEventImage(
+              accessToken,
+              newEvent._id,
+              data
+            );
+            switch (newEventWithPicture.status) {
+              case 200:
+                // OK
+                newEventWithPicture = await newEventWithPicture.json();
+                this.props.history.push("/event/" + newEvent._id);
+                break;
+              default:
+                alert("Some error when saving event picture");
+            }
+          } else {
+            newEvent = await newEvent.json();
+            this.props.history.push("/event/" + newEvent._id);
+            break;
           }
           break;
         case 401:
@@ -145,19 +151,10 @@ export default class AddEvent extends Component {
               </div>
               <label htmlFor="Hosts">Hosts (they can edit event details)</label>
               <div className="hosts">
-                <div className="host-minicard">
-                  <div
-                    className="img"
-                    // style={{ "background-image": `url(assets/img/me.png)` }}
-                  ></div>
-                  <div className="name">Antonio Serrano Martin</div>
-                  <div className="username"></div>
-                </div>
-                <div id="add-host" className="host-minicard">
-                  <div className="img"></div>
-                  <div className="name">Add new host</div>
-                  <div className="username"></div>
-                </div>
+                <MiniProfileCard item={this.props.user} />
+                <MiniProfileCard
+                  item={{ name: "Add new host", picture: `${addHost}` }}
+                />
               </div>
 
               <div className="foot">
@@ -178,3 +175,5 @@ export default class AddEvent extends Component {
     );
   }
 }
+
+export default connect(mapStateToProps, null)(withRouter(AddEvent));

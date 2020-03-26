@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
+
 import { api_createEvent, api_updateEventImage } from "../apis/events";
 import BurgerMenu from "../components/BurgerMenu";
 // import uploadImg from "../img/upload.png";
@@ -51,6 +52,11 @@ export default class Event extends Component {
         duration,
         description
       });
+
+import CardWithOverlayText from "../components/CardWithOverlayText";
+import { api_getEventByID } from "../apis/events";
+import { withRouter } from "react-router-dom";
+import MiniProfileCard from "../components/MiniProfileCard";
 
       switch (newEvent.status) {
         case 200:
@@ -108,6 +114,7 @@ export default class Event extends Component {
       <>
         <BurgerMenu />
         <div id="main">
+
           <div className="main-section heading-size">
             <Header />
             <h1>Create an event</h1>
@@ -209,6 +216,39 @@ export default class Event extends Component {
                 </div>
               </div>
             </form>
+
+          <div className="main-section">
+            <Header />
+            <div className="cards">
+              <CardWithOverlayText event={this.state.event} />
+            </div>
+          </div>
+          <div class="event-section">
+            <div class="hosted-follow">
+              <div class="hostedby">
+                <img
+                  src={this.state.event.host[0].picture}
+                  alt=""
+                  class="hosted-avatar"
+                />
+                <span class="hostedname">{this.state.event.host[0].name}</span>
+              </div>
+              <div class="follow">
+                <button class="button">Follow</button>
+              </div>
+            </div>
+            <div class="about-event">
+              <h1>Details</h1>
+              <br />
+              <p>{this.state.event.description}</p>
+              <br />
+              <h1>Participants</h1>
+            </div>
+            <div class="hosts">
+              {this.state.event.participants.map(participant => (
+                <MiniProfileCard key={participant._id} item={participant} />
+              ))}
+            </div>
           </div>
         </div>
       </>

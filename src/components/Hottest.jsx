@@ -1,30 +1,64 @@
 import React, { Component } from "react";
+import {
+  api_getHottestOfTheWeek,
+  api_getHottestOfNextWeek,
+  api_getHottestOfTheMonth,
+  api_getHottestAllUpcoming
+} from "../apis/events";
 
 export default class Hottest extends Component {
+  handleClick = async hottestPeriod => {
+    let response, hottestEvents;
+    switch (hottestPeriod) {
+      case "of the week":
+        response = await api_getHottestOfTheWeek();
+        hottestEvents = await response.json();
+        this.props.setHottestEvents({ hottestEvents, hottestPeriod });
+        break;
+      case "of next week":
+        response = await api_getHottestOfNextWeek();
+        hottestEvents = await response.json();
+        this.props.setHottestEvents({ hottestEvents, hottestPeriod });
+        break;
+      case "of the month":
+        response = await api_getHottestOfTheMonth();
+        hottestEvents = await response.json();
+        this.props.setHottestEvents({ hottestEvents, hottestPeriod });
+        break;
+      case "All upcoming":
+        response = await api_getHottestAllUpcoming();
+        hottestEvents = await response.json();
+        this.props.setHottestEvents({ hottestEvents, hottestPeriod });
+        break;
+      default:
+        break;
+    }
+  };
   render() {
     return (
       <div id="hottest-menu" className="d-none">
         <ul>
           <li>
-            <h1>
-              <a href="google.com">Next week</a>
+            <h1 onClick={() => this.handleClick("of the week")}>of the Week</h1>
+          </li>
+          <li>
+            <h1 onClick={() => this.handleClick("of next week")}>Next Week</h1>
+          </li>
+          <li>
+            <h1 onClick={() => this.handleClick("of the month")}>
+              of the Month
             </h1>
           </li>
           <li>
-            <h1>
-              <a href="google.com">Of the month</a>
-            </h1>
-          </li>
-          <li>
-            <h1>
-              <a href="google.com">All upcoming</a>
+            <h1 onClick={() => this.handleClick("All upcoming")}>
+              All upcoming
             </h1>
           </li>
         </ul>
       </div>
     );
   }
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const $ = e => document.querySelector(e);
     $("#hottest").addEventListener("click", function() {
       toggleHottest();
@@ -39,5 +73,10 @@ export default class Hottest extends Component {
         $("#hottest-menu").classList.add("d-none");
       }
     }
+    this.handleClick("of the week");
+    // const response = await api_getHottestOfTheWeek();
+    // const hottestEvents = await response.json();
+    // const hottestPeriod = "of the Week";
+    // this.props.setHottestEvents({ hottestEvents, hottestPeriod });
   };
 }

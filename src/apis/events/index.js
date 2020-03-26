@@ -10,6 +10,16 @@ export const api_createEvent = async (token, body) => {
     body: JSON.stringify(body)
   });
 };
+export const api_updateEvent = async (token, _id, body) => {
+  return await fetch(baseURL + "event/" + _id, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+    body: JSON.stringify(body)
+  });
+};
 export const api_updateEventImage = async (token, _id, body) => {
   return await fetch(baseURL + "event/" + _id + "/picture", {
     method: "PUT",
@@ -19,7 +29,6 @@ export const api_updateEventImage = async (token, _id, body) => {
     body: body
   });
 };
-
 export const api_getEventByID = async _id => {
   return await fetch(baseURL + "event/id/" + _id, {
     headers: {

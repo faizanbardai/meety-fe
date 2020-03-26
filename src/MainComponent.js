@@ -22,6 +22,7 @@ import Login from "./pages/Login";
 import CBRetrun from "./components/CBRetrun";
 import AddEvent from "./pages/AddEvent";
 import Event from "./pages/Event";
+import UpdateEvent from "./pages/UpdateEvent";
 
 const mapStateToProps = state => ({ ...state });
 const mapDispatchToProps = dispatch => ({
@@ -68,6 +69,7 @@ class MainComponent extends Component {
             <Route path="/auth/facebook/callback/:accessToken" exact>
               <CBRetrun />
             </Route>
+            <Route path="/update-event/:_id" component={UpdateEvent} />
             <Route component={PageNotFound} />
           </Switch>
         </Router>

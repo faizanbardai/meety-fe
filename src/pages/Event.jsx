@@ -15,34 +15,10 @@ const initialState = {
   time: "",
   duration: "",
   description: "",
-  nameError: "",
-  dateError: "",
-  descriptionError: ""
 };
 
 export default class Event extends Component {
   state = initialState;
-
-  validate = () => {
-    let nameError = "";
-    let dateError = "";
-    let descriptionError = "";
-
-    if (!this.state.name) {
-      nameError = "name cannot be blank";
-    }
-    if (!this.state.date.startsWith) {
-      dateError = "date cannot be previous date";
-    }
-    if (!this.state.description) {
-      descriptionError = "description cannot be blank";
-    }
-    if (nameError || dateError || descriptionError) {
-      this.setState({ nameError, dateError, descriptionError });
-      return false;
-    }
-    return true;
-  };
 
   handleSubmit = async event => {
     event.preventDefault();
@@ -93,20 +69,15 @@ export default class Event extends Component {
   };
 
   handleInputChange = event => {
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      //this.setState{initialState}
-    }
+   
     const target = event.target;
     const value = target.value;
     const name = target.name;
 
-    // this.setState({
-    //   [name]: value
-    // });
-    this.setState({ initialState });
+     this.setState({
+       [name]: value
+    });
+   
   };
   render() {
     return (
@@ -128,7 +99,7 @@ export default class Event extends Component {
                   value={this.state.name}
                   onChange={this.handleInputChange}
                 />
-                <div>{this.state.nameError}</div>
+              
               </div>
               <label htmlFor="date">Date/Time</label>
               <div>
@@ -140,7 +111,7 @@ export default class Event extends Component {
                   value={this.state.date}
                   onChange={this.handleInputChange}
                 />
-                <div>{this.state.dateError}</div>
+           
                 <input
                   id="time"
                   type="time"
@@ -167,7 +138,6 @@ export default class Event extends Component {
                   id="input-file"
                   type="file"
                   name="picture"
-                  required="/image"
                   onChange={e => this.setState({ picture: e.target.files[0] })}
                 ></input>
               </div>
@@ -182,7 +152,6 @@ export default class Event extends Component {
                   value={this.state.description}
                   onChange={this.handleInputChange}
                 >
-                  <div>{this.state.descriptionError}</div>
                 </textarea>
               </div>
               <label htmlFor="Hosts">Hosts (they can edit event details)</label>
@@ -221,6 +190,7 @@ export default class Event extends Component {
                 <CardWithOverlayText event={this.state.event} />
               </div>
             </div>
+
             <div class="event-section">
               <div class="hosted-follow">
                 <div class="hostedby">
@@ -249,6 +219,34 @@ export default class Event extends Component {
                   <MiniProfileCard key={participant._id} item={participant} />
                 ))}
               </div>
+
+          </div>
+          <div className="event-section">
+            <div className="hosted-follow">
+              <div className="hostedby">
+                <img
+                  src={this.state.event.host[0].picture}
+                  alt=""
+                  className="hosted-avatar"
+                />
+                <span className="hostedname">{this.state.event.host[0].name}</span>
+              </div>
+              <div className="follow">
+                <button className="button">Follow</button>
+              </div>
+            </div>
+            <div className="about-event">
+              <h1>Details</h1>
+              <br />
+              <p>{this.state.event.description}</p>
+              <br />
+              <h1>Participants</h1>
+            </div>
+            <div className="hosts">
+              {this.state.event.participants.map(participant => (
+                <MiniProfileCard key={participant._id} item={participant} />
+              ))}
+
             </div>
           </div>
         </div>

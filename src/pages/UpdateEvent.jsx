@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
-import {
-  api_getEventByID,
-  api_updateEvent,
-  api_updateEventImage
-} from "../apis/events";
+import { api_updateEvent, api_updateEventImage } from "../apis/events";
 import BurgerMenu from "../components/BurgerMenu";
 import { withRouter } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
@@ -69,7 +65,6 @@ class UpdateEvent extends Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-
     this.setState({
       [name]: value
     });
@@ -170,10 +165,7 @@ class UpdateEvent extends Component {
     );
   }
   componentDidMount = async () => {
-    const eventID = this.props.match.params._id;
-    const response = await api_getEventByID(eventID);
-    const event = await response.json();
-    this.setState(event);
+    this.setState(this.props.location.state.event);
   };
 }
 

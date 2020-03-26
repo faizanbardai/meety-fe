@@ -1,12 +1,18 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import BurgerMenu from "../components/BurgerMenu";
 import Header from "../components/Header";
 import CardWithOverlayText from "../components/CardWithOverlayText";
 import { api_getEventByID } from "../apis/events";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
 
+const mapStateToProps = state => ({ ...state });
+
 class Event extends Component {
+  handleFollowButton = () => {
+    console.log("I'm follow button");
+  };
   state = {};
   render() {
     return this.state.event ? (
@@ -29,8 +35,27 @@ class Event extends Component {
                 />
                 <span class="hostedname">{this.state.event.host[0].name}</span>
               </div>
+
               <div class="follow">
-                <button class="button">Follow</button>
+                {/* If you are the host of the event then you will see the edit button
+                    otherwise you can use the follow button to follow the host of the event.
+                */}
+                {this.props.user.events.includes(this.state.event._id) ? (
+                  <Link
+                    to={{
+                      pathname: "/update-event/" + this.state.event._id,
+                      state: {
+                        event: this.state.event
+                      }
+                    }}
+                  >
+                    <button class="button">Edit</button>
+                  </Link>
+                ) : (
+                  <button class="button" onClick={this.handleFollowButton}>
+                    Follow
+                  </button>
+                )}
               </div>
             </div>
             <div class="about-event">
@@ -58,4 +83,4 @@ class Event extends Component {
     this.setState({ event });
   };
 }
-export default withRouter(Event);
+export default connect(mapStateToProps, null)(withRouter(Event));

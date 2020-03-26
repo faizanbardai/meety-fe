@@ -12,7 +12,6 @@ function CardWithOverlayText(props) {
           event: props.event
         }
       }}
-      // onClick={() => props.history.push("/event/" + _id)}
       className="card-big shadow"
       style={{
         backgroundImage: `url(${picture})`,

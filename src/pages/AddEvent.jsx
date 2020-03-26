@@ -7,22 +7,30 @@ import MiniProfileCard from "../components/MiniProfileCard";
 import { connect } from "react-redux";
 // import uploadImg from "../img/upload.png";
 import addHost from "../img/addhost.png";
+import { addEventIDToUserEventsArray } from "../action";
 
 const mapStateToProps = state => ({ ...state });
+const mapDispatchToProps = dispatch => ({
+  addEventIDToUserEventsArray: _id => dispatch(addEventIDToUserEventsArray(_id))
+});
 
 class AddEvent extends Component {
   state = {
     name: "",
-    date: "",
-    time: "",
+    schedule: "",
     duration: "",
     description: ""
   };
+
+  // handleSubmitTest = event => {
+  //   event.preventDefault();
+  //   this.props.addEventIDToUserEventsArray("123");
+  //   console.log("hi");
+  // };
   handleSubmit = async event => {
     event.preventDefault();
     const accessToken = this.props.accessToken;
-    const { name, date, time, duration, description } = this.state;
-    const schedule = date + " " + time;
+    const { name, schedule, duration, description } = this.state;
     try {
       let newEvent = await api_createEvent(accessToken, {
         name,
@@ -46,14 +54,22 @@ class AddEvent extends Component {
               case 200:
                 // OK
                 newEventWithPicture = await newEventWithPicture.json();
-                this.props.history.push("/event/" + newEvent._id);
+                this.props.addEventIDToUserEventsArray(newEventWithPicture._id);
+                this.props.history.push({
+                  pathname: "/event",
+                  state: { event: newEventWithPicture }
+                });
                 break;
               default:
                 alert("Some error when saving event picture");
             }
           } else {
             newEvent = await newEvent.json();
-            this.props.history.push("/event/" + newEvent._id);
+            this.props.addEventIDToUserEventsArray(newEvent._id);
+            this.props.history.push({
+              pathname: "/event",
+              state: { event: newEvent }
+            });
             break;
           }
           break;
@@ -101,19 +117,10 @@ class AddEvent extends Component {
               <label htmlFor="date">Date/Time</label>
               <div>
                 <input
-                  id="date"
-                  type="date"
-                  name="date"
-                  placeholder="DD/MM/YYYY"
-                  value={this.state.date}
-                  onChange={this.handleInputChange}
-                />
-                <input
-                  id="time"
-                  type="time"
-                  name="time"
-                  placeholder="XX:XX"
-                  value={this.state.time}
+                  id="schedule"
+                  type="datetime-local"
+                  name="schedule"
+                  value={this.state.schedule}
                   onChange={this.handleInputChange}
                 />
               </div>
@@ -176,4 +183,7 @@ class AddEvent extends Component {
   }
 }
 
-export default connect(mapStateToProps, null)(withRouter(AddEvent));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(AddEvent));

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { api_getEventByID } from "../apis/events";
 import BurgerMenu from "../components/BurgerMenu";
 import Header from "../components/Header";
 import CardWithOverlayText from "../components/CardWithOverlayText";
@@ -27,21 +28,36 @@ class Event extends Component {
           <div className="event-section">
             <div className="hosted-follow">
               <div className="hostedby">
-                <img
-                  src={this.state.event.host[0].picture}
-                  alt=""
-                  className="hosted-avatar"
-                />
-                <span className="hostedname">
-                  {this.state.event.host[0].name}
-                </span>
+                {this.props.user &&
+                this.state.event.host.includes(this.props.user._id) ? (
+                  <>
+                    <img
+                      src={this.props.user.picture}
+                      alt=""
+                      className="hosted-avatar"
+                    />
+                    <span className="hostedname">{this.props.user.name}</span>
+                  </>
+                ) : (
+                  <>
+                    <img
+                      src={this.state.event.host[0].picture}
+                      alt=""
+                      className="hosted-avatar"
+                    />
+                    <span className="hostedname">
+                      {this.state.event.host[0].name}
+                    </span>
+                  </>
+                )}
               </div>
 
               <div className="follow">
                 {/* If you are the host of the event then you will see the edit button
                     otherwise you can use the follow button to follow the host of the event.
                 */}
-                {this.props.user.events.includes(this.state.event._id) ? (
+                {this.props.user &&
+                this.props.user.events.includes(this.state.event._id) ? (
                   <Link
                     to={{
                       pathname: "/update-event/",
@@ -79,7 +95,13 @@ class Event extends Component {
     );
   }
   componentDidMount = async () => {
-    this.setState({ event: this.props.location.state.event });
+    if (this.props.location.state) {
+      this.setState({ event: this.props.location.state.event });
+    } else {
+      const response = await api_getEventByID(this.props.match.params._id);
+      const event = await response.json();
+      this.setState({ event });
+    }
   };
 }
 export default connect(mapStateToProps, null)(withRouter(Event));

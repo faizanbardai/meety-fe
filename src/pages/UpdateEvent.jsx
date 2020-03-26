@@ -39,14 +39,20 @@ class UpdateEvent extends Component {
               case 200:
                 // OK
                 newEventWithPicture = await newEventWithPicture.json();
-                this.props.history.push("/event/" + updatedEvent._id);
+                this.props.history.push({
+                  pathname: "/event",
+                  state: { event: newEventWithPicture }
+                });
                 break;
               default:
                 alert("Some error when saving event picture");
             }
           } else {
             updatedEvent = await updatedEvent.json();
-            this.props.history.push("/event/" + updatedEvent._id);
+            this.props.history.push({
+              pathname: "/event",
+              state: { event: updatedEvent }
+            });
             break;
           }
           break;
@@ -76,7 +82,7 @@ class UpdateEvent extends Component {
         <div id="main">
           <div className="main-section heading-size">
             <Header />
-            <h1>Create an event</h1>
+            <h1>Update event</h1>
           </div>
           <div className="second-section">
             <form id="create-event" onSubmit={this.handleSubmit}>

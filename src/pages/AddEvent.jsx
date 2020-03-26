@@ -10,19 +10,17 @@ import addHost from "../img/addhost.png";
 
 const mapStateToProps = state => ({ ...state });
 
-const initialState = {
-  name: "",
-  date: "",
-  time: "",
-  duration: "",
-  description: ""
-};
-
 class AddEvent extends Component {
-  state = initialState;
+  state = {
+    name: "",
+    date: "",
+    time: "",
+    duration: "",
+    description: ""
+  };
   handleSubmit = async event => {
     event.preventDefault();
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = this.props.accessToken;
     const { name, date, time, duration, description } = this.state;
     const schedule = date + " " + time;
     try {
@@ -35,23 +33,28 @@ class AddEvent extends Component {
       switch (newEvent.status) {
         case 200:
           // OK
-          newEvent = await newEvent.json();
-          const data = new FormData();
-          data.append("picture", this.state.picture);
-          let newEventWithPicture = await api_updateEventImage(
-            accessToken,
-            newEvent._id,
-            data
-          );
-          switch (newEventWithPicture.status) {
-            case 200:
-              // OK
-              newEventWithPicture = await newEventWithPicture.json();
-              console.log(newEventWithPicture);
-              this.props.history.push("/event/" + newEvent._id);
-              break;
-            default:
-              alert("Some error when saving event picture");
+          if (this.state.picture) {
+            newEvent = await newEvent.json();
+            const data = new FormData();
+            data.append("picture", this.state.picture);
+            let newEventWithPicture = await api_updateEventImage(
+              accessToken,
+              newEvent._id,
+              data
+            );
+            switch (newEventWithPicture.status) {
+              case 200:
+                // OK
+                newEventWithPicture = await newEventWithPicture.json();
+                this.props.history.push("/event/" + newEvent._id);
+                break;
+              default:
+                alert("Some error when saving event picture");
+            }
+          } else {
+            newEvent = await newEvent.json();
+            this.props.history.push("/event/" + newEvent._id);
+            break;
           }
           break;
         case 401:

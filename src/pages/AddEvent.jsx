@@ -3,7 +3,12 @@ import Header from "../components/Header";
 import { api_createEvent, api_updateEventImage } from "../apis/events";
 import BurgerMenu from "../components/BurgerMenu";
 import { withRouter } from "react-router-dom";
+import MiniProfileCard from "../components/MiniProfileCard";
+import { connect } from "react-redux";
 // import uploadImg from "../img/upload.png";
+import addHost from "../img/addhost.png";
+
+const mapStateToProps = state => ({ ...state });
 
 const initialState = {
   name: "",
@@ -143,19 +148,10 @@ class AddEvent extends Component {
               </div>
               <label htmlFor="Hosts">Hosts (they can edit event details)</label>
               <div className="hosts">
-                <div className="host-minicard">
-                  <div
-                    className="img"
-                    // style={{ "background-image": `url(assets/img/me.png)` }}
-                  ></div>
-                  <div className="name">Antonio Serrano Martin</div>
-                  <div className="username"></div>
-                </div>
-                <div id="add-host" className="host-minicard">
-                  <div className="img"></div>
-                  <div className="name">Add new host</div>
-                  <div className="username"></div>
-                </div>
+                <MiniProfileCard item={this.props.user} />
+                <MiniProfileCard
+                  item={{ name: "Add new host", picture: `${addHost}` }}
+                />
               </div>
 
               <div className="foot">
@@ -177,4 +173,4 @@ class AddEvent extends Component {
   }
 }
 
-export default withRouter(AddEvent);
+export default connect(mapStateToProps, null)(withRouter(AddEvent));

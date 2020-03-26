@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { api_login } from "../apis/users";
 import { withRouter } from "react-router-dom";
 import { saveUser, saveAccessToken } from "../action";
+import BurgerMenu from "../components/BurgerMenu";
+import Header from "../components/Header";
 //import Header from "../components/Header";
 
 const mapDispatchToProps = dispatch => ({
@@ -16,7 +18,6 @@ const Login = props => {
     const response = await api_login({ username, password });
     const userData = await response.json();
     localStorage.setItem("accessToken", userData.access_token);
-    console.log("Hi");
     props.saveUser(userData.user);
     props.saveAccessToken(userData.access_token);
     props.history.push("/profile");
@@ -26,44 +27,15 @@ const Login = props => {
   const [password, setPassword] = useState("");
   return (
     <>
-      <div id="burguer-menu" class="d-none">
-        <ul>
-          <li>
-            <h2>
-              <a href="">Profile/log-in</a>
-            </h2>
-          </li>
-          <li>
-            <h2>
-              <a href="">My Meetys</a>
-            </h2>
-          </li>
-          <li>
-            <h2>
-              <a href="">Log-out</a>
-            </h2>
-          </li>
-        </ul>
-      </div>
+      <BurgerMenu />
       <div id="main">
         <div class="main-section heading-size">
-          <div class="head">
-            <div id="menu">
-              <img
-                id="burguer"
-                src="assets/img/burger.png"
-                alt=""
-                width="35"
-                height="35px"
-              />
-            </div>
-          </div>
-          <div class="logo">Meety</div>
+          <Header />
         </div>
         <h1>Register</h1>
       </div>
       <div class="second-section">
-        <form id="create-event" action="" method="POST" onSubmit={handleSubmit}>
+        <form id="create-event" onSubmit={handleSubmit}>
           <label for="username">User Name</label>
           <div>
             <input
@@ -111,7 +83,7 @@ const Login = props => {
             </div>
             <div class="preview-publish">
               <button class="button" type="submit">
-                Register
+                Login
               </button>
             </div>
           </div>

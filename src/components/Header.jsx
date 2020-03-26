@@ -15,7 +15,7 @@ export default function Header() {
         />
       </div>
       <Link to="/home" className="logo">
-        <div>Meety</div>
+        <div className="logo">Meety</div>
       </Link>
     </div>
   );

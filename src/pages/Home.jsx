@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import GoLive from "../components/GoLive";
 import arrowDown from "../img/arrow-down.png";
 
+
+
 export default function Home() {
   const [hottest] = useState([
     {

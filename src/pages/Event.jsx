@@ -45,7 +45,7 @@ class Event extends Component {
                 {this.props.user.events.includes(this.state.event._id) ? (
                   <Link
                     to={{
-                      pathname: "/update-event/" + this.state.event._id,
+                      pathname: "/update-event/",
                       state: {
                         event: this.state.event
                       }

@@ -69,7 +69,7 @@ class MainComponent extends Component {
             <Route path="/auth/facebook/callback/:accessToken" exact>
               <CBRetrun />
             </Route>
-            <Route path="/update-event/:_id" component={UpdateEvent} />
+            <Route path="/update-event" component={UpdateEvent} />
             <Route component={PageNotFound} />
           </Switch>
         </Router>

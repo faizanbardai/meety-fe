@@ -4,6 +4,14 @@ export default (state = {}, action) => {
       return { ...state, user: action.payload };
     case "SAVE_ACCESS_TOKEN":
       return { ...state, accessToken: action.payload };
+    case "ADD_EVENT_ID_TO_USER_EVENT_ARRAY":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          events: [...state.user.events.concat(action.payload)]
+        }
+      };
     default:
       return state;
   }

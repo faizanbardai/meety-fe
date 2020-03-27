@@ -10,6 +10,16 @@ export const api_createAccount = async body => {
   });
 };
 
+export const api_updateUserImage = async (token, body) => {
+  return await fetch(baseURL + "user/picture", {
+    method: "PUT",
+    headers: {
+      Authorization: "Bearer " + token
+    },
+    body: body
+  });
+};
+
 export const api_login = async body => {
   return await fetch(baseURL + "user/login", {
     method: "POST",

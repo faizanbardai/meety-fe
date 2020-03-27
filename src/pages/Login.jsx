@@ -32,7 +32,7 @@ const Login = props => {
         <div className="main-section heading-size">
           <Header />
         </div>
-        <h1>Register</h1>
+        <h1>Login Page</h1>
       </div>
       <div className="second-section">
         <form id="create-event" onSubmit={handleSubmit}>
@@ -42,6 +42,7 @@ const Login = props => {
               type="email"
               placeholder="abc@def.com"
               value={username}
+              required
               onChange={e => setUsername(e.target.value)}
             ></input>
           </div>
@@ -50,49 +51,30 @@ const Login = props => {
             <input
               type="password"
               value={password}
+              required
               onChange={e => setPassword(e.target.value)}
             />
           </div>
-          <label for="pic">Avatar</label>
-          <div id="upload">
-            <input id="input-file" type="file" name="profile-pic" />
-          </div>
-          <label for="about-you">About you</label>
           <div>
-            <textarea
-              name="about-you"
-              id=""
-              cols="50"
-              rows="10"
-              placeholder="Let your attendees know what to expect.including the agenda, what they need to bring and how to find the group."
-            ></textarea>
+            <a
+              href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}
+              class="fb connect"
+            >
+              Sign in with Facebook
+            </a>
+            <br />
+            <br />
+            {/* <a href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}>
+              Login with Facebook
+            </a> */}
           </div>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <div className="foot">
-            <div className="cancel">
-              <button className="button-empty">Go back</button>
-            </div>
-            <div className="preview-publish">
-              <button className="button" type="submit">
-                Login
-              </button>
-            </div>
+
+          <div className="preview-publish">
+            <button className="button" type="submit">
+              Login
+            </button>
           </div>
         </form>
-        <div>
-          <a href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}>
-            Login with Facebook
-          </a>
-        </div>
       </div>
     </>
   );

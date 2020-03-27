@@ -22,7 +22,7 @@ function CardWithOverlayText(props) {
         <h2>{name}</h2>
         <h3>
           <Moment fromNow>{schedule}</Moment>&nbsp;&nbsp; / &nbsp;&nbsp;
-          {participantsLength} Participants
+          {participantsLength ? participantsLength : "0"} Participants
         </h3>
       </div>
     </Link>

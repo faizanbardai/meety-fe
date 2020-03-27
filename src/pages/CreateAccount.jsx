@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { api_createAccount } from "../apis/users";
+import { api_createAccount, api_updateUserImage } from "../apis/users";
 import { withRouter } from "react-router-dom";
 import { saveUser, saveAccessToken } from "../action";
 import Header from "../components/Header";
@@ -14,18 +14,50 @@ const mapDispatchToProps = dispatch => ({
 const CreateAccount = props => {
   const handleSubmit = async e => {
     e.preventDefault();
-    const response = await api_createAccount({
+    let userData = await api_createAccount({
       name,
       username,
       password,
-      picture,
       aboutMe
     });
-    const userData = await response.json();
-    localStorage.setItem("accessToken", userData.access_token);
-    props.saveAccessToken(userData.access_token);
-    props.saveUser(userData.user);
-    props.history.push("/profile");
+    switch (userData.status) {
+      case 200:
+        // OK
+        if (picture) {
+          userData = await userData.json();
+          const data = new FormData();
+          data.append("picture", picture);
+          let userWithPicture = await api_updateUserImage(
+            userData.access_token,
+            data
+          );
+          switch (userWithPicture.status) {
+            case 200:
+              // OK
+              userWithPicture = await userWithPicture.json();
+              localStorage.setItem("accessToken", userData.access_token);
+              props.saveAccessToken(userData.access_token);
+              props.saveUser(userWithPicture);
+              props.history.push("/profile");
+              break;
+            default:
+              alert("Some error when saving user picture");
+          }
+        } else {
+          userData = await userData.json();
+          localStorage.setItem("accessToken", userData.access_token);
+          props.saveAccessToken(userData.access_token);
+          props.saveUser(userData.user);
+          props.history.push("/profile");
+        }
+        break;
+      case 401:
+        // unauthorized
+        alert("You are unauthorized");
+        break;
+      default:
+        alert("Some error");
+    }
   };
 
   const [name, setName] = useState("");
@@ -43,7 +75,7 @@ const CreateAccount = props => {
         <h1>Register Here</h1>
       </div>
       <div class="second-section">
-        <form id="create-event" action="" onSubmit={handleSubmit}>
+        <form id="create-event" onSubmit={handleSubmit}>
           <label for="Name">Name</label>
           <div>
             <input
@@ -70,15 +102,13 @@ const CreateAccount = props => {
               onChange={e => setPassword(e.target.value)}
             />
           </div>
-          {/* <input type="submit" /> */}
-
           <label for="pic">Avatar</label>
           <div id="upload">
             <input
               id="input-file"
               type="file"
               name="profile-pic"
-              onChange={e => setPicture(e.target.value)}
+              onChange={e => setPicture(e.target.files[0])}
             />
           </div>
           <label for="about-you">About you</label>

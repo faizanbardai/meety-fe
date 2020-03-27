@@ -21,12 +21,6 @@ class AddEvent extends Component {
     duration: "",
     description: ""
   };
-
-  // handleSubmitTest = event => {
-  //   event.preventDefault();
-  //   this.props.addEventIDToUserEventsArray("123");
-  //   console.log("hi");
-  // };
   handleSubmit = async event => {
     event.preventDefault();
     const accessToken = this.props.accessToken;

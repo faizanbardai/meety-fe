@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import { saveUser } from "../action";
+import { saveUser, saveAccessToken } from "../action";
 
 const mapStateToProps = state => ({ ...state });
 const mapDispatchToProps = dispatch => ({
-  saveUser: user => dispatch(saveUser(user))
+  saveUser: user => dispatch(saveUser(user)),
+  saveAccessToken: accessToken => dispatch(saveAccessToken(accessToken))
 });
 
 class BurgerMenu extends Component {
@@ -31,6 +32,7 @@ class BurgerMenu extends Component {
                     onClick={() => {
                       localStorage.removeItem("accessToken");
                       this.props.saveUser(null);
+                      this.props.saveAccessToken(null);
                       this.props.history.push("/home");
                     }}
                   >

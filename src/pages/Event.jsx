@@ -87,8 +87,7 @@ class Event extends Component {
                 <MiniProfileCard key={participant._id} item={participant} />
               ))}
             </div>
-            <FacebookShareButton url={shareUrl}> <FacebookIcon size={32} round={true} /> </FacebookShareButton>  <TwitterShareButton url={shareUrl}><TwitterIcon size={32} round={true} /></TwitterShareButton>  <WhatsappShareButton url={shareUrl}><WhatsappIcon size={32} round={true} /></WhatsappShareButton>
-          </div>
+            </div>
         </div>
       </>
     ) : (

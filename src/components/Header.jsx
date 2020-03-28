@@ -1,9 +1,10 @@
 import React from "react";
 import burgerMenu from "../../src/img/burger.png";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <div class="head">
+    <div className="head">
       <div id="menu">
         <img
           id="burguer"
@@ -13,7 +14,9 @@ export default function Header() {
           height="35px"
         />
       </div>
-      <div class="logo">Meety</div>
+      <Link to="/home" className="logo">
+        <div className="logo">Meety</div>
+      </Link>
     </div>
   );
 }

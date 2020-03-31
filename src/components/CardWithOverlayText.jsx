@@ -24,6 +24,7 @@ function CardWithOverlayText(props) {
           <Moment fromNow>{schedule}</Moment>&nbsp;&nbsp; / &nbsp;&nbsp;
           {participantsLength ? participantsLength : "0"} Participants
         </h3>
+         
       </div>
     </Link>
   );

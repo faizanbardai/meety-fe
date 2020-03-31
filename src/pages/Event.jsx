@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import CardWithOverlayText from "../components/CardWithOverlayText";
 import { withRouter, Link } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
+import Share from "../components/Share"
 
 const mapStateToProps = state => ({ ...state });
 
@@ -79,6 +80,7 @@ class Event extends Component {
               <h1>Details</h1>
               <br />
               <p>{this.state.event.description}</p>
+              <Share />
               <br />
               <h1>Participants</h1>
             </div>
@@ -87,7 +89,7 @@ class Event extends Component {
                 <MiniProfileCard key={participant._id} item={participant} />
               ))}
             </div>
-          </div>
+            </div>
         </div>
       </>
     ) : (

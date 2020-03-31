@@ -467,3 +467,13 @@ a.fb {
   content: "f";
 }
 /* fb button  */
+
+.network {
+  display: inline-flex;
+  text-decoration: none;
+  padding: 1px;
+  transition: width 2s;
+}
+.network:hover {
+  padding: 2px;
+}

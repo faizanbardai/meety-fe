@@ -64,3 +64,13 @@ export const api_getHottestAllUpcoming = async () => {
     }
   });
 };
+export const api_addHost = async (token, event, host) => {
+  console.log(baseURL + "event/addHost/" + event + "/" + host);
+  return await fetch(baseURL + "event/addHost/" + event + "/" + host, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    }
+  });
+};

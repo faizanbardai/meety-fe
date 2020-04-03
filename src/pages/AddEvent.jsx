@@ -20,7 +20,8 @@ class AddEvent extends Component {
     name: "",
     schedule: "",
     duration: "",
-    description: ""
+    description: "",
+    hosts: [this.props.user]
   };
   handleSubmit = async event => {
     event.preventDefault();
@@ -98,7 +99,7 @@ class AddEvent extends Component {
             <h1>Create an event</h1>
           </div>
           <div className="second-section">
-            <form id="create-event" onSubmit={this.handleSubmit}>
+            <form id="create-event" onSubmit={() => this.handleSubmit()}>
               <label htmlFor="event-name">Event Name (required)</label>
               <div>
                 <input
@@ -153,19 +154,23 @@ class AddEvent extends Component {
               </div>
               <label htmlFor="Hosts">Hosts (they can edit event details)</label>
               <div className="hosts">
-                <MiniProfileCard item={this.props.user} />
-                <MiniProfileCard
+                {this.state.hosts.map((host, i) => (
+                  <MiniProfileCard item={host} key={i} />
+                ))}
+                {/* <MiniProfileCard item={this.props.user} /> */}
+                {/* <MiniProfileCard
                   item={{ name: "Add new host", picture: `${addHost}` }}
-                />
+                /> */}
                 {/* {this.props.event.host.map((host, index) => (
                   <div className="flex">
                     <div>{this.props.host.picture} </div>
                   </div>
                 ))} */}
+                {/* {JSON.stringify(this.state.hosts)} */}
                 <AddHost
                   addHost={user =>
                     this.setState({
-                      event: { hosts: [...this.events.hosts, user] }
+                      hosts: [...this.state.hosts, user]
                     })
                   }
                 />

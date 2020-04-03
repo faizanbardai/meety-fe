@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
 import { connect } from "react-redux";
 // import uploadImg from "../img/upload.png";
-import addHost from "../img/addhost.png";
+//import addHost from "../img/addhost.png";
 import { addEventIDToUserEventsArray } from "../action";
 import AddHost from "../pages/AddHost";
 
@@ -161,11 +161,6 @@ class AddEvent extends Component {
                 {/* <MiniProfileCard
                   item={{ name: "Add new host", picture: `${addHost}` }}
                 /> */}
-                {/* {this.props.event.host.map((host, index) => (
-                  <div className="flex">
-                    <div>{this.props.host.picture} </div>
-                  </div>
-                ))} */}
                 {/* {JSON.stringify(this.state.hosts)} */}
                 <AddHost
                   addHost={user =>

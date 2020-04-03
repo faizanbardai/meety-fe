@@ -48,3 +48,12 @@ export const api_getUserByID = async (token, _id) => {
     }
   });
 };
+export const api_searchUser = async (token, search) => {
+  return await fetch(baseURL + "user/search/" + search, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    }
+  });
+};

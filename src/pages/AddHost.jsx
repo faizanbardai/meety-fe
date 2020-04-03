@@ -29,7 +29,7 @@ export default class Examples extends Component {
         user._id
       );
       const adduser = await response.json();
-      this.props.addHost(user);
+      this.props.addHost(adduser);
       //this.setState({ adduser });
     } else {
       this.props.addHost(user);
@@ -52,7 +52,11 @@ export default class Examples extends Component {
   render() {
     return (
       <section>
-        <input type="button" value="Open" onClick={() => this.openModal()} />
+        <input
+          type="button"
+          value="Add User"
+          onClick={() => this.openModal()}
+        />
         <Modal
           visible={this.state.visible}
           width="400"

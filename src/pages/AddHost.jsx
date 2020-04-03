@@ -19,18 +19,20 @@ export default class Examples extends Component {
     const searchResult = await response.json();
     this.setState({ searchResult });
   };
-  addHost = async event => {
-    if (this.props.event._id) {
-      console.log(this.props.event._id, this.props.user._id);
+  addHost = async user => {
+    // debugger;
+    if (this.props.event) {
+      //console.log(this.props.event._id, this.props.user._id);
       const response = await api_addHost(
         localStorage.getItem("accessToken"),
         this.props.event._id,
-        this.props.user._id
+        user._id
       );
       const adduser = await response.json();
-      this.setState({ adduser });
+      this.props.addHost(user);
+      //this.setState({ adduser });
     } else {
-      this.props.addHost(this.props.user._id);
+      this.props.addHost(user);
     }
     // const accessToken = this.props.accessToken;
   };
@@ -73,7 +75,9 @@ export default class Examples extends Component {
                 <div className="flex">
                   <div>{value.name} </div>
                   <div>
-                    <button onClick={() => this.addHost()}>Add User</button>
+                    <button type="button" onClick={() => this.addHost(value)}>
+                      Add User
+                    </button>
                   </div>
                 </div>
               ))}

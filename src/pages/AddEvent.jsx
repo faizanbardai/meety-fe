@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 // import uploadImg from "../img/upload.png";
 import addHost from "../img/addhost.png";
 import { addEventIDToUserEventsArray } from "../action";
+import AddHost from "../pages/AddHost";
 
 const mapStateToProps = state => ({ ...state });
 const mapDispatchToProps = dispatch => ({
@@ -155,6 +156,18 @@ class AddEvent extends Component {
                 <MiniProfileCard item={this.props.user} />
                 <MiniProfileCard
                   item={{ name: "Add new host", picture: `${addHost}` }}
+                />
+                {/* {this.props.event.host.map((host, index) => (
+                  <div className="flex">
+                    <div>{this.props.host.picture} </div>
+                  </div>
+                ))} */}
+                <AddHost
+                  addHost={user =>
+                    this.setState({
+                      event: { hosts: [...this.events.hosts, user] }
+                    })
+                  }
                 />
               </div>
 

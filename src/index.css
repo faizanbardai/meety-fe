@@ -467,3 +467,6 @@ a.fb {
   content: "f";
 }
 /* fb button  */
+.flex {
+  display: flex;
+}

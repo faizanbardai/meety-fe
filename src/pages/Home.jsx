@@ -6,7 +6,7 @@ import arrowDown from "../img/arrow-down.png";
 import Hottest from "../components/Hottest";
 import BurgerMenu from "../components/BurgerMenu";
 import Share from "../components/Share";
-import { Row } from "reactstrap"
+import { Row, Col } from "reactstrap"
 
 export default class Home extends Component {
   state = {};
@@ -33,7 +33,9 @@ export default class Home extends Component {
             <div className="cards">
               {this.state.hottestEvents &&
                 this.state.hottestEvents.map(event => (
+                  <Col sm="12" md="6">
                   <CardWithOverlayText key={event._id} event={event} />
+                  </Col>
                 ))}
             </div>
             </Row>
@@ -45,7 +47,9 @@ export default class Home extends Component {
             <div className="cards">
               {this.state.hottestEvents &&
                 this.state.hottestEvents.map(event => (
+                  <Col sm="12" md="4">
                   <CardWithOverlayText key={event._id} event={event} />
+                  </Col>
                 ))}
             </div>
             </Row>

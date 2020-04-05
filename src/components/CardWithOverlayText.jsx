@@ -1,11 +1,12 @@
 import React from "react";
 import Moment from "react-moment";
 import { withRouter, Link } from "react-router-dom";
-import {} from "reactstrap"
+import { Col } from "reactstrap"
 
 function CardWithOverlayText(props) {
   const { picture, name, schedule, participantsLength } = props.event;
   return (
+    <Col sm={{ size: 12, offset: 1, limit: 1 }} md={{ size: 6, offset: 3 }}>
     <Link
       to={{
         pathname: "/event",
@@ -28,6 +29,7 @@ function CardWithOverlayText(props) {
          
       </div>
     </Link>
+    </Col>
   );
 }
 

@@ -477,3 +477,9 @@ a.fb {
 .network:hover {
   padding: 2px;
 }
+
+.sortMenu:hover {
+  font-size: 150%;
+  transition: ease-in-out 1s;
+  cursor: pointer;
+}

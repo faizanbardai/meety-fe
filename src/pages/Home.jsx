@@ -5,7 +5,8 @@ import GoLive from "../components/GoLive";
 import arrowDown from "../img/arrow-down.png";
 import Hottest from "../components/Hottest";
 import BurgerMenu from "../components/BurgerMenu";
-import Share from "../components/Share"
+import Share from "../components/Share";
+import { Row } from "reactstrap"
 
 export default class Home extends Component {
   state = {};
@@ -28,22 +29,26 @@ export default class Home extends Component {
                 <img alt="down arrow" src={arrowDown}></img>
               </span>
             </h1>
+            <Row>
             <div className="cards">
               {this.state.hottestEvents &&
                 this.state.hottestEvents.map(event => (
                   <CardWithOverlayText key={event._id} event={event} />
                 ))}
             </div>
+            </Row>
           </div>
-          <div className="second-section">
+          <div className="second-section pt-auto">
             <h1>Only for you</h1>
             <Share /> 
+            <Row>
             <div className="cards">
               {this.state.hottestEvents &&
                 this.state.hottestEvents.map(event => (
                   <CardWithOverlayText key={event._id} event={event} />
                 ))}
             </div>
+            </Row>
             <div className="pre-footer"></div>
           </div>
           <GoLive />

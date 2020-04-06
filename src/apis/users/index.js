@@ -48,3 +48,24 @@ export const api_getUserByID = async (token, _id) => {
     }
   });
 };
+
+//here i go
+export const api_followers = async (token, _id) => {
+  return await fetch(baseURL + "user/" + _id +"/follow", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+  });
+};
+
+export const api_unfollow = async (token, _id) => {
+  return await fetch(baseURL + "user/" + _id +"/unfollow", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+  });
+};

@@ -64,3 +64,25 @@ export const api_getHottestAllUpcoming = async () => {
     }
   });
 };
+
+//here i go
+export const api_joinEvent = async (token, _id) => {
+  return await fetch(baseURL + "event/" + _id +"/join-event", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+  });
+};
+
+
+export const api_leaveEvent = async (token, _id) => {
+  return await fetch(baseURL + "event/" + _id +"/leave-event", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+  });
+};

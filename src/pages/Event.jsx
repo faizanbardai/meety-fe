@@ -112,27 +112,28 @@ class Event extends Component {
                       <button className="button">Edit</button>
                     </Link>
                   )}
-                {this.props.user._id !== this.state.event.hosts[0]._id && (
-                  <>
-                    {this.props.user.following.includes(
-                      this.state.event.hosts[0]._id
-                    ) ? (
-                      <button
-                        className="button"
-                        onClick={this.handleUnFollowButton}
-                      >
-                        Unfollow
-                      </button>
-                    ) : (
-                      <button
-                        className="button"
-                        onClick={this.handleFollowButton}
-                      >
-                        Follow
-                      </button>
-                    )}
-                  </>
-                )}
+                {this.props.user &&
+                  this.props.user._id !== this.state.event.hosts[0]._id && (
+                    <>
+                      {this.props.user.following.includes(
+                        this.state.event.hosts[0]._id
+                      ) ? (
+                        <button
+                          className="button"
+                          onClick={this.handleUnFollowButton}
+                        >
+                          Unfollow
+                        </button>
+                      ) : (
+                        <button
+                          className="button"
+                          onClick={this.handleFollowButton}
+                        >
+                          Follow
+                        </button>
+                      )}
+                    </>
+                  )}
               </div>
             </div>
             <div className="about-event">

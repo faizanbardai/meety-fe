@@ -12,47 +12,40 @@ import CardWithOverlayText from "../components/CardWithOverlayText";
 import { withRouter, Link } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
 import Share from "../components/Share";
+import Moment from "react-moment";
+import { followHost, unFollowHost } from "../action";
 
 const mapStateToProps = (state) => ({ ...state });
+const mapDispatchToProps = (dispatch) => ({
+  followHost: (_id) => dispatch(followHost(_id)),
+  unFollowHost: (_id) => dispatch(unFollowHost(_id)),
+});
 
 class Event extends Component {
   state = {
     participants: "",
     followers: "",
   };
-  //here i go
   handleJoinButton = async () => {
-    console.log("I'm join button");
     try {
       const accessToken = this.props.accessToken;
-      const res = await api_joinEvent(accessToken, this.state.event._id);
-      if (res.ok) {
-        this.setState({
-          event: {
-            ...this.state.event,
-            participants: [...this.state.event.participants, this.props.user],
-          },
-        });
+      const response = await api_joinEvent(accessToken, this.state.event._id);
+      if (response.ok) {
+        const event = await response.json();
+        this.setState({ event });
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  handleCancelButton = async () => {
-    console.log("I'm cancel button");
+  handleLeaveButton = async () => {
     try {
       const accessToken = this.props.accessToken;
-      const res = await api_leaveEvent(accessToken, this.state.event._id);
-      if (res.ok) {
-        this.setState({
-          event: {
-            ...this.state.event,
-            participants: this.state.event.participants.filter(
-              (x) => x._id !== this.props.user._id
-            ),
-          },
-        });
+      const response = await api_leaveEvent(accessToken, this.state.event._id);
+      if (response.ok) {
+        const event = await response.json();
+        this.setState({ event });
       }
     } catch (error) {
       console.log(error);
@@ -60,18 +53,14 @@ class Event extends Component {
   };
 
   handleFollowButton = async () => {
-    console.log("I'm follow button");
     try {
       const accessToken = this.props.accessToken;
       const res = await api_followers(
         accessToken,
         this.state.event.hosts[0]._id
       );
-      console.log(res);
       if (res.ok) {
-        this.setState({
-          followers: [...this.state.followers, this.user._id],
-        });
+        this.props.followHost(this.state.event.hosts[0]._id);
       }
     } catch (error) {
       console.log(error);
@@ -79,18 +68,14 @@ class Event extends Component {
   };
 
   handleUnFollowButton = async () => {
-    console.log("I'm follow button");
     try {
       const accessToken = this.props.accessToken;
       const res = await api_unfollow(
         accessToken,
         this.state.event.hosts[0]._id
       );
-      console.log(res);
       if (res.ok) {
-        this.setState({
-          followers: [...this.state.followers, this.user._id],
-        });
+        this.props.unFollowHost(this.state.event.hosts[0]._id);
       }
     } catch (error) {
       console.log(error);
@@ -111,63 +96,42 @@ class Event extends Component {
           <div className="event-section">
             <div className="hosted-follow">
               <div className="hostedby">
-                {this.props.user &&
-                this.state.event.hosts.includes(this.props.user._id) ? (
-                  <>
-                    <img
-                      src={this.props.user.picture}
-                      alt=""
-                      className="hosted-avatar"
-                    />
-                    <span className="hostedname">{this.props.user.name}</span>
-                  </>
-                ) : (
-                  <>
-                    <img
-                      src={this.state.event.hosts[0].picture}
-                      alt=""
-                      className="hosted-avatar"
-                    />
-                    <span className="hostedname">
-                      {this.state.event.hosts[0].name}
-                    </span>
-                  </>
-                )}
+                <img
+                  src={this.state.event.hosts[0].picture}
+                  alt=""
+                  className="hosted-avatar"
+                />
+                <span className="hostedname">
+                  {this.state.event.hosts[0].name}
+                </span>
               </div>
-
               <div className="follow">
-                {/* If you are the host of the event then you will see the edit button
-                    otherwise you can use the follow button to follow the host of the event.
-                */}
                 {this.props.user &&
-                this.props.user.events.includes(this.state.event._id) ? (
-                  <Link to={"/update-event/" + this.state.event._id}>
-                    <button className="button">Edit</button>
-                  </Link>
-                ) : (
-                  <button className="button" onClick={this.handleFollowButton}>
-                    Follow
-                  </button>
-                )}
-                {/* //here i go */}
-                {/* {!this.state.followers.includes(this.props.user._id)?
-  <button className="button" onClick={this.handleFollowButton}>
-  Follow
-</button>:<button className="button" onClick={this.handleUnFollowButton}>
-                   Unfollow
-                  </button>}
-                 */}
-
-                {!this.state.event.participants
-                  .map((x) => x._id)
-                  .includes(this.props.user._id) ? (
-                  <button className="button" onClick={this.handleJoinButton}>
-                    Join
-                  </button>
-                ) : (
-                  <button className="button" onClick={this.handleCancelButton}>
-                    Cancel
-                  </button>
+                  this.props.user.events.includes(this.state.event._id) && (
+                    <Link to={"/update-event/" + this.state.event._id}>
+                      <button className="button">Edit</button>
+                    </Link>
+                  )}
+                {this.props.user._id !== this.state.event.hosts[0]._id && (
+                  <>
+                    {this.props.user.following.includes(
+                      this.state.event.hosts[0]._id
+                    ) ? (
+                      <button
+                        className="button"
+                        onClick={this.handleUnFollowButton}
+                      >
+                        Unfollow
+                      </button>
+                    ) : (
+                      <button
+                        className="button"
+                        onClick={this.handleFollowButton}
+                      >
+                        Follow
+                      </button>
+                    )}
+                  </>
                 )}
               </div>
             </div>
@@ -194,6 +158,30 @@ class Event extends Component {
               ))}
             </div>
           </div>
+          <div class="event-foot">
+            <div class="cancel">
+              <h1>
+                <Moment
+                  format="dddd DD MMMM"
+                  date={this.state.event.schedule}
+                />
+              </h1>
+              <h2>{this.state.event.name}</h2>
+            </div>
+            <h1 class="green">FREE ADMISION</h1>
+            {this.props.user &&
+            this.state.event.participants
+              .map((x) => x._id)
+              .includes(this.props.user._id) ? (
+              <button className="button" onClick={this.handleLeaveButton}>
+                Leave
+              </button>
+            ) : (
+              <button className="button" onClick={this.handleJoinButton}>
+                Join
+              </button>
+            )}
+          </div>
         </div>
       </>
     ) : (
@@ -206,4 +194,4 @@ class Event extends Component {
     this.setState({ event });
   };
 }
-export default connect(mapStateToProps, null)(withRouter(Event));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Event));

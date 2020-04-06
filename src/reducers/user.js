@@ -9,8 +9,27 @@ export default (state = {}, action) => {
         ...state,
         user: {
           ...state.user,
-          events: [...state.user.events.concat(action.payload)]
-        }
+          events: [...state.user.events.concat(action.payload)],
+        },
+      };
+    case "FOLLOW_HOST":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          following: [...state.user.following.concat(action.payload)],
+        },
+      };
+    case "UNFOLLOW_HOST":
+      const following = [
+        ...state.user.following.filter((userID) => userID !== action.payload),
+      ];
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          following: following,
+        },
       };
     default:
       return state;

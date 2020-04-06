@@ -10,8 +10,8 @@ import { withRouter } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
 import { connect } from "react-redux";
 // import uploadImg from "../img/upload.png";
-import addHost from "../img/addhost.png";
 import moment from "moment";
+import AddHost from "../pages/AddHost";
 
 const mapStateToProps = (state) => ({ ...state });
 
@@ -19,13 +19,14 @@ class UpdateEvent extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const accessToken = this.props.accessToken;
-    const { name, schedule, duration, description, _id } = this.state;
+    const { name, schedule, duration, description, _id, hosts } = this.state;
     try {
       let updatedEvent = await api_updateEvent(accessToken, _id, {
         name,
         schedule,
         duration,
         description,
+        hosts,
       });
       switch (updatedEvent.status) {
         case 200:
@@ -145,19 +146,22 @@ class UpdateEvent extends Component {
                 {this.state.hosts.map((host) => (
                   <MiniProfileCard key={host._id} item={host} />
                 ))}
-                <MiniProfileCard
-                  item={{ name: "Add new host", picture: `${addHost}` }}
+                <AddHost
+                  addHost={(newHost) =>
+                    this.setState({
+                      hosts: [...this.state.hosts, newHost],
+                    })
+                  }
                 />
-              </div>
-
-              <div className="foot">
-                <div className="cancel">
-                  <button className="button-empty">Cancel</button>
-                </div>
-                <div className="preview-publish">
-                  <button className="button" type="submit">
-                    Update
-                  </button>
+                <div className="foot">
+                  <div className="cancel">
+                    <button className="button-empty">Cancel</button>
+                  </div>
+                  <div className="preview-publish">
+                    <button className="button" type="submit">
+                      Update
+                    </button>
+                  </div>
                 </div>
               </div>
             </form>

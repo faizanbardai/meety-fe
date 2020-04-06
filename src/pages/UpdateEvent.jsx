@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
-import { api_updateEvent, api_updateEventImage } from "../apis/events";
+import {
+  api_getEventByID,
+  api_updateEvent,
+  api_updateEventImage,
+} from "../apis/events";
 import BurgerMenu from "../components/BurgerMenu";
 import { withRouter } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
@@ -138,7 +142,7 @@ class UpdateEvent extends Component {
               </div>
               <label htmlFor="Hosts">Hosts (they can edit event details)</label>
               <div className="hosts">
-                {this.state.host.map((host) => (
+                {this.state.hosts.map((host) => (
                   <MiniProfileCard key={host._id} item={host} />
                 ))}
                 <MiniProfileCard
@@ -165,7 +169,9 @@ class UpdateEvent extends Component {
     );
   }
   componentDidMount = async () => {
-    this.setState(this.props.location.state.event);
+    const response = await api_getEventByID(this.props.match.params._id);
+    const event = await response.json();
+    this.setState(event);
   };
 }
 

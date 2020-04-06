@@ -50,6 +50,7 @@ class MainComponent extends Component {
             </Route>
             <Route path="/add-event" exact component={AddEvent} />
             <Route path="/event/:_id" exact component={Event} />
+            <Route path="/update-event/:_id" component={UpdateEvent} />
             <Route path="/profile" exact>
               {this.props.user ? <Profile /> : <Redirect to="/home" />}
             </Route>
@@ -65,7 +66,6 @@ class MainComponent extends Component {
             <Route path="/auth/facebook/callback/:accessToken" exact>
               <CBRetrun />
             </Route>
-            <Route path="/update-event" component={UpdateEvent} />
             <Route component={PageNotFound} />
           </Switch>
         </Router>

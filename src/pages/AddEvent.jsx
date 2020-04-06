@@ -6,8 +6,9 @@ import { withRouter } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
 import { connect } from "react-redux";
 // import uploadImg from "../img/upload.png";
-import addHost from "../img/addhost.png";
+//import addHost from "../img/addhost.png";
 import { addEventIDToUserEventsArray } from "../action";
+import AddHost from "../pages/AddHost";
 
 const mapStateToProps = state => ({ ...state });
 const mapDispatchToProps = dispatch => ({
@@ -19,7 +20,8 @@ class AddEvent extends Component {
     name: "",
     schedule: "",
     duration: "",
-    description: ""
+    description: "",
+    hosts: [this.props.user]
   };
   handleSubmit = async event => {
     event.preventDefault();
@@ -97,7 +99,7 @@ class AddEvent extends Component {
             <h1>Create an event</h1>
           </div>
           <div className="second-section">
-            <form id="create-event" onSubmit={this.handleSubmit}>
+            <form id="create-event" onSubmit={() => this.handleSubmit()}>
               <label htmlFor="event-name">Event Name (required)</label>
               <div>
                 <input
@@ -152,9 +154,20 @@ class AddEvent extends Component {
               </div>
               <label htmlFor="Hosts">Hosts (they can edit event details)</label>
               <div className="hosts">
-                <MiniProfileCard item={this.props.user} />
-                <MiniProfileCard
+                {this.state.hosts.map((host, i) => (
+                  <MiniProfileCard item={host} key={i} />
+                ))}
+                {/* <MiniProfileCard item={this.props.user} /> */}
+                {/* <MiniProfileCard
                   item={{ name: "Add new host", picture: `${addHost}` }}
+                /> */}
+                {/* {JSON.stringify(this.state.hosts)} */}
+                <AddHost
+                  addHost={user =>
+                    this.setState({
+                      hosts: [...this.state.hosts, user]
+                    })
+                  }
                 />
               </div>
 

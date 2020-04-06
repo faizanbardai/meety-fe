@@ -477,3 +477,6 @@ a.fb {
 .network:hover {
   padding: 2px;
 }
+.flex {
+  display: flex;
+}

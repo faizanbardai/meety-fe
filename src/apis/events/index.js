@@ -5,9 +5,9 @@ export const api_createEvent = async (token, body) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token,
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   });
 };
 export const api_updateEvent = async (token, _id, body) => {
@@ -15,74 +15,83 @@ export const api_updateEvent = async (token, _id, body) => {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token,
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   });
 };
 export const api_updateEventImage = async (token, _id, body) => {
   return await fetch(baseURL + "event/" + _id + "/picture", {
     method: "PUT",
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token,
     },
-    body: body
+    body: body,
   });
 };
-export const api_getEventByID = async _id => {
+export const api_getEventByID = async (_id) => {
   return await fetch(baseURL + "event/id/" + _id, {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   });
 };
 export const api_getHottestOfTheWeek = async () => {
   return await fetch(baseURL + "event/hottest-of-the-week/", {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   });
 };
 export const api_getHottestOfNextWeek = async () => {
   return await fetch(baseURL + "event/hottest-of-next-week/", {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   });
 };
 export const api_getHottestOfTheMonth = async () => {
   return await fetch(baseURL + "event/hottest-of-the-month/", {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   });
 };
 export const api_getHottestAllUpcoming = async () => {
   return await fetch(baseURL + "event/all-upcoming/", {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   });
 };
 
 //here i go
 export const api_joinEvent = async (token, _id) => {
-  return await fetch(baseURL + "event/" + _id +"/join-event", {
+  return await fetch(baseURL + "event/" + _id + "/join-event", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token,
     },
   });
 };
 
-
 export const api_leaveEvent = async (token, _id) => {
-  return await fetch(baseURL + "event/" + _id +"/leave-event", {
+  return await fetch(baseURL + "event/" + _id + "/leave-event", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token,
+    },
+  });
+};
+export const api_addHost = async (token, event, host) => {
+  console.log(baseURL + "event/addHost/" + event + "/" + host);
+  return await fetch(baseURL + "event/addHost/" + event + "/" + host, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
     },
   });
 };

@@ -3,19 +3,14 @@ import Moment from "react-moment";
 import { withRouter, Link } from "react-router-dom";
 
 function CardWithOverlayText(props) {
-  const { picture, name, schedule, participantsLength } = props.event;
+  const { picture, name, schedule, participantsLength, _id } = props.event;
   return (
     <Link
-      to={{
-        pathname: "/event",
-        state: {
-          event: props.event
-        }
-      }}
+      to={"/event/" + _id}
       className="card-big shadow"
       style={{
         backgroundImage: `url(${picture})`,
-        backgroundSize: "cover"
+        backgroundSize: "cover",
       }}
     >
       <div className="card-title">
@@ -24,7 +19,6 @@ function CardWithOverlayText(props) {
           <Moment fromNow>{schedule}</Moment>&nbsp;&nbsp; / &nbsp;&nbsp;
           {participantsLength ? participantsLength : "0"} Participants
         </h3>
-         
       </div>
     </Link>
   );

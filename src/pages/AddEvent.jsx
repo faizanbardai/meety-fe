@@ -54,10 +54,7 @@ class AddEvent extends Component {
                 // OK
                 newEventWithPicture = await newEventWithPicture.json();
                 this.props.addEventIDToUserEventsArray(newEventWithPicture._id);
-                this.props.history.push({
-                  pathname: "/event",
-                  state: { event: newEventWithPicture },
-                });
+                this.props.history.push("/event/" + newEventWithPicture._id);
                 break;
               default:
                 alert("Some error when saving event picture");
@@ -65,10 +62,7 @@ class AddEvent extends Component {
           } else {
             newEvent = await newEvent.json();
             this.props.addEventIDToUserEventsArray(newEvent._id);
-            this.props.history.push({
-              pathname: "/event",
-              state: { event: newEvent },
-            });
+            this.props.history.push("/event/" + newEvent._id);
             break;
           }
           break;

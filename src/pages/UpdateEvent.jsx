@@ -9,10 +9,10 @@ import { connect } from "react-redux";
 import addHost from "../img/addhost.png";
 import moment from "moment";
 
-const mapStateToProps = state => ({ ...state });
+const mapStateToProps = (state) => ({ ...state });
 
 class UpdateEvent extends Component {
-  handleSubmit = async event => {
+  handleSubmit = async (event) => {
     event.preventDefault();
     const accessToken = this.props.accessToken;
     const { name, schedule, duration, description, _id } = this.state;
@@ -21,7 +21,7 @@ class UpdateEvent extends Component {
         name,
         schedule,
         duration,
-        description
+        description,
       });
       switch (updatedEvent.status) {
         case 200:
@@ -39,20 +39,14 @@ class UpdateEvent extends Component {
               case 200:
                 // OK
                 newEventWithPicture = await newEventWithPicture.json();
-                this.props.history.push({
-                  pathname: "/event",
-                  state: { event: newEventWithPicture }
-                });
+                this.props.history.push("/event/" + newEventWithPicture._id);
                 break;
               default:
                 alert("Some error when saving event picture");
             }
           } else {
             updatedEvent = await updatedEvent.json();
-            this.props.history.push({
-              pathname: "/event",
-              state: { event: updatedEvent }
-            });
+            this.props.history.push("/event/" + updatedEvent._id);
             break;
           }
           break;
@@ -67,12 +61,12 @@ class UpdateEvent extends Component {
       alert(error);
     }
   };
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     const target = event.target;
     const value = target.value;
     const name = target.name;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
   render() {
@@ -125,7 +119,7 @@ class UpdateEvent extends Component {
                   id="input-file"
                   type="file"
                   name="picture"
-                  onChange={e =>
+                  onChange={(e) =>
                     this.setState({ newPicture: e.target.files[0] })
                   }
                 ></input>
@@ -144,7 +138,7 @@ class UpdateEvent extends Component {
               </div>
               <label htmlFor="Hosts">Hosts (they can edit event details)</label>
               <div className="hosts">
-                {this.state.host.map(host => (
+                {this.state.host.map((host) => (
                   <MiniProfileCard key={host._id} item={host} />
                 ))}
                 <MiniProfileCard

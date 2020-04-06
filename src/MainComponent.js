@@ -49,7 +49,7 @@ class MainComponent extends Component {
               <Home />
             </Route>
             <Route path="/add-event" exact component={AddEvent} />
-            <Route path="/event" exact component={Event} />
+            <Route path="/event/:_id" exact component={Event} />
             <Route path="/profile" exact>
               {this.props.user ? <Profile /> : <Redirect to="/home" />}
             </Route>

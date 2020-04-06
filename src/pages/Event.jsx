@@ -65,7 +65,7 @@ class Event extends Component {
       const accessToken = this.props.accessToken;
       const res = await api_followers(
         accessToken,
-        this.state.event.host[0]._id
+        this.state.event.hosts[0]._id
       );
       console.log(res);
       if (res.ok) {
@@ -82,7 +82,10 @@ class Event extends Component {
     console.log("I'm follow button");
     try {
       const accessToken = this.props.accessToken;
-      const res = await api_unfollow(accessToken, this.state.event.host[0]._id);
+      const res = await api_unfollow(
+        accessToken,
+        this.state.event.hosts[0]._id
+      );
       console.log(res);
       if (res.ok) {
         this.setState({
@@ -121,12 +124,12 @@ class Event extends Component {
                 ) : (
                   <>
                     <img
-                      src={this.state.event.host[0].picture}
+                      src={this.state.event.hosts[0].picture}
                       alt=""
                       className="hosted-avatar"
                     />
                     <span className="hostedname">
-                      {this.state.event.host[0].name}
+                      {this.state.event.hosts[0].name}
                     </span>
                   </>
                 )}

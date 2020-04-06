@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Modal from "react-awesome-modal";
 import { api_searchUser } from "../apis/users";
-import { api_addHost } from "../apis/events";
+// import { api_addHost } from "../apis/events";
 import addHost from "../img/addhost.png";
 
 export default class Examples extends Component {

@@ -208,13 +208,9 @@ class Event extends Component {
     );
   }
   componentDidMount = async () => {
-    if (this.props.location.state) {
-      this.setState({ event: this.props.location.state.event });
-    } else {
-      const response = await api_getEventByID(this.props.match.params._id);
-      const event = await response.json();
-      this.setState({ event });
-    }
+    const response = await api_getEventByID(this.props.match.params._id);
+    const event = await response.json();
+    this.setState({ event });
   };
 }
 export default connect(mapStateToProps, null)(withRouter(Event));

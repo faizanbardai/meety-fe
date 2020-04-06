@@ -184,13 +184,18 @@ class Event extends Component {
               <p>{this.state.event.description}</p>
               <Share />
               <br />
-              <h1>Participants</h1>
             </div>
+            <h1>Hosts</h1>
+            <div className="hosts">
+              {this.state.event.hosts.map((host) => (
+                <MiniProfileCard key={host._id} item={host}></MiniProfileCard>
+              ))}
+            </div>
+            <h1>Participants</h1>
             <div className="hosts">
               {this.state.event.participants.map((participant) => (
                 <MiniProfileCard
                   key={participant._id}
-                  // item={{name:this.props.user.name,picture:this.props.user.picture}}
                   item={participant}
                 ></MiniProfileCard>
               ))}

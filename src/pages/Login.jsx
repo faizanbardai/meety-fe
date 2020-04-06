@@ -7,13 +7,13 @@ import BurgerMenu from "../components/BurgerMenu";
 import Header from "../components/Header";
 //import Header from "../components/Header";
 
-const mapDispatchToProps = dispatch => ({
-  saveUser: user => dispatch(saveUser(user)),
-  saveAccessToken: accessToken => dispatch(saveAccessToken(accessToken))
+const mapDispatchToProps = (dispatch) => ({
+  saveUser: (user) => dispatch(saveUser(user)),
+  saveAccessToken: (accessToken) => dispatch(saveAccessToken(accessToken)),
 });
 
-const Login = props => {
-  const handleSubmit = async e => {
+const Login = (props) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await api_login({ username, password });
     const userData = await response.json();
@@ -36,23 +36,23 @@ const Login = props => {
       </div>
       <div className="second-section">
         <form id="create-event" onSubmit={handleSubmit}>
-          <label for="username">User Name</label>
+          <label htmlFor="username">User Name</label>
           <div>
             <input
               type="email"
               placeholder="abc@def.com"
               value={username}
               required
-              onChange={e => setUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
             ></input>
           </div>
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
           <div>
             <input
               type="password"
               value={password}
               required
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div>

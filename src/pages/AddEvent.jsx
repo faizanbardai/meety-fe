@@ -6,33 +6,36 @@ import { withRouter } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
 import { connect } from "react-redux";
 // import uploadImg from "../img/upload.png";
-//import addHost from "../img/addhost.png";
 import { addEventIDToUserEventsArray } from "../action";
 import AddHost from "../pages/AddHost";
+import moment from "moment";
 
-const mapStateToProps = state => ({ ...state });
-const mapDispatchToProps = dispatch => ({
-  addEventIDToUserEventsArray: _id => dispatch(addEventIDToUserEventsArray(_id))
+const mapStateToProps = (state) => ({ ...state });
+const mapDispatchToProps = (dispatch) => ({
+  addEventIDToUserEventsArray: (_id) =>
+    dispatch(addEventIDToUserEventsArray(_id)),
 });
 
 class AddEvent extends Component {
   state = {
-    name: "",
-    schedule: "",
-    duration: "",
-    description: "",
-    hosts: [this.props.user]
+    name: "Test " + new Date(),
+    schedule: moment(new Date()).format("YYYY-MM-DDTHH:mm:ss"),
+    duration: "30",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    hosts: [this.props.user],
   };
-  handleSubmit = async event => {
+  handleSubmit = async (event) => {
     event.preventDefault();
     const accessToken = this.props.accessToken;
-    const { name, schedule, duration, description } = this.state;
+    const { name, schedule, duration, description, hosts } = this.state;
     try {
       let newEvent = await api_createEvent(accessToken, {
         name,
         schedule,
         duration,
-        description
+        description,
+        hosts,
       });
       switch (newEvent.status) {
         case 200:
@@ -53,7 +56,7 @@ class AddEvent extends Component {
                 this.props.addEventIDToUserEventsArray(newEventWithPicture._id);
                 this.props.history.push({
                   pathname: "/event",
-                  state: { event: newEventWithPicture }
+                  state: { event: newEventWithPicture },
                 });
                 break;
               default:
@@ -64,7 +67,7 @@ class AddEvent extends Component {
             this.props.addEventIDToUserEventsArray(newEvent._id);
             this.props.history.push({
               pathname: "/event",
-              state: { event: newEvent }
+              state: { event: newEvent },
             });
             break;
           }
@@ -80,13 +83,13 @@ class AddEvent extends Component {
       alert(error);
     }
   };
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     const target = event.target;
     const value = target.value;
     const name = target.name;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
   render() {
@@ -99,7 +102,7 @@ class AddEvent extends Component {
             <h1>Create an event</h1>
           </div>
           <div className="second-section">
-            <form id="create-event" onSubmit={() => this.handleSubmit()}>
+            <form id="create-event" onSubmit={this.handleSubmit}>
               <label htmlFor="event-name">Event Name (required)</label>
               <div>
                 <input
@@ -137,7 +140,9 @@ class AddEvent extends Component {
                   id="input-file"
                   type="file"
                   name="picture"
-                  onChange={e => this.setState({ picture: e.target.files[0] })}
+                  onChange={(e) =>
+                    this.setState({ picture: e.target.files[0] })
+                  }
                 ></input>
               </div>
               <label htmlFor="description">Description</label>
@@ -157,15 +162,10 @@ class AddEvent extends Component {
                 {this.state.hosts.map((host, i) => (
                   <MiniProfileCard item={host} key={i} />
                 ))}
-                {/* <MiniProfileCard item={this.props.user} /> */}
-                {/* <MiniProfileCard
-                  item={{ name: "Add new host", picture: `${addHost}` }}
-                /> */}
-                {/* {JSON.stringify(this.state.hosts)} */}
                 <AddHost
-                  addHost={user =>
+                  addHost={(newHost) =>
                     this.setState({
-                      hosts: [...this.state.hosts, user]
+                      hosts: [...this.state.hosts, newHost],
                     })
                   }
                 />

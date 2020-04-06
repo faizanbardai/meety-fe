@@ -9,7 +9,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -24,15 +24,15 @@ import AddEvent from "./pages/AddEvent";
 import Event from "./pages/Event";
 import UpdateEvent from "./pages/UpdateEvent";
 
-const mapStateToProps = state => ({ ...state });
-const mapDispatchToProps = dispatch => ({
-  saveUser: user => dispatch(saveUser(user)),
-  saveAccessToken: accessToken => dispatch(saveAccessToken(accessToken))
+const mapStateToProps = (state) => ({ ...state });
+const mapDispatchToProps = (dispatch) => ({
+  saveUser: (user) => dispatch(saveUser(user)),
+  saveAccessToken: (accessToken) => dispatch(saveAccessToken(accessToken)),
 });
 
 class MainComponent extends Component {
   state = {
-    loading: true
+    loading: true,
   };
 
   render() {
@@ -48,9 +48,7 @@ class MainComponent extends Component {
             <Route path="/home">
               <Home />
             </Route>
-            <Route path="/add-event" exact>
-              <AddEvent />
-            </Route>
+            <Route path="/add-event" exact component={AddEvent} />
             <Route path="/event" exact component={Event} />
             <Route path="/profile" exact>
               {this.props.user ? <Profile /> : <Redirect to="/home" />}
@@ -87,7 +85,7 @@ class MainComponent extends Component {
             this.props.saveUser(response.user);
             this.props.saveAccessToken(response.access_token);
             this.setState({
-              loading: false
+              loading: false,
             });
             break;
           case 401:

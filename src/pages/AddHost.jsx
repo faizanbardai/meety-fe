@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import Modal from "react-awesome-modal";
 import { api_searchUser } from "../apis/users";
 import { api_addHost } from "../apis/events";
+import addHost from "../img/addhost.png";
 
 export default class Examples extends Component {
   constructor(props) {
     super(props);
     this.state = {
       visible: false,
-      searchResult: []
+      searchResult: [],
     };
   }
-  onSearch = async event => {
+  onSearch = async (event) => {
     const response = await api_searchUser(
       localStorage.getItem("accessToken"),
       event.target.value
@@ -19,44 +20,46 @@ export default class Examples extends Component {
     const searchResult = await response.json();
     this.setState({ searchResult });
   };
-  addHost = async user => {
-    // debugger;
+  addHost = async (user) => {
     if (this.props.event) {
+      console.log("Hi");
+      // This code is probably for adding a host when updating event.
       //console.log(this.props.event._id, this.props.user._id);
-      const response = await api_addHost(
-        localStorage.getItem("accessToken"),
-        this.props.event._id,
-        user._id
-      );
-      const adduser = await response.json();
-      this.props.addHost(adduser);
+      // const response = await api_addHost(
+      //   localStorage.getItem("accessToken"),
+      //   this.props.event._id,
+      //   user._id
+      // );
+      // const adduser = await response.json();
+      // this.props.addHost(adduser);
       //this.setState({ adduser });
     } else {
       this.props.addHost(user);
     }
-    // const accessToken = this.props.accessToken;
   };
 
   openModal() {
     this.setState({
-      visible: true
+      visible: true,
     });
   }
 
   closeModal() {
     this.setState({
-      visible: false
+      visible: false,
     });
   }
 
   render() {
     return (
       <section>
-        <input
-          type="button"
-          value="Add User"
-          onClick={() => this.openModal()}
-        />
+        <div className="host-minicard" onClick={() => this.openModal()}>
+          <div
+            className="img"
+            style={{ backgroundImage: `url(${addHost})` }}
+          ></div>
+          <div className="name">Add New Host</div>
+        </div>
         <Modal
           visible={this.state.visible}
           width="400"
@@ -67,16 +70,16 @@ export default class Examples extends Component {
           <div>
             <br />
             <br />
-            <label for="search">Search</label>
+            <label htmlFor="search">Search</label>
             <div>
               <input
-                onChange={e => this.onSearch(e)}
+                onChange={(e) => this.onSearch(e)}
                 type="text"
                 placeholder="Search.."
                 name="search"
               />
               {this.state.searchResult.map((value, index) => (
-                <div className="flex">
+                <div key={value._id} className="flex">
                   <div>{value.name} </div>
                   <div>
                     <button type="button" onClick={() => this.addHost(value)}>

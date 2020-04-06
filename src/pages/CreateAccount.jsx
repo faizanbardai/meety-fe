@@ -6,19 +6,19 @@ import { saveUser, saveAccessToken } from "../action";
 import Header from "../components/Header";
 import BurgerMenu from "../components/BurgerMenu";
 
-const mapDispatchToProps = dispatch => ({
-  saveUser: user => dispatch(saveUser(user)),
-  saveAccessToken: accessToken => dispatch(saveAccessToken(accessToken))
+const mapDispatchToProps = (dispatch) => ({
+  saveUser: (user) => dispatch(saveUser(user)),
+  saveAccessToken: (accessToken) => dispatch(saveAccessToken(accessToken)),
 });
 
-const CreateAccount = props => {
-  const handleSubmit = async e => {
+const CreateAccount = (props) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let userData = await api_createAccount({
       name,
       username,
       password,
-      aboutMe
+      aboutMe,
     });
     switch (userData.status) {
       case 200:
@@ -76,42 +76,42 @@ const CreateAccount = props => {
       </div>
       <div class="second-section">
         <form id="create-event" onSubmit={handleSubmit}>
-          <label for="Name">Name</label>
+          <label htmlFor="Name">Name</label>
           <div>
             <input
               type="text"
               placeholder="John Doe"
               value={name}
-              onChange={e => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <label for="Email">User Email</label>
+          <label htmlFor="Email">User Email</label>
           <div>
             <input
               type="email"
               placeholder="abc@def.com"
               value={username}
-              onChange={e => setUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
             ></input>
           </div>
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
           <div>
             <input
               type="password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <label for="pic">Avatar</label>
+          <label htmlFor="pic">Avatar</label>
           <div id="upload">
             <input
               id="input-file"
               type="file"
               name="profile-pic"
-              onChange={e => setPicture(e.target.files[0])}
+              onChange={(e) => setPicture(e.target.files[0])}
             />
           </div>
-          <label for="about-you">About you</label>
+          <label htmlFor="about-you">About you</label>
           <div>
             <textarea
               name="about-you"
@@ -119,7 +119,7 @@ const CreateAccount = props => {
               cols="50"
               rows="10"
               placeholder="Let your attendees know what to expect.including the agenda, what they need to bring and how to find the group."
-              onChange={e => setAboutMe(e.target.value)}
+              onChange={(e) => setAboutMe(e.target.value)}
             ></textarea>
           </div>
           <br />

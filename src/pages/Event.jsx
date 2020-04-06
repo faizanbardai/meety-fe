@@ -3,23 +3,22 @@ import { connect } from "react-redux";
 import {
   api_getEventByID,
   api_joinEvent,
-  api_leaveEvent
+  api_leaveEvent,
 } from "../apis/events";
-import {api_followers,api_unfollow} from "../apis/users"
+import { api_followers, api_unfollow } from "../apis/users";
 import BurgerMenu from "../components/BurgerMenu";
 import Header from "../components/Header";
 import CardWithOverlayText from "../components/CardWithOverlayText";
 import { withRouter, Link } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
-import Share from "../components/Share"
+import Share from "../components/Share";
 
-const mapStateToProps = state => ({ ...state });
+const mapStateToProps = (state) => ({ ...state });
 
 class Event extends Component {
   state = {
     participants: "",
-    followers:""
-    
+    followers: "",
   };
   //here i go
   handleJoinButton = async () => {
@@ -31,9 +30,8 @@ class Event extends Component {
         this.setState({
           event: {
             ...this.state.event,
-            participants: [...this.state.event.participants, this.props.user]
-          }
-          
+            participants: [...this.state.event.participants, this.props.user],
+          },
         });
       }
     } catch (error) {
@@ -50,8 +48,10 @@ class Event extends Component {
         this.setState({
           event: {
             ...this.state.event,
-            participants: this.state.event.participants.filter(x => x._id !== this.props.user._id)
-          }
+            participants: this.state.event.participants.filter(
+              (x) => x._id !== this.props.user._id
+            ),
+          },
         });
       }
     } catch (error) {
@@ -59,37 +59,38 @@ class Event extends Component {
     }
   };
 
-  handleFollowButton =async () => {
+  handleFollowButton = async () => {
     console.log("I'm follow button");
-    try{
-      const accessToken=this.props.accessToken
-      const res=await api_followers(accessToken,this.state.event.host[0]._id)
-      console.log(res)
-      if(res.ok){
+    try {
+      const accessToken = this.props.accessToken;
+      const res = await api_followers(
+        accessToken,
+        this.state.event.host[0]._id
+      );
+      console.log(res);
+      if (res.ok) {
         this.setState({
-          followers:[...this.state.followers,this.user._id]
-        })
+          followers: [...this.state.followers, this.user._id],
+        });
       }
-    }
-    catch(error){
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  handleUnFollowButton =async () => {
+  handleUnFollowButton = async () => {
     console.log("I'm follow button");
-    try{
-      const accessToken=this.props.accessToken
-      const res=await api_unfollow(accessToken,this.state.event.host[0]._id)
-      console.log(res)
-      if(res.ok){
+    try {
+      const accessToken = this.props.accessToken;
+      const res = await api_unfollow(accessToken, this.state.event.host[0]._id);
+      console.log(res);
+      if (res.ok) {
         this.setState({
-          followers:[...this.state.followers,this.user._id]
-        })
+          followers: [...this.state.followers, this.user._id],
+        });
       }
-    }
-    catch(error){
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
   };
   state = {};
@@ -108,7 +109,7 @@ class Event extends Component {
             <div className="hosted-follow">
               <div className="hostedby">
                 {this.props.user &&
-                this.state.event.host.includes(this.props.user._id) ? (
+                this.state.event.hosts.includes(this.props.user._id) ? (
                   <>
                     <img
                       src={this.props.user.picture}
@@ -141,33 +142,29 @@ class Event extends Component {
                     to={{
                       pathname: "/update-event/",
                       state: {
-                        event: this.state.event
-                      }
+                        event: this.state.event,
+                      },
                     }}
                   >
                     <button className="button">Edit</button>
                   </Link>
-                ) :
-                  
-                (
+                ) : (
                   <button className="button" onClick={this.handleFollowButton}>
                     Follow
                   </button>
-                  
-                  
-  )}
-  {/* //here i go */}
-  {/* {!this.state.followers.includes(this.props.user._id)?
+                )}
+                {/* //here i go */}
+                {/* {!this.state.followers.includes(this.props.user._id)?
   <button className="button" onClick={this.handleFollowButton}>
   Follow
 </button>:<button className="button" onClick={this.handleUnFollowButton}>
                    Unfollow
                   </button>}
                  */}
-                
-                {!this.state.event.participants.map(x => x._id).includes(
-                  this.props.user._id
-                ) ? (
+
+                {!this.state.event.participants
+                  .map((x) => x._id)
+                  .includes(this.props.user._id) ? (
                   <button className="button" onClick={this.handleJoinButton}>
                     Join
                   </button>
@@ -177,7 +174,6 @@ class Event extends Component {
                   </button>
                 )}
               </div>
-              
             </div>
             <div className="about-event">
               <h1>Details</h1>
@@ -188,15 +184,15 @@ class Event extends Component {
               <h1>Participants</h1>
             </div>
             <div className="hosts">
-              {this.state.event.participants.map(participant => (
-                 <MiniProfileCard
+              {this.state.event.participants.map((participant) => (
+                <MiniProfileCard
                   key={participant._id}
                   // item={{name:this.props.user.name,picture:this.props.user.picture}}
-                    item={participant} 
-                 ></MiniProfileCard>
+                  item={participant}
+                ></MiniProfileCard>
               ))}
             </div>
-            </div>
+          </div>
         </div>
       </>
     ) : (
@@ -212,6 +208,5 @@ class Event extends Component {
       this.setState({ event });
     }
   };
-  
 }
 export default connect(mapStateToProps, null)(withRouter(Event));

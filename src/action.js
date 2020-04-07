@@ -15,3 +15,7 @@ export const unFollowHost = (_id) => ({
   type: "UNFOLLOW_HOST",
   payload: _id,
 });
+export const addEventID = (_id) => ({
+  type: "ADD_EVENT_ID",
+  payload: _id,
+});

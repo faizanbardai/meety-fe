@@ -13,12 +13,13 @@ import { withRouter, Link } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
 import Share from "../components/Share";
 import Moment from "react-moment";
-import { followHost, unFollowHost } from "../action";
+import { followHost, unFollowHost, addEventID } from "../action";
 
 const mapStateToProps = (state) => ({ ...state });
 const mapDispatchToProps = (dispatch) => ({
   followHost: (_id) => dispatch(followHost(_id)),
   unFollowHost: (_id) => dispatch(unFollowHost(_id)),
+  addEventID: (_id) => dispatch(addEventID(_id)),
 });
 
 class Event extends Component {
@@ -27,15 +28,21 @@ class Event extends Component {
     followers: "",
   };
   handleJoinButton = async () => {
-    try {
-      const accessToken = this.props.accessToken;
-      const response = await api_joinEvent(accessToken, this.state.event._id);
-      if (response.ok) {
-        const event = await response.json();
-        this.setState({ event });
+    if (!this.props.user) {
+      const eventID = this.props.match.params._id;
+      this.props.addEventID(eventID);
+      this.props.history.push("/login");
+    } else {
+      try {
+        const accessToken = this.props.accessToken;
+        const response = await api_joinEvent(accessToken, this.state.event._id);
+        if (response.ok) {
+          const event = await response.json();
+          this.setState({ event });
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 

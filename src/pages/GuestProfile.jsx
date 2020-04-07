@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import { api_getUserByID } from "../apis/users";
 import CardWithOverlayText from "../components/CardWithOverlayText";
 
-const mapStateToProps = state => ({ ...state });
+const mapStateToProps = (state) => ({ ...state });
 
 class GuestProfile extends Component {
   state = {};
@@ -48,8 +48,8 @@ class GuestProfile extends Component {
           <div className="profile-events-section">
             <h1>Next events:</h1>
             <div className="next-events">
-              {this.state.user.events.map(event => (
-                <CardWithOverlayText key={event._id} hotItem={event} />
+              {this.state.user.events.map((event) => (
+                <CardWithOverlayText key={event._id} event={event} />
               ))}
             </div>
           </div>
@@ -69,7 +69,7 @@ class GuestProfile extends Component {
 
     try {
       const response = await api_getUserByID(
-        localStorage.getItem("accessToken"),
+        this.props.accessToken,
         userIDParam
       );
       const user = await response.json();

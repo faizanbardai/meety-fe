@@ -480,3 +480,8 @@ a.fb {
 .flex {
   display: flex;
 }
+.sortMenu:hover {
+  font-size: 150%;
+  transition: ease-in-out 0.9s;
+  cursor: pointer;
+}

@@ -1,10 +1,12 @@
 import React from "react";
 import Moment from "react-moment";
 import { withRouter, Link } from "react-router-dom";
+import {} from "reactstrap"
 
 function CardWithOverlayText(props) {
   const { picture, name, schedule, participantsLength, _id } = props.event;
   return (
+    
     <Link
       to={"/event/" + _id}
       className="card-big shadow"
@@ -21,6 +23,7 @@ function CardWithOverlayText(props) {
         </h3>
       </div>
     </Link>
+    
   );
 }
 

@@ -39,18 +39,18 @@ export default class Hottest extends Component {
       <div id="hottest-menu" className="d-none">
         <ul>
           <li>
-            <h1 onClick={() => this.handleClick("of the week")}>of the Week</h1>
+            <h1 className="sortMenu" onClick={() => this.handleClick("of the week")}>of the Week</h1>
           </li>
           <li>
-            <h1 onClick={() => this.handleClick("of next week")}>Next Week</h1>
+            <h1 className="sortMenu" onClick={() => this.handleClick("of next week")}>Next Week</h1>
           </li>
           <li>
-            <h1 onClick={() => this.handleClick("of the month")}>
+            <h1 className="sortMenu" onClick={() => this.handleClick("of the month")}>
               of the Month
             </h1>
           </li>
           <li>
-            <h1 onClick={() => this.handleClick("All upcoming")}>
+            <h1 className="sortMenu" onClick={() => this.handleClick("All upcoming")}>
               All upcoming
             </h1>
           </li>

@@ -23,6 +23,8 @@ import CBRetrun from "./components/CBRetrun";
 import AddEvent from "./pages/AddEvent";
 import Event from "./pages/Event";
 import UpdateEvent from "./pages/UpdateEvent";
+import BurgerMenu from "./components/BurgerMenu";
+import Header from "./components/Header";
 
 const mapStateToProps = (state) => ({ ...state });
 const mapDispatchToProps = (dispatch) => ({
@@ -39,8 +41,10 @@ class MainComponent extends Component {
     return this.state.loading ? (
       <>Loading</>
     ) : (
-      <div>
+      <div className="container-fluid px-0">
         <Router basename={process.env.PUBLIC_URL}>
+          <BurgerMenu />
+          <Header />
           <Switch>
             <Route path="/" exact>
               <Introduction />

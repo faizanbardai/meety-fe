@@ -5,7 +5,8 @@ import { withRouter } from "react-router-dom";
 import { saveUser, saveAccessToken } from "../action";
 import BurgerMenu from "../components/BurgerMenu";
 import Header from "../components/Header";
-//import Header from "../components/Header";
+//import conference from "../img/mockups/conference.jpg";
+import Conference from "../components/Conference";
 
 const mapDispatchToProps = (dispatch) => ({
   saveUser: (user) => dispatch(saveUser(user)),
@@ -32,50 +33,58 @@ const Login = (props) => {
         <div className="main-section heading-size">
           <Header />
         </div>
-        <h1>Login Page</h1>
-      </div>
-      <div className="second-section">
-        <form id="create-event" onSubmit={handleSubmit}>
-          <label htmlFor="username">User Name</label>
-          <div>
-            <input
-              type="email"
-              placeholder="abc@def.com"
-              value={username}
-              required
-              onChange={(e) => setUsername(e.target.value)}
-            ></input>
-          </div>
-          <label htmlFor="password">Password</label>
-          <div>
-            <input
-              type="password"
-              value={password}
-              required
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div>
-            <a
-              href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}
-              class="fb connect"
-            >
-              Sign in with Facebook
-            </a>
-            <br />
-            <br />
-            {/* <a href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}>
+        <div className="flex">
+          <Conference />
+          {/* <div className="mainImg">
+            <img src={conference} alt="conference" />
+          </div> */}
+          {/* <div className="loginPage">
+              <h1>Login Page</h1> */}
+          <div className="second-section">
+            <form id="create-event" onSubmit={handleSubmit}>
+              <label htmlFor="username">User Name</label>
+              <div>
+                <input
+                  type="email"
+                  placeholder="abc@def.com"
+                  value={username}
+                  required
+                  onChange={(e) => setUsername(e.target.value)}
+                ></input>
+              </div>
+              <label htmlFor="password">Password</label>
+              <div>
+                <input
+                  type="password"
+                  value={password}
+                  required
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div>
+                <a
+                  href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}
+                  class="fb connect"
+                >
+                  Sign in with Facebook
+                </a>
+                <br />
+                <br />
+                {/* <a href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}>
               Login with Facebook
             </a> */}
-          </div>
+              </div>
 
-          <div className="preview-publish">
-            <button className="button" type="submit">
-              Login
-            </button>
+              <div className="preview-publish">
+                <button className="button" type="submit">
+                  Login
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
+      {/* </div> */}
     </>
   );
 };

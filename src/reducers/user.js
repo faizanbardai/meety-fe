@@ -31,6 +31,8 @@ export default (state = {}, action) => {
           following: following,
         },
       };
+    case "ADD_EVENT_ID":
+      return { ...state, eventID: action.payload };
     default:
       return state;
   }

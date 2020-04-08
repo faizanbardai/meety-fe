@@ -6,7 +6,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
   user: null,
-  accessToken: null
+  accessToken: null,
+  eventID: null,
 };
 
 export default createStore(

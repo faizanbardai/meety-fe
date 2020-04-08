@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { api_login } from "../apis/users";
 import { withRouter } from "react-router-dom";
-import { saveUser, saveAccessToken } from "../action";
+import { saveUser, saveAccessToken, addEventID } from "../action";
 import BurgerMenu from "../components/BurgerMenu";
 import Header from "../components/Header";
 //import Header from "../components/Header";
 
+const mapStateToProps = (state) => ({ ...state });
 const mapDispatchToProps = (dispatch) => ({
   saveUser: (user) => dispatch(saveUser(user)),
   saveAccessToken: (accessToken) => dispatch(saveAccessToken(accessToken)),
+  addEventID: (_id) => dispatch(addEventID(_id)),
 });
 
 const Login = (props) => {
@@ -20,7 +22,13 @@ const Login = (props) => {
     localStorage.setItem("accessToken", userData.access_token);
     props.saveUser(userData.user);
     props.saveAccessToken(userData.access_token);
-    props.history.push("/profile");
+    if (props.eventID) {
+      const eventID = props.eventID;
+      props.addEventID(null);
+      props.history.push("/event/" + eventID);
+    } else {
+      props.history.push("/profile");
+    }
   };
 
   const [username, setUsername] = useState("");
@@ -80,4 +88,4 @@ const Login = (props) => {
   );
 };
 
-export default connect(null, mapDispatchToProps)(withRouter(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));

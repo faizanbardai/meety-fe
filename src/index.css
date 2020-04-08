@@ -40,10 +40,6 @@
   color: #fff;
 }
 
-#main {
-  padding: 15px;
-}
-
 h1 {
   color: #282828;
   font-size: 28px;
@@ -405,7 +401,6 @@ textarea {
 
 #burguer-menu {
   position: fixed;
-  margin: 15px;
   border-top-left-radius: 15px;
   background-color: #282828;
   width: 150px;

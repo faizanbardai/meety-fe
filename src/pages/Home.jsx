@@ -6,17 +6,18 @@ import arrowDown from "../img/arrow-down.png";
 import Hottest from "../components/Hottest";
 import BurgerMenu from "../components/BurgerMenu";
 import Share from "../components/Share";
-import { Row, Col } from "reactstrap"
+import { Row, Col } from "reactstrap";
+import { Container } from "react-bootstrap";
 
 export default class Home extends Component {
   state = {};
-  setHottestEvents = hottest => {
+  setHottestEvents = (hottest) => {
     this.setState(hottest);
   };
 
   render() {
     return (
-      <>
+      <Container>
         <Hottest setHottestEvents={this.setHottestEvents} />
         <BurgerMenu />
         <div id="main">
@@ -30,34 +31,34 @@ export default class Home extends Component {
               </span>
             </h1>
             <Row>
-            <div className="cards">
-              {this.state.hottestEvents &&
-                this.state.hottestEvents.map(event => (
-                  <Col sm="12" md="6">
-                  <CardWithOverlayText key={event._id} event={event} />
-                  </Col>
-                ))}
-            </div>
+              <div className="cards">
+                {this.state.hottestEvents &&
+                  this.state.hottestEvents.map((event) => (
+                    <Col sm="12" md="4">
+                      <CardWithOverlayText key={event._id} event={event} />
+                    </Col>
+                  ))}
+              </div>
             </Row>
           </div>
           <div className="second-section pt-auto">
             <h1>Only for you</h1>
-            <Share /> 
+            <Share />
             <Row>
-            <div className="cards">
-              {this.state.hottestEvents &&
-                this.state.hottestEvents.map(event => (
-                  <Col sm="12" md="4">
-                  <CardWithOverlayText key={event._id} event={event} />
-                  </Col>
-                ))}
-            </div>
+              <div className="cards">
+                {this.state.hottestEvents &&
+                  this.state.hottestEvents.map((event) => (
+                    <Col sm="12" md="4">
+                      <CardWithOverlayText key={event._id} event={event} />
+                    </Col>
+                  ))}
+              </div>
             </Row>
             <div className="pre-footer"></div>
           </div>
           <GoLive />
         </div>
-      </>
+      </Container>
     );
   }
   componentDidMount = () => {};

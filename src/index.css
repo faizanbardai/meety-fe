@@ -480,3 +480,15 @@ a.fb {
 .flex {
   display: flex;
 }
+.mainImg {
+  flex-basis: 50%;
+  flex-grow: 0;
+}
+/* .loginImg {
+  flex-basis: 50%;
+  flex-grow: 0;
+} */
+.mainImg img {
+  width: 100%;
+  height: 100%;
+}

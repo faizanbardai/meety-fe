@@ -1,11 +1,12 @@
 import React from "react";
+import "./Share.css";
 import {
   FacebookShareButton,
   LinkedinShareButton,
   TwitterShareButton,
   TelegramShareButton,
   WhatsappShareButton,
-  EmailShareButton
+  EmailShareButton,
 } from "react-share";
 import {
   FacebookIcon,
@@ -13,7 +14,7 @@ import {
   TelegramIcon,
   WhatsappIcon,
   LinkedinIcon,
-  EmailIcon
+  EmailIcon,
 } from "react-share";
 
 export default function Share() {

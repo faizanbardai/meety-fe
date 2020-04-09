@@ -3,9 +3,6 @@ import { connect } from "react-redux";
 import { api_login } from "../apis/users";
 import { withRouter } from "react-router-dom";
 import { saveUser, saveAccessToken, addEventID } from "../action";
-import BurgerMenu from "../components/BurgerMenu";
-import Header from "../components/Header";
-import { Container, Row, Col, Image } from "react-bootstrap";
 //import Header from "../components/Header";
 
 const mapStateToProps = (state) => ({ ...state });
@@ -35,67 +32,47 @@ const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
-    <Container>
-      <BurgerMenu />
-      <div id="main">
-        <div className="main-section heading-size">
-          <Header />
-          <h1>Login Page</h1>
+    <div className="container bg-dark rounded text-white py-5">
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+          />
         </div>
-      </div>
-      <div className="second-section">
-        <Row>
-          <Col className="d-none d-md-block" md={6}>
-            <Image
-              src="https://images.unsplash.com/photo-1554415707-c1426270e0da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-              fluid
-            />
-          </Col>
-          <Col md={6}>
-            <form id="create-event" onSubmit={handleSubmit}>
-              <label htmlFor="username">User Name</label>
-              <div>
-                <input
-                  type="email"
-                  placeholder="abc@def.com"
-                  value={username}
-                  required
-                  onChange={(e) => setUsername(e.target.value)}
-                ></input>
-              </div>
-              <label htmlFor="password">Password</label>
-              <div>
-                <input
-                  type="password"
-                  value={password}
-                  required
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div>
-                <a
-                  href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}
-                  class="fb connect"
-                >
-                  Sign in with Facebook
-                </a>
-                <br />
-                <br />
-                {/* <a href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}>
-                Login with Facebook
-              </a> */}
-              </div>
-
-              <div className="preview-publish">
-                <button className="button" type="submit">
-                  Login
-                </button>
-              </div>
-            </form>
-          </Col>
-        </Row>
-      </div>
-    </Container>
+        <div className="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="form-control"
+            id="exampleInputPassword1"
+            placeholder="Password"
+          />
+        </div>
+        <div className="d-flex justify-content-between">
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+          <div className="ml-2">Don't have an account? Sign Up</div>
+        </div>
+        <div className="d-flex justify-content-center">
+          <a
+            href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}
+            className="text-white fb connect mt-2"
+          >
+            Continue with Facebook
+          </a>
+        </div>
+      </form>
+    </div>
   );
 };
 

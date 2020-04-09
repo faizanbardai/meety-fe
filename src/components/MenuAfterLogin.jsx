@@ -52,7 +52,6 @@ const MenuAfterLogin = (props) => {
 
             <div className="col-12 col-sm-8 col-md-9">
               <h1 className="display-4 text-white">{props.user.name}</h1>
-              <p>{props.user.aboutMe}</p>
             </div>
           </div>
           <div className="row d-flex justify-content-center">

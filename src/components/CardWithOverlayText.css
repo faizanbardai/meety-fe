@@ -1,0 +1,3 @@
+.deep-shadow {
+  box-shadow: inset 0 -25px 45px #000000, 1px 13px 15px rgba(0, 0, 0, 0.6);
+}

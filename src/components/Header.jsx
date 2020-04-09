@@ -14,6 +14,7 @@ export default function Header() {
     <div className="head">
       <div className="container">
         <FontAwesomeIcon
+          style={{ zIndex: 0 }}
           icon={faBars}
           size="2x"
           className="mx-2 my-3 text-white position-fixed"

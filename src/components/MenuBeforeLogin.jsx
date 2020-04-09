@@ -30,7 +30,14 @@ function MenuBeforeLogin(props) {
             >
               Log In
             </button>
-            <button type="button" className="mt-3 btn btn-primary rounded-pill">
+            <button
+              onClick={() => {
+                props.setShowMenu(false);
+                props.history.push("/create-account");
+              }}
+              type="button"
+              className="mt-3 btn btn-primary rounded-pill"
+            >
               Create Account
             </button>
           </div>

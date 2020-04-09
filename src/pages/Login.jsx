@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { api_login } from "../apis/users";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { saveUser, saveAccessToken, addEventID } from "../action";
 //import Header from "../components/Header";
 
@@ -61,7 +61,11 @@ const Login = (props) => {
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
-          <div className="ml-2">Don't have an account? Sign Up</div>
+          <div className="ml-2">
+            <Link className="text-white" to="/create-account">
+              Don't have an account? Sign Up
+            </Link>
+          </div>
         </div>
         <div className="d-flex justify-content-center">
           <a

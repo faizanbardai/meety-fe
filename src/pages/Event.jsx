@@ -6,8 +6,6 @@ import {
   api_leaveEvent,
 } from "../apis/events";
 import { api_followers, api_unfollow } from "../apis/users";
-import BurgerMenu from "../components/BurgerMenu";
-import Header from "../components/Header";
 import CardWithOverlayText from "../components/CardWithOverlayText";
 import { withRouter, Link } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
@@ -92,103 +90,101 @@ class Event extends Component {
   render() {
     return this.state.event ? (
       <>
-        <BurgerMenu />
-        <div id="main">
-          <div className="main-section">
-            <Header />
-            <div className="cards">
-              <CardWithOverlayText event={this.state.event} />
-            </div>
-          </div>
-          <div className="event-section">
-            <div className="hosted-follow">
-              <div className="hostedby">
-                <img
-                  src={this.state.event.hosts[0].picture}
-                  alt=""
-                  className="hosted-avatar"
-                />
-                <span className="hostedname">
-                  {this.state.event.hosts[0].name}
-                </span>
-              </div>
-              <div className="follow">
-                {this.props.user &&
-                  this.props.user.events.includes(this.state.event._id) && (
-                    <Link to={"/update-event/" + this.state.event._id}>
-                      <button className="button">Edit</button>
-                    </Link>
-                  )}
-                {this.props.user &&
-                  this.props.user._id !== this.state.event.hosts[0]._id && (
-                    <>
-                      {this.props.user.following.includes(
-                        this.state.event.hosts[0]._id
-                      ) ? (
-                        <button
-                          className="button"
-                          onClick={this.handleUnFollowButton}
-                        >
-                          Unfollow
-                        </button>
-                      ) : (
-                        <button
-                          className="button"
-                          onClick={this.handleFollowButton}
-                        >
-                          Follow
-                        </button>
-                      )}
-                    </>
-                  )}
+        <div className="container" style={{ paddingBottom: "200px" }}>
+          <CardWithOverlayText event={this.state.event} />
+          <div className="d-flex justify-content-between my-4">
+            <div class="d-flex align-items-center">
+              <img
+                src={this.state.event.hosts[0].picture}
+                alt=""
+                width="70px"
+                className="rounded-circle mr-3"
+              />
+              <div>
+                Hosted by:<h6>{this.state.event.hosts[0].name}</h6>
               </div>
             </div>
-            <div className="about-event">
-              <h1>Details</h1>
-              <br />
-              <p>{this.state.event.description}</p>
-              <Share />
-              <br />
-            </div>
-            <h1>Hosts</h1>
-            <div className="hosts">
-              {this.state.event.hosts.map((host) => (
-                <MiniProfileCard key={host._id} item={host}></MiniProfileCard>
-              ))}
-            </div>
-            <h1>Participants</h1>
-            <div className="hosts">
-              {this.state.event.participants.map((participant) => (
-                <MiniProfileCard
-                  key={participant._id}
-                  item={participant}
-                ></MiniProfileCard>
-              ))}
+            <div>
+              {this.props.user &&
+                this.props.user.events.includes(this.state.event._id) && (
+                  <Link to={"/update-event/" + this.state.event._id}>
+                    <button className="btn btn-outline-primary">Edit</button>
+                  </Link>
+                )}
+              {this.props.user &&
+                this.props.user._id !== this.state.event.hosts[0]._id && (
+                  <>
+                    {this.props.user.following.includes(
+                      this.state.event.hosts[0]._id
+                    ) ? (
+                      <button
+                        className="btn btn-outline-primary"
+                        onClick={this.handleUnFollowButton}
+                      >
+                        Unfollow
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-outline-primary"
+                        onClick={this.handleFollowButton}
+                      >
+                        Follow
+                      </button>
+                    )}
+                  </>
+                )}
             </div>
           </div>
-          <div class="event-foot">
-            <div class="cancel">
-              <h1>
-                <Moment
-                  format="dddd DD MMMM"
-                  date={this.state.event.schedule}
-                />
-              </h1>
-              <h2>{this.state.event.name}</h2>
+          <h2>Detail</h2>
+          <p>{this.state.event.description}</p>
+          <Share />
+          <h1>Participants ({this.state.event.participantsLength})</h1>
+          <div className="row">
+            {this.state.event.hosts.map((host) => (
+              <MiniProfileCard key={host._id} item={host}></MiniProfileCard>
+            ))}
+            {this.state.event.participants.map((participant) => (
+              <MiniProfileCard key={participant._id} item={participant} />
+            ))}
+          </div>
+        </div>
+        <div style={{ backgroundColor: "#ffffff" }} className="fixed-bottom ">
+          <div className="container">
+            <div className="row">
+              <div className="d-none d-lg-block col-md-6">
+                <b>
+                  <Moment
+                    format="dddd DD MMMM"
+                    date={this.state.event.schedule}
+                  />
+                </b>
+                <h2>{this.state.event.name}</h2>
+              </div>
+              <h5 className="col-12 col-sm-3 col-md-3 text-center">
+                FREE ADMISION
+              </h5>
+              <div className="col-12 col-sm-3 col-md-3 text-center">
+                {this.props.user &&
+                this.state.event.participants
+                  .map((x) => x._id)
+                  .includes(this.props.user._id) ? (
+                  <button
+                    style={{ width: "200px" }}
+                    className="btn btn-primary"
+                    onClick={this.handleLeaveButton}
+                  >
+                    Leave Event
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-primary"
+                    onClick={this.handleJoinButton}
+                  >
+                    Join Event
+                  </button>
+                )}
+              </div>
             </div>
-            <h1 class="green">FREE ADMISION</h1>
-            {this.props.user &&
-            this.state.event.participants
-              .map((x) => x._id)
-              .includes(this.props.user._id) ? (
-              <button className="button" onClick={this.handleLeaveButton}>
-                Leave
-              </button>
-            ) : (
-              <button className="button" onClick={this.handleJoinButton}>
-                Join
-              </button>
-            )}
           </div>
         </div>
       </>

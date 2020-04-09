@@ -3,11 +3,11 @@ import {
   api_getHottestOfTheWeek,
   api_getHottestOfNextWeek,
   api_getHottestOfTheMonth,
-  api_getHottestAllUpcoming
+  api_getHottestAllUpcoming,
 } from "../apis/events";
 
 export default class Hottest extends Component {
-  handleClick = async hottestPeriod => {
+  handleClick = async (hottestPeriod) => {
     let response, hottestEvents;
     switch (hottestPeriod) {
       case "of the week":
@@ -39,18 +39,34 @@ export default class Hottest extends Component {
       <div id="hottest-menu" className="d-none">
         <ul>
           <li>
-            <h1 className="sortMenu" onClick={() => this.handleClick("of the week")}>of the Week</h1>
+            <h1
+              className="sortMenu"
+              onClick={() => this.handleClick("of the week")}
+            >
+              of the Week
+            </h1>
           </li>
           <li>
-            <h1 className="sortMenu" onClick={() => this.handleClick("of next week")}>Next Week</h1>
+            <h1
+              className="sortMenu"
+              onClick={() => this.handleClick("of next week")}
+            >
+              Next Week
+            </h1>
           </li>
           <li>
-            <h1 className="sortMenu" onClick={() => this.handleClick("of the month")}>
+            <h1
+              className="sortMenu"
+              onClick={() => this.handleClick("of the month")}
+            >
               of the Month
             </h1>
           </li>
           <li>
-            <h1 className="sortMenu" onClick={() => this.handleClick("All upcoming")}>
+            <h1
+              className="sortMenu"
+              onClick={() => this.handleClick("All upcoming")}
+            >
               All upcoming
             </h1>
           </li>
@@ -59,20 +75,20 @@ export default class Hottest extends Component {
     );
   }
   componentDidMount = async () => {
-    const $ = e => document.querySelector(e);
-    $("#hottest").addEventListener("click", function() {
-      toggleHottest();
-    });
-    $("#hottest-menu").addEventListener("click", function() {
-      toggleHottest();
-    });
-    function toggleHottest() {
-      if ($("#hottest-menu").classList.contains("d-none")) {
-        $("#hottest-menu").classList.remove("d-none");
-      } else {
-        $("#hottest-menu").classList.add("d-none");
-      }
-    }
+    // const $ = e => document.querySelector(e);
+    // $("#hottest").addEventListener("click", function() {
+    //   toggleHottest();
+    // });
+    // $("#hottest-menu").addEventListener("click", function() {
+    //   toggleHottest();
+    // });
+    // function toggleHottest() {
+    //   if ($("#hottest-menu").classList.contains("d-none")) {
+    //     $("#hottest-menu").classList.remove("d-none");
+    //   } else {
+    //     $("#hottest-menu").classList.add("d-none");
+    //   }
+    // }
     this.handleClick("of the week");
     // const response = await api_getHottestOfTheWeek();
     // const hottestEvents = await response.json();

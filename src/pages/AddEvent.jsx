@@ -89,10 +89,8 @@ class AddEvent extends Component {
   render() {
     return (
       <>
-        <BurgerMenu />
         <div id="main">
           <div className="main-section heading-size">
-            <Header />
             <h1>Create an event</h1>
           </div>
           <div className="second-section">

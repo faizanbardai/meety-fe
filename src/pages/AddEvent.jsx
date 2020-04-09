@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import Header from "../components/Header";
 import { api_createEvent, api_updateEventImage } from "../apis/events";
-import BurgerMenu from "../components/BurgerMenu";
 import { withRouter } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
 import { connect } from "react-redux";
-// import uploadImg from "../img/upload.png";
 import { addEventIDToUserEventsArray } from "../action";
 import AddHost from "../pages/AddHost";
 import moment from "moment";
@@ -88,96 +85,93 @@ class AddEvent extends Component {
   };
   render() {
     return (
-      <>
-        <div id="main">
-          <div className="main-section heading-size">
-            <h1>Create an event</h1>
+      <div className="container rounded bg-light py-5">
+        <form>
+          <div class="form-group">
+            <label htmlFor="name">Event Name</label>
+            <input
+              type="text"
+              name="name"
+              class="form-control"
+              id="name"
+              placeholder="Event Name"
+              value={this.state.name}
+              onChange={this.handleInputChange}
+            />
           </div>
-          <div className="second-section">
-            <form id="create-event" onSubmit={this.handleSubmit}>
-              <label htmlFor="event-name">Event Name (required)</label>
-              <div>
-                <input
-                  id="event-name"
-                  type="text"
-                  name="name"
-                  value={this.state.name}
-                  onChange={this.handleInputChange}
-                />
-              </div>
-              <label htmlFor="date">Date/Time</label>
-              <div>
-                <input
-                  id="schedule"
-                  type="datetime-local"
-                  name="schedule"
-                  value={this.state.schedule}
-                  onChange={this.handleInputChange}
-                />
-              </div>
-              <label htmlFor="duration">Duration (in minutes)</label>
-              <div>
-                <input
-                  type="text"
-                  name="duration"
-                  placeholder="Example: 30"
-                  value={this.state.duration}
-                  onChange={this.handleInputChange}
-                />
-              </div>
-              <label htmlFor="picture">Featured picture</label>
-              <div id="upload">
-                {/* <img id="input-file" alt="upload-button" src={uploadImg}></img> */}
-                <input
-                  id="input-file"
-                  type="file"
-                  name="picture"
-                  onChange={(e) =>
-                    this.setState({ picture: e.target.files[0] })
-                  }
-                ></input>
-              </div>
-              <label htmlFor="description">Description</label>
-              <div>
-                <textarea
-                  name="description"
-                  id=""
-                  cols="50"
-                  rows="10"
-                  placeholder="Let your attendees know what to expect; including the agenda, what they need to bring and how to find the group."
-                  value={this.state.description}
-                  onChange={this.handleInputChange}
-                ></textarea>
-              </div>
-              <label htmlFor="Hosts">Hosts (they can edit event details)</label>
-              <div className="hosts">
-                {this.state.hosts.map((host, i) => (
-                  <MiniProfileCard item={host} key={i} />
-                ))}
-                <AddHost
-                  addHost={(newHost) =>
-                    this.setState({
-                      hosts: [...this.state.hosts, newHost],
-                    })
-                  }
-                />
-              </div>
-
-              <div className="foot">
-                <div className="cancel">
-                  <button className="button-empty">Cancel event</button>
-                </div>
-                <div className="preview-publish">
-                  <button className="button-empty">Preview</button>
-                  <button className="button" type="submit">
-                    Publish
-                  </button>
-                </div>
-              </div>
-            </form>
+          <div class="form-group">
+            <label htmlFor="schedule">Date/Time</label>
+            <input
+              type="datetime-local"
+              name="schedule"
+              class="form-control"
+              id="schedule"
+              value={this.state.schedule}
+              onChange={this.handleInputChange}
+            />
           </div>
-        </div>
-      </>
+          <div class="form-group">
+            <label htmlFor="duration">Duration (in minutes)</label>
+            <input
+              type="text"
+              class="form-control"
+              id="duration"
+              name="duration"
+              placeholder="Example: 30"
+              value={this.state.duration}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div class="form-group">
+            <label htmlFor="picture">Example file input</label>
+            <input
+              type="file"
+              class="form-control-file"
+              id="picture"
+              name="picture"
+              onChange={(e) => this.setState({ picture: e.target.files[0] })}
+            />
+          </div>
+          <div class="form-group">
+            <label htmlFor="description">About you</label>
+            <textarea
+              class="form-control"
+              value={this.state.description}
+              placeholder="Let your attendees know what to expect, including the agenda, what they need to bring and how to find the group."
+              onChange={this.handleInputChange}
+              id="description"
+              name="description"
+              rows="3"
+            ></textarea>
+          </div>
+          <label htmlFor="Hosts">Hosts (they can edit event details)</label>
+          <AddHost
+            addHost={(newHost) =>
+              this.setState({
+                hosts: [...this.state.hosts, newHost],
+              })
+            }
+          />
+          <div>
+            {this.state.hosts.map((host, i) => (
+              <MiniProfileCard item={host} key={i} />
+            ))}
+          </div>
+          <div className="d-flex justify-content-between">
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                this.props.history.push("/home");
+              }}
+            >
+              Cancel event
+            </button>
+            <button className="btn btn-primary" onClick={this.handleSubmit}>
+              Publish
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

@@ -15,7 +15,7 @@ const MenuAfterLogin = (props) => {
   return (
     <div
       style={{ zIndex: 1031 }}
-      className="w-100 h-100 position-fixed bg-dark text-white"
+      className="w-100 h-100 position-fixed bg-light"
     >
       <div className="container">
         <div className="d-flex">
@@ -30,7 +30,7 @@ const MenuAfterLogin = (props) => {
           <div className="ml-auto">
             <button
               type="button"
-              className="my-2 btn btn-outline-light"
+              className="my-2 btn btn-primary"
               onClick={() => {
                 localStorage.removeItem("accessToken");
                 props.saveUser(null);
@@ -51,14 +51,28 @@ const MenuAfterLogin = (props) => {
             />
 
             <div className="col-12 col-sm-8 col-md-9">
-              <h1 className="display-4 text-white">{props.user.name}</h1>
+              <h1 className="display-4">{props.user.name}</h1>
             </div>
           </div>
           <div className="row d-flex justify-content-center">
-            <button type="button" className="mx-2 my-2 btn btn-outline-light">
+            <button
+              type="button"
+              onClick={() => {
+                props.setShowMenu(false);
+                props.history.push("/");
+              }}
+              className="mx-2 my-2 btn btn-primary"
+            >
               My Events
             </button>
-            <button type="button" className="mx-2 my-2 btn btn-outline-light">
+            <button
+              type="button"
+              onClick={() => {
+                props.setShowMenu(false);
+                props.history.push("/add-event");
+              }}
+              className="mx-2 my-2 btn btn-primary"
+            >
               Create Event{" "}
             </button>
           </div>

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Modal from "react-awesome-modal";
 import { api_searchUser } from "../apis/users";
-// import { api_addHost } from "../apis/events";
-import addHost from "../img/addhost.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default class Examples extends Component {
   constructor(props) {
@@ -37,29 +37,28 @@ export default class Examples extends Component {
       this.props.addHost(user);
     }
   };
-
   openModal() {
     this.setState({
       visible: true,
     });
   }
-
   closeModal() {
     this.setState({
       visible: false,
     });
   }
-
   render() {
     return (
-      <section>
-        <div className="host-minicard" onClick={() => this.openModal()}>
-          <div
-            className="img"
-            style={{ backgroundImage: `url(${addHost})` }}
-          ></div>
-          <div className="name">Add New Host</div>
-        </div>
+      <section className="pb-2">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            this.openModal();
+          }}
+          className="btn btn-primary"
+        >
+          <FontAwesomeIcon icon={faSearch} /> New host
+        </button>
         <Modal
           visible={this.state.visible}
           width="400"

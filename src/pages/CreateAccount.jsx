@@ -115,7 +115,7 @@ const CreateAccount = (props) => {
           <textarea
             class="form-control"
             value={aboutMe}
-            placeholder="Let your attendees know what to expect, including the agenda, what they need to bring and how to find the group."
+            placeholder="Tell us a little about yourself."
             onChange={(e) => setAboutMe(e.target.value)}
             id="exampleFormControlTextarea1"
             rows="3"

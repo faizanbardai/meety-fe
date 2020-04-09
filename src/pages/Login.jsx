@@ -32,7 +32,7 @@ const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
-    <div className="container bg-dark rounded text-white py-5">
+    <div className="container bg-light rounded py-5">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label for="exampleInputEmail1">Email address</label>

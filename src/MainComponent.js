@@ -23,7 +23,6 @@ import CBRetrun from "./components/CBRetrun";
 import AddEvent from "./pages/AddEvent";
 import Event from "./pages/Event";
 import UpdateEvent from "./pages/UpdateEvent";
-import BurgerMenu from "./components/BurgerMenu";
 import Header from "./components/Header";
 
 const mapStateToProps = (state) => ({ ...state });
@@ -43,7 +42,6 @@ class MainComponent extends Component {
     ) : (
       <div className="container-fluid px-0">
         <Router basename={process.env.PUBLIC_URL}>
-          <BurgerMenu />
           <Header />
           <Switch>
             <Route path="/" exact>
@@ -61,12 +59,8 @@ class MainComponent extends Component {
             <Route path="/profile/:_id">
               {this.props.user ? <GuestProfile /> : <Redirect to="/home" />}
             </Route>
-            <Route path="/create-account" exact>
-              <CreateAccount />
-            </Route>
-            <Route path="/login" exact>
-              <Login />
-            </Route>
+            <Route path="/create-account" exact component={CreateAccount} />
+            <Route path="/login" exact component={Login} />
             <Route path="/auth/facebook/callback/:accessToken" exact>
               <CBRetrun />
             </Route>

@@ -1,18 +1,25 @@
-import React from "react";
-import burgerMenu from "../../src/img/burger.png";
+import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import "./Header.css";
+import BurgerMenu from "./BurgerMenu";
 
 export default function Header() {
-  return (
+  const [showMenu, setShowMenu] = useState(false);
+  return showMenu ? (
+    <BurgerMenu setShowMenu={setShowMenu} />
+  ) : (
     <div className="head">
       <div className="container">
-        <img
-          className="mx-2 my-3 position-fixed"
-          src={burgerMenu}
-          alt="menu"
-          width="35px"
-          height="35px"
+        <FontAwesomeIcon
+          icon={faBars}
+          size="2x"
+          className="mx-2 my-3 text-white position-fixed"
+          onClick={() => {
+            setShowMenu(true);
+          }}
         />
         <div className="w-100 text-center">
           <Link to="/home" className="logo">

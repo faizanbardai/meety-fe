@@ -9,7 +9,8 @@
   margin-bottom: -200px;
 }
 
-.logo {
+.logo,
+.logo:hover {
   text-decoration: none;
   color: #fff;
 }

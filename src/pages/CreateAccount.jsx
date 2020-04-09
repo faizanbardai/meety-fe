@@ -36,7 +36,7 @@ const CreateAccount = (props) => {
               localStorage.setItem("accessToken", userData.access_token);
               props.saveAccessToken(userData.access_token);
               props.saveUser(userWithPicture);
-              props.history.push("/profile");
+              props.history.push("/profile/" + userWithPicture._id);
               break;
             default:
               alert("Some error when saving user picture");
@@ -46,7 +46,7 @@ const CreateAccount = (props) => {
           localStorage.setItem("accessToken", userData.access_token);
           props.saveAccessToken(userData.access_token);
           props.saveUser(userData.user);
-          props.history.push("/profile");
+          props.history.push("/profile/" + userData.user._id);
         }
         break;
       case 401:
@@ -64,7 +64,7 @@ const CreateAccount = (props) => {
   const [picture, setPicture] = useState("");
   const [aboutMe, setAboutMe] = useState("");
   return (
-    <div className="container bg-dark rounded text-white py-5">
+    <div className="container bg-light rounded py-5">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label for="exampleInputEmail1">Name</label>
@@ -126,15 +126,13 @@ const CreateAccount = (props) => {
             Submit
           </button>
           <div className="ml-2">
-            <Link className="text-white" to="/login">
-              Already have an account? Sign In
-            </Link>
+            <Link to="/login">Already have an account? Sign In</Link>
           </div>
         </div>
         <div className="d-flex justify-content-center">
           <a
             href={`${process.env.REACT_APP_BASE_SERVER_URL}auth/facebook`}
-            className="text-white fb connect mt-2"
+            className="fb connect mt-2"
           >
             Continue with Facebook
           </a>

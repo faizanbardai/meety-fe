@@ -35,7 +35,8 @@ const MenuAfterLogin = (props) => {
                 localStorage.removeItem("accessToken");
                 props.saveUser(null);
                 props.saveAccessToken(null);
-                props.history.push("/home");
+                props.setShowMenu(false);
+                props.history.push("/");
               }}
             >
               Logout
@@ -59,11 +60,11 @@ const MenuAfterLogin = (props) => {
               type="button"
               onClick={() => {
                 props.setShowMenu(false);
-                props.history.push("/");
+                props.history.push("/profile/" + props.user._id);
               }}
               className="mx-2 my-2 btn btn-primary"
             >
-              My Events
+              My Profile
             </button>
             <button
               type="button"

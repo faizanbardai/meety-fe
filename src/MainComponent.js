@@ -15,7 +15,6 @@ import {
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
 import Introduction from "./pages/Introduction";
-import Profile from "./pages/Profile";
 import GuestProfile from "./pages/GuestProfile";
 import CreateAccount from "./pages/CreateAccount";
 import Login from "./pages/Login";
@@ -44,20 +43,13 @@ class MainComponent extends Component {
         <Router basename={process.env.PUBLIC_URL}>
           <Header />
           <Switch>
-            <Route path="/" exact>
-              <Introduction />
-            </Route>
-            <Route path="/home">
-              <Home />
-            </Route>
+            <Route path="/intro" exact component={Introduction} />
+            <Route path="/" exact component={Home} />
             <Route path="/add-event" exact component={AddEvent} />
             <Route path="/event/:_id" exact component={Event} />
             <Route path="/update-event/:_id" component={UpdateEvent} />
-            <Route path="/profile" exact>
-              {this.props.user ? <Profile /> : <Redirect to="/home" />}
-            </Route>
             <Route path="/profile/:_id">
-              {this.props.user ? <GuestProfile /> : <Redirect to="/home" />}
+              {this.props.user ? <GuestProfile /> : <Redirect to="/" />}
             </Route>
             <Route path="/create-account" exact component={CreateAccount} />
             <Route path="/login" exact component={Login} />

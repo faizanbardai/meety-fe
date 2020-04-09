@@ -23,7 +23,7 @@ export default function Header() {
           }}
         />
         <div className="w-100 text-center">
-          <Link to="/home" className="logo">
+          <Link to="/" className="logo">
             Meety
           </Link>
         </div>

@@ -25,7 +25,7 @@ const Login = (props) => {
       props.addEventID(null);
       props.history.push("/event/" + eventID);
     } else {
-      props.history.push("/profile");
+      props.history.push("/profile/" + userData.user._id);
     }
   };
 

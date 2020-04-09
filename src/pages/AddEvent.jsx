@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
 import { connect } from "react-redux";
 import { addEventIDToUserEventsArray } from "../action";
-import AddHost from "../pages/AddHost";
+import AddHost from "../components/AddHost";
 import moment from "moment";
 
 const mapStateToProps = (state) => ({ ...state });
@@ -161,7 +161,7 @@ class AddEvent extends Component {
             <button
               className="btn btn-primary"
               onClick={() => {
-                this.props.history.push("/home");
+                this.props.history.push("/");
               }}
             >
               Cancel event

@@ -11,37 +11,36 @@ class GuestProfile extends Component {
   render() {
     return this.state.user ? (
       <div className="container">
-        <div>
-          <div
-            className="avatar"
-            style={{ backgroundImage: `url(${this.state.user.picture})` }}
-          ></div>
-          <h1 className="profile-name">{this.state.user.name}</h1>
-          <h1 className="followers-number">
-            {this.state.user.followers.length} followers
-          </h1>
+        <div className="row">
+          <img
+            className="col-4 rounded-circle"
+            src={this.state.user.picture}
+            alt={this.state.user.name}
+          ></img>
         </div>
-        {/* Showing the Follow button only for guest profiles */}
-        {this.state.user._id !== this.props.user._id ? (
-          <div>
-            <button className="button">Follow</button>
+        <div className="bg-light mt-2 p-3 rounded">
+          <div className="d-flex justify-content-between align-content-center">
+            <div className="">
+              <h1>{this.state.user.name}</h1>
+              {this.state.user.followers.length} followers
+            </div>
+            <div>
+              {/* Showing the Follow button only for guest profiles */}
+              {this.state.user._id !== this.props.user._id ? (
+                <button className="btn btn-primary">Follow</button>
+              ) : null}
+            </div>
           </div>
-        ) : null}
-        <div style={{ justifyContent: "center" }}>
-          <div className="about-me">
-            <h1>About {this.state.user.name}:</h1>
-            <p>
-              <span>{this.state.user.aboutMe}</span>
-            </p>
-          </div>
+          <h1>About</h1>
+          <p>{this.state.user.aboutMe}</p>
         </div>
-        <div>
-          <h1>Next events:</h1>
-          <div className="next-events">
-            {this.state.user.events.map((event) => (
+        <h1>Next events:</h1>
+        <div className="row">
+          {this.state.user.events.map((event) => (
+            <div className="col-12 col-sm-6 col-md-4 mb-3">
               <CardWithOverlayText key={event._id} event={event} />
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     ) : (
@@ -50,12 +49,6 @@ class GuestProfile extends Component {
   }
   componentDidMount = async () => {
     const userIDParam = this.props.match.params._id;
-
-    // If profile/:_id is same as that of logged in user then redirecting to /profile
-    if (userIDParam === this.props.user._id) {
-      this.props.history.push("/profile");
-    }
-
     try {
       const response = await api_getUserByID(
         this.props.accessToken,

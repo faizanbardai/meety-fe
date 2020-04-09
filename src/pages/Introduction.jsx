@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 export default function Introduction() {
   return (
     <div>
-      <Link to="/home">View App</Link>
+      <Link to="/">View App</Link>
       <img alt="home" src={homeImg} width={"200px"}></img>
       <img alt="hottest" src={hottestImg} width={"200px"}></img>
       <img alt="event" src={eventImg} width={"200px"}></img>

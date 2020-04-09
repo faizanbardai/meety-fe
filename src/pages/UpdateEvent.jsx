@@ -11,7 +11,7 @@ import MiniProfileCard from "../components/MiniProfileCard";
 import { connect } from "react-redux";
 // import uploadImg from "../img/upload.png";
 import moment from "moment";
-import AddHost from "../pages/AddHost";
+import AddHost from "../components/AddHost";
 
 const mapStateToProps = (state) => ({ ...state });
 

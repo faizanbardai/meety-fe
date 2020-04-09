@@ -4,15 +4,15 @@ import { connect } from "react-redux";
 import { saveUser, saveAccessToken } from "../action";
 import { api_refreshToken } from "../apis/users";
 
-const mapDispatchToProps = dispatch => ({
-  saveUser: user => dispatch(saveUser(user)),
-  saveAccessToken: accessToken => dispatch(saveAccessToken(accessToken))
+const mapDispatchToProps = (dispatch) => ({
+  saveUser: (user) => dispatch(saveUser(user)),
+  saveAccessToken: (accessToken) => dispatch(saveAccessToken(accessToken)),
 });
 
 class CBRetrun extends Component {
   render() {
     return localStorage.getItem("accessToken") ? (
-      <Redirect to="/home" />
+      <Redirect to="/" />
     ) : (
       <div>Loading...</div>
     );

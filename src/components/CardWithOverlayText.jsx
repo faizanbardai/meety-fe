@@ -16,7 +16,7 @@ function CardWithOverlayText(props) {
         maxWidth: "600px",
       }}
     >
-      <Link to={"/event/" + _id}>
+      <Link style={{ textDecoration: "none" }} to={"/event/" + _id}>
         <div
           style={{ height: "300px" }}
           className="text-white px-3 d-flex flex-column"

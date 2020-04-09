@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
 const MenuAfterLogin = (props) => {
   return (
     <div
-      style={{ zIndex: 1 }}
+      style={{ zIndex: 1031 }}
       className="w-100 h-100 position-fixed bg-dark text-white"
     >
       <div className="container">

@@ -6,7 +6,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 function MenuBeforeLogin(props) {
   return (
     <div
-      style={{ zIndex: 1 }}
+      style={{ zIndex: 1031 }}
       className="w-100 h-100 position-fixed bg-dark text-white"
     >
       <div className="container">
@@ -26,7 +26,7 @@ function MenuBeforeLogin(props) {
                 props.history.push("/login");
               }}
               type="button"
-              className="mt-3 mr-2 btn btn-primary rounded-pill"
+              className="mt-3 mr-2 btn btn-primary"
             >
               Log In
             </button>
@@ -36,7 +36,7 @@ function MenuBeforeLogin(props) {
                 props.history.push("/create-account");
               }}
               type="button"
-              className="mt-3 btn btn-primary rounded-pill"
+              className="mt-3 btn btn-primary"
             >
               Create Account
             </button>

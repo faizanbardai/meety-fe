@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
 import { connect } from "react-redux";
 import { addEventIDToUserEventsArray } from "../action";
-import moment from "moment";
 import AddHost2 from "../components/AddHost2";
 
 const mapStateToProps = (state) => ({ ...state });

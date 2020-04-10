@@ -50,6 +50,7 @@ export const api_refreshToken = async (token) => {
     },
   });
 };
+
 export const api_getUserByID = async (token, _id) => {
   return await fetch(baseURL + "user/id/" + _id, {
     method: "GET",
@@ -60,7 +61,6 @@ export const api_getUserByID = async (token, _id) => {
   });
 };
 
-//here i go
 export const api_followers = async (token, _id) => {
   return await fetch(baseURL + "user/" + _id + "/follow", {
     method: "PUT",
@@ -80,6 +80,7 @@ export const api_unfollow = async (token, _id) => {
     },
   });
 };
+
 export const api_searchUser = async (token, search) => {
   return await fetch(baseURL + "user/search/" + search, {
     method: "GET",

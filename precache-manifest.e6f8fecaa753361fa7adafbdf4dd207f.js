@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8efe983dfd92df007d1a298f299a1776",
+    "revision": "390268d73d364002aef9a74a266c26fe",
     "url": "/meety-fe/index.html"
   },
   {
-    "revision": "8ad71b7efde90907557d",
+    "revision": "ac7e94a561518da0ef54",
     "url": "/meety-fe/static/css/main.76022c19.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/meety-fe/static/js/2.9e578278.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8ad71b7efde90907557d",
-    "url": "/meety-fe/static/js/main.6af625c1.chunk.js"
+    "revision": "ac7e94a561518da0ef54",
+    "url": "/meety-fe/static/js/main.05120f44.chunk.js"
   },
   {
     "revision": "819935bd47303bea8c76",

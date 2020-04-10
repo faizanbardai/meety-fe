@@ -14,7 +14,7 @@ export default class Home extends Component {
     return (
       <div className="container">
         <Hottest setHottestEvents={this.setHottestEvents} />
-        <div class="dropdown text-white row my-2">
+        {/* <div class="dropdown text-white row my-2">
           <h1 className="mr-2">Hottest</h1>
           <button
             class="btn btn-primary dropdown-toggle"
@@ -31,7 +31,7 @@ export default class Home extends Component {
             <button class="dropdown-item">of the month</button>
             <button class="dropdown-item">upcoming (all)</button>
           </div>
-        </div>
+        </div> */}
         <div className="row">
           {this.state.hottestEvents &&
             this.state.hottestEvents.map((event) => (

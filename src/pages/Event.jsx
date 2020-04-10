@@ -159,7 +159,7 @@ class Event extends Component {
         </div>
         <div className="fixed-bottom bg-dark text-white">
           <div className="container">
-            <div className="d-flex align-items-center pb-2">
+            <div className="row align-items-center">
               <div className="d-none d-lg-block col-md-6">
                 <b>
                   <Moment

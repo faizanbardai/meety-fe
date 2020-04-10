@@ -135,11 +135,15 @@ class Event extends Component {
           <p>{this.state.event.description}</p>
           {this.state.event.link && (
             <a
-              className="btn btn-primary text-white mb-2"
+              className={
+                this.props.user
+                  ? "btn btn-primary text-white mb-2"
+                  : "btn btn-primary text-white mb-2 disabled"
+              }
               rel="noopener noreferrer"
               target="_blank"
               style={{ textDecoration: "none" }}
-              href={this.state.event.link}
+              href={this.props.user ? this.state.event.link : null}
               alt="Event Link"
             >
               Event Live Link

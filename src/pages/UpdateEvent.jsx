@@ -189,7 +189,9 @@ class UpdateEvent extends Component {
             <button
               className="btn btn-primary"
               onClick={() => {
-                this.props.history.push("/");
+                this.props.history.push(
+                  "/event/" + this.props.match.params._id
+                );
               }}
             >
               Cancel event

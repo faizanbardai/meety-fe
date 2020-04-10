@@ -25,6 +25,7 @@ class UpdateEvent extends Component {
       hosts,
       participants,
       participantsLength,
+      link,
     } = this.state;
     try {
       let updatedEvent = await api_updateEvent(accessToken, _id, {
@@ -35,6 +36,7 @@ class UpdateEvent extends Component {
         hosts: hosts.map((x) => x._id),
         participants: participants.map((x) => x._id),
         participantsLength,
+        link,
       });
       switch (updatedEvent.status) {
         case 200:
@@ -118,6 +120,18 @@ class UpdateEvent extends Component {
               name="duration"
               placeholder="Example: 30"
               value={this.state.duration}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="link">Event Link</label>
+            <input
+              type="text"
+              name="link"
+              className="form-control"
+              id="link"
+              placeholder="Event Name"
+              value={this.state.link}
               onChange={this.handleInputChange}
             />
           </div>

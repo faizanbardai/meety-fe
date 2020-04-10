@@ -62,9 +62,7 @@ const Login = (props) => {
             Submit
           </button>
           <div className="ml-2">
-            <Link className="text-white" to="/create-account">
-              Don't have an account? Sign Up
-            </Link>
+            <Link to="/create-account">Don't have an account? Sign Up</Link>
           </div>
         </div>
         <div className="d-flex justify-content-center">

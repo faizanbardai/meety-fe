@@ -21,10 +21,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Event extends Component {
-  state = {
-    participants: "",
-    followers: "",
-  };
   handleJoinButton = async () => {
     if (!this.props.user) {
       const eventID = this.props.match.params._id;
@@ -137,6 +133,18 @@ class Event extends Component {
           </div>
           <h2>Detail</h2>
           <p>{this.state.event.description}</p>
+          {this.state.event.link && (
+            <a
+              className="btn btn-primary text-white mb-2"
+              rel="noopener noreferrer"
+              target="_blank"
+              style={{ textDecoration: "none" }}
+              href={this.state.event.link}
+              alt="Event Link"
+            >
+              Event Live Link
+            </a>
+          )}
           <Share />
           <h1>Participants ({this.state.event.participantsLength})</h1>
           <div className="row">

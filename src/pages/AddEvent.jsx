@@ -23,6 +23,7 @@ class AddEvent extends Component {
     hosts: [this.props.user],
     participants: [this.props.user._id],
     participantsLength: 1,
+    link: "",
   };
   handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,6 +35,7 @@ class AddEvent extends Component {
       description,
       hosts,
       participantsLength,
+      link,
     } = this.state;
     const hostsID = hosts.map((x) => x._id);
     try {
@@ -45,6 +47,7 @@ class AddEvent extends Component {
         hosts: hostsID,
         participants: hosts,
         participantsLength,
+        link,
       });
       switch (newEvent.status) {
         case 200:
@@ -131,6 +134,18 @@ class AddEvent extends Component {
               name="duration"
               placeholder="Example: 30"
               value={this.state.duration}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="link">Event Link</label>
+            <input
+              type="text"
+              name="link"
+              className="form-control"
+              id="link"
+              placeholder="Event Name"
+              value={this.state.link}
               onChange={this.handleInputChange}
             />
           </div>

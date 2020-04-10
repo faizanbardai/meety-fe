@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Pacifico&display=swap");
 
 .btn {
-  width: 150px;
+  min-width: 150px;
   border-radius: 50rem;
 }
 

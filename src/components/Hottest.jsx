@@ -5,6 +5,7 @@ import {
   api_getHottestOfTheMonth,
   api_getHottestAllUpcoming,
 } from "../apis/events";
+import "./Hottest.css";
 
 export default class Hottest extends Component {
   handleClick = async (hottestPeriod) => {
@@ -36,42 +37,44 @@ export default class Hottest extends Component {
   };
   render() {
     return (
-      <div id="hottest-menu" className="d-none">
-        <ul>
-          <li>
-            <h1
-              className="sortMenu"
-              onClick={() => this.handleClick("of the week")}
-            >
-              of the Week
-            </h1>
-          </li>
-          <li>
-            <h1
-              className="sortMenu"
-              onClick={() => this.handleClick("of next week")}
-            >
-              Next Week
-            </h1>
-          </li>
-          <li>
-            <h1
-              className="sortMenu"
-              onClick={() => this.handleClick("of the month")}
-            >
-              of the Month
-            </h1>
-          </li>
-          <li>
-            <h1
-              className="sortMenu"
-              onClick={() => this.handleClick("All upcoming")}
-            >
-              All upcoming
-            </h1>
-          </li>
-        </ul>
-      </div>
+      <>
+        {/* <div id="hottest-menu" className="">
+          <ul>
+            <li>
+              <h1
+                className="sortMenu"
+                onClick={() => this.handleClick("of the week")}
+              >
+                of the Week
+              </h1>
+            </li>
+            <li>
+              <h1
+                className="sortMenu"
+                onClick={() => this.handleClick("of next week")}
+              >
+                Next Week
+              </h1>
+            </li>
+            <li>
+              <h1
+                className="sortMenu"
+                onClick={() => this.handleClick("of the month")}
+              >
+                of the Month
+              </h1>
+            </li>
+            <li>
+              <h1
+                className="sortMenu"
+                onClick={() => this.handleClick("All upcoming")}
+              >
+                All upcoming
+              </h1>
+            </li>
+          </ul>
+        </div> */}
+      </>
     );
   }
   componentDidMount = async () => {

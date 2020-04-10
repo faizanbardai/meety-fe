@@ -1,0 +1,18 @@
+#hottest-menu {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  /* width: 100vw; */
+  /* height: 100vh; */
+  z-index: 999;
+}
+
+#hottest-menu > ul {
+  list-style: none;
+  /* margin-top: 195px; */
+  margin-left: 140px;
+}
+
+#hottest-menu > ul > li > h1 {
+  color: #fff;
+  text-decoration: none;
+}

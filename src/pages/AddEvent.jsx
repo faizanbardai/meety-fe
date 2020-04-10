@@ -160,7 +160,7 @@ class AddEvent extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="description">About you</label>
+            <label htmlFor="description">Description</label>
             <textarea
               className="form-control"
               value={this.state.description}

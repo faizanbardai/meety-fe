@@ -15,11 +15,10 @@ const mapDispatchToProps = (dispatch) => ({
 
 class AddEvent extends Component {
   state = {
-    name: "Test " + new Date(),
-    schedule: moment(new Date()).format("YYYY-MM-DDTHH:mm:ss"),
-    duration: "30",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    name: "",
+    schedule: "",
+    duration: "",
+    description: "",
     hosts: [this.props.user],
     participants: [this.props.user._id],
     participantsLength: 1,

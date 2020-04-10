@@ -157,9 +157,9 @@ class Event extends Component {
             ))}
           </div>
         </div>
-        <div style={{ backgroundColor: "#ffffff" }} className="fixed-bottom ">
+        <div className="fixed-bottom bg-dark text-white">
           <div className="container">
-            <div className="row pb-2">
+            <div className="d-flex align-items-center pb-2">
               <div className="d-none d-lg-block col-md-6">
                 <b>
                   <Moment
@@ -167,7 +167,7 @@ class Event extends Component {
                     date={this.state.event.schedule}
                   />
                 </b>
-                <h2>{this.state.event.name}</h2>
+                <h5>{this.state.event.name}</h5>
               </div>
               <h5 className="col-12 col-sm-3 col-md-3 text-center">
                 FREE ADMISION

@@ -197,7 +197,7 @@ class UpdateEvent extends Component {
               Cancel event
             </button>
             <button className="btn btn-primary" onClick={this.handleSubmit}>
-              Publish
+              Update
             </button>
           </div>
         </form>

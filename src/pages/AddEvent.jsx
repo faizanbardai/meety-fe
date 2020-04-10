@@ -4,8 +4,8 @@ import { withRouter } from "react-router-dom";
 import MiniProfileCard from "../components/MiniProfileCard";
 import { connect } from "react-redux";
 import { addEventIDToUserEventsArray } from "../action";
-import AddHost from "../components/AddHost";
 import moment from "moment";
+import AddHost2 from "../components/AddHost2";
 
 const mapStateToProps = (state) => ({ ...state });
 const mapDispatchToProps = (dispatch) => ({
@@ -21,18 +21,30 @@ class AddEvent extends Component {
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     hosts: [this.props.user],
+    participants: [this.props.user._id],
+    participantsLength: 1,
   };
   handleSubmit = async (event) => {
     event.preventDefault();
     const accessToken = this.props.accessToken;
-    const { name, schedule, duration, description, hosts } = this.state;
+    const {
+      name,
+      schedule,
+      duration,
+      description,
+      hosts,
+      participantsLength,
+    } = this.state;
+    const hostsID = hosts.map((x) => x._id);
     try {
       let newEvent = await api_createEvent(accessToken, {
         name,
         schedule,
         duration,
         description,
-        hosts,
+        hosts: hostsID,
+        participants: hosts,
+        participantsLength,
       });
       switch (newEvent.status) {
         case 200:
@@ -87,34 +99,34 @@ class AddEvent extends Component {
     return (
       <div className="container rounded bg-light py-5">
         <form>
-          <div class="form-group">
+          <div className="form-group">
             <label htmlFor="name">Event Name</label>
             <input
               type="text"
               name="name"
-              class="form-control"
+              className="form-control"
               id="name"
               placeholder="Event Name"
               value={this.state.name}
               onChange={this.handleInputChange}
             />
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <label htmlFor="schedule">Date/Time</label>
             <input
               type="datetime-local"
               name="schedule"
-              class="form-control"
+              className="form-control"
               id="schedule"
               value={this.state.schedule}
               onChange={this.handleInputChange}
             />
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <label htmlFor="duration">Duration (in minutes)</label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="duration"
               name="duration"
               placeholder="Example: 30"
@@ -122,20 +134,20 @@ class AddEvent extends Component {
               onChange={this.handleInputChange}
             />
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <label htmlFor="picture">Example file input</label>
             <input
               type="file"
-              class="form-control-file"
+              className="form-control-file"
               id="picture"
               name="picture"
               onChange={(e) => this.setState({ picture: e.target.files[0] })}
             />
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <label htmlFor="description">About you</label>
             <textarea
-              class="form-control"
+              className="form-control"
               value={this.state.description}
               placeholder="Let your attendees know what to expect, including the agenda, what they need to bring and how to find the group."
               onChange={this.handleInputChange}
@@ -145,14 +157,25 @@ class AddEvent extends Component {
             ></textarea>
           </div>
           <label htmlFor="Hosts">Hosts (they can edit event details)</label>
-          <AddHost
+          <AddHost2
+            user={this.props.user}
+            hosts={this.state.hosts}
             addHost={(newHost) =>
               this.setState({
                 hosts: [...this.state.hosts, newHost],
+                participantsLength: this.state.participantsLength + 1,
+              })
+            }
+            removeHost={(hostToRemove) =>
+              this.setState({
+                hosts: this.state.hosts.filter(
+                  (host) => host._id !== hostToRemove._id
+                ),
+                participantsLength: this.state.participantsLength - 1,
               })
             }
           />
-          <div>
+          <div className="row">
             {this.state.hosts.map((host, i) => (
               <MiniProfileCard item={host} key={i} />
             ))}

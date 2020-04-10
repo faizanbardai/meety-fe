@@ -23,6 +23,7 @@ import AddEvent from "./pages/AddEvent";
 import Event from "./pages/Event";
 import UpdateEvent from "./pages/UpdateEvent";
 import Header from "./components/Header";
+import UpdateProfile from "./pages/UpdateProfile";
 
 const mapStateToProps = (state) => ({ ...state });
 const mapDispatchToProps = (dispatch) => ({
@@ -45,17 +46,20 @@ class MainComponent extends Component {
           <Switch>
             <Route path="/intro" exact component={Introduction} />
             <Route path="/" exact component={Home} />
-            <Route path="/add-event" exact component={AddEvent} />
             <Route path="/event/:_id" exact component={Event} />
+            <Route path="/add-event" exact component={AddEvent} />
             <Route path="/update-event/:_id" component={UpdateEvent} />
             <Route path="/profile/:_id">
               {this.props.user ? <GuestProfile /> : <Redirect to="/" />}
             </Route>
+            <Route path="/update-profile" component={UpdateProfile} />
             <Route path="/create-account" exact component={CreateAccount} />
             <Route path="/login" exact component={Login} />
-            <Route path="/auth/facebook/callback/:accessToken" exact>
-              <CBRetrun />
-            </Route>
+            <Route
+              path="/auth/facebook/callback/:accessToken"
+              exact
+              component={CBRetrun}
+            />
             <Route component={PageNotFound} />
           </Switch>
         </Router>

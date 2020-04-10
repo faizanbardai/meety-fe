@@ -101,19 +101,19 @@ const CreateAccount = (props) => {
             placeholder="Password"
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleFormControlFile1">Avatar</label>
           <input
             type="file"
             onChange={(e) => setPicture(e.target.files[0])}
-            class="form-control-file"
+            className="form-control-file"
             id="exampleFormControlFile1"
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleFormControlTextarea1">About you</label>
           <textarea
-            class="form-control"
+            className="form-control"
             value={aboutMe}
             placeholder="Tell us a little about yourself."
             onChange={(e) => setAboutMe(e.target.value)}

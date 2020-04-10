@@ -93,7 +93,7 @@ class Event extends Component {
         <div className="container" style={{ paddingBottom: "200px" }}>
           <CardWithOverlayText event={this.state.event} />
           <div className="d-flex justify-content-between my-4">
-            <div class="d-flex align-items-center">
+            <div className="d-flex align-items-center">
               <img
                 src={this.state.event.hosts[0].picture}
                 alt=""
@@ -140,9 +140,6 @@ class Event extends Component {
           <Share />
           <h1>Participants ({this.state.event.participantsLength})</h1>
           <div className="row">
-            {this.state.event.hosts.map((host) => (
-              <MiniProfileCard key={host._id} item={host}></MiniProfileCard>
-            ))}
             {this.state.event.participants.map((participant) => (
               <MiniProfileCard key={participant._id} item={participant} />
             ))}
@@ -150,7 +147,7 @@ class Event extends Component {
         </div>
         <div style={{ backgroundColor: "#ffffff" }} className="fixed-bottom ">
           <div className="container">
-            <div className="row">
+            <div className="row pb-2">
               <div className="d-none d-lg-block col-md-6">
                 <b>
                   <Moment

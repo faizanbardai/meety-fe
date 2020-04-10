@@ -61,44 +61,44 @@ export default class Examples extends Component {
         </button>
         <Modal
           visible={this.state.visible}
-          width="400"
-          height="300"
+          // width="400"
+          // height="300"
           effect="fadeInUp"
           onClickAway={() => this.closeModal()}
         >
-          <div>
-            <br />
-            <br />
-            <label htmlFor="search">Search</label>
-            <div>
-              <input
-                onChange={(e) => this.onSearch(e)}
-                type="text"
-                placeholder="Search.."
-                name="search"
-              />
-              {this.state.searchResult.map((value, index) => (
-                <div key={value._id} className="flex">
-                  <div>{value.name} </div>
-                  <div>
-                    <button type="button" onClick={() => this.addHost(value)}>
-                      Add User
-                    </button>
+          <div className="row">
+            <div className="col-6">
+              <label htmlFor="search">Search</label>
+              <div>
+                <input
+                  onChange={(e) => this.onSearch(e)}
+                  type="text"
+                  placeholder="Search.."
+                  name="search"
+                />
+                {this.state.searchResult.map((value, index) => (
+                  <div key={value._id} className="flex">
+                    <div>{value.name} </div>
+                    <div>
+                      <button type="button" onClick={() => this.addHost(value)}>
+                        Add User
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            <div className="foot">
-              <div className="preview-publish">
-                {/* <button className="button">Add User</button> */}
-                <button
-                  className="button"
-                  type="button"
-                  onClick={() => this.closeModal()}
-                >
-                  Close{" "}
-                </button>
+              <div className="foot">
+                <div className="preview-publish">
+                  {/* <button className="button">Add User</button> */}
+                  <button
+                    className="button"
+                    type="button"
+                    onClick={() => this.closeModal()}
+                  >
+                    Close{" "}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
